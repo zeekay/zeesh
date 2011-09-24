@@ -1,0 +1,1 @@
+check_ip(){ echo ${(j::)$(curl -s 'http://checkip.dyndns.org' | /usr/bin/grep -o '[0-9.]')} }

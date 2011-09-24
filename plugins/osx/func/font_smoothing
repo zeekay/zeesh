@@ -1,0 +1,9 @@
+font_smoothing(){
+    if [[ $1 -gt 0 ]] && [[ $1 -lt 5 ]]; then
+        defaults -currentHost write -g AppleFontSmoothing -int $1
+        echo "set AppleFontSmoothing to $1"
+        echo "restart for this to take effect"
+    else
+        echo 'value must be between 1-4'
+    fi
+}

@@ -1,0 +1,8 @@
+# switch to project dir in active virtualenv
+zeesh_ls_poj_dir() {
+        if [ $VIRTUAL_ENV ]; then
+            set -A reply $(/bin/ls $VIRTUAL_ENV_PROJECT_ROOT ${*} 2>/dev/null)
+        else
+            set -A reply ""
+        fi
+}

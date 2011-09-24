@@ -1,0 +1,90 @@
+#!/bin/zsh -f
+
+version="2.0.0"
+
+# The script must be run as an admin user 
+#
+if [[ -z $(/usr/bin/id -p $USER | grep admin) ]];then
+    print "You must be an administrative user with sudo privileges in order to run $0"
+fi
+
+# Obtained and modified from a bash shell script available at
+# http://www.osxfaq.com/tips/unix-tricks/week91/friday.ws
+
+# Modified to use Directory Service on 10.5.X
+ 
+# Create a group.
+# Takes a group name and gid and creates a new group in NetInfo groups
+
+# For 10.5:  Eliminated niutil commands in favor of Directory Service
+
+progname=$0
+
+declare group gid  # to hold the given group name and group id
+declare str        # working
+
+
+function usage
+    {
+      print "Create a new group"
+      print "Usage: $progname groupname gid"
+      if [[ "$*" != "" ]]; then 
+        print ""
+        print "Error: $*"
+      fi
+      return 1
+    }
+
+# Check parameters
+#
+if [[ $# -ne 2 ]]; then
+  usage
+  return 1
+fi
+
+group="$1"; gid="$2"
+
+# check that the group id is numeric
+if [[ -z "$(echo $gid | egrep "^[[:digit:]]+$")" ]]; then
+    usage "Group ID must be numeric"
+    return 1
+fi
+
+# search Directory Service for the given group - it should not exist
+# str="$(nifind /groups/$group .)"
+str="$( dscl . -list /Groups | grep -w $group )"
+if [[ ! -z "$str" ]]; then
+    usage "Group $group already exists"
+    return 1
+fi
+
+
+# search Directory Service for the given gid - it should not exist
+#str="$(nireport . /groups gid | grep -w $uid)"
+str="$( dscl . -list /Users PrimaryGroupID | awk '{print $2}'  | grep -w $gid)"
+if [[ ! -z "$str" ]]; then
+    usage "Group ID $uid already exists"
+  return 1
+fi
+
+# Add the new group to Directory Services
+#
+# add group and essential properties
+sudo dscl . create /groups/$group
+sudo dscl . create /groups/$group name $group
+sudo dscl . create /groups/$group passwd "*"
+sudo dscl . create /groups/$group gid $gid
+#dscl . create /groups/$group users "" breaks add-user2group if added as a blank value
+
+print ""
+print "New group $group has been created with gid $gid"
+print ""
+print "Reality check: The following is gleaned from the Directory Service database"
+print "The Directory Service database now contains $(dscl . -list /Groups | grep -w $group )"
+print "with the gid assigned as $(dscl . -list /Groups PrimaryGroupID | grep -w $gid | awk '{print $2}' )"
+print ""
+print "Now add users to it with \e[1m adduser2group \e[0m "
+
+return 0
+
+

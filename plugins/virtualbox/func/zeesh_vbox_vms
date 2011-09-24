@@ -1,0 +1,19 @@
+# checks if vm exists or returns a list of vms
+zeesh_vbox_vms() {
+    local vm=$1
+
+    typeset -A prefs
+    zeesh_prefs virtualbox get 
+    local vboxmanage=$prefs[vboxmanage]
+
+    vms=$($vboxmanage list vms | /usr/bin/grep -o '^".*"' | cut -d '"' -f2)
+    if [ -n "$vm" ]; then
+        if [ -n "$vms[(fr)$vm]" ]; then
+            return 0
+        else
+            return 1
+        fi
+    else
+        echo $vms
+    fi
+}

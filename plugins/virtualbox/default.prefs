@@ -1,0 +1,3 @@
+# virtualbox zeesh! plugin example preferences file
+default: <virtual machine to apply commands to by default>
+vboxmanage: <location of VBoxManage, typically /usr/bin/VBoxManage or /c/cygdrive/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe>

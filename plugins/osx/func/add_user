@@ -1,0 +1,173 @@
+#!/bin/zsh -f
+
+version="2.0.1"
+
+# The script must be run as an admin user 
+#
+if [[ -z $(/usr/bin/id -p $USER | grep admin) ]];then
+    print "You must be an administrative user with sudo privileges in order to run $0"
+fi
+  
+# set -x
+
+# Obtained and modified from a bash shell script available at
+# http://www.osxfaq.com/tips/unix-tricks/week91/friday.ws
+# For 10.5:  Eliminated niutil commands in favor of Directory Service
+
+# Create a user.
+# Takes the user's username, fullname, uid, and staff|admin
+# and creates:
+#   a new user in Directory Service passwd
+#   a new /Users/username home directory
+
+ 
+
+declare RecordName RealName uid accnt  # to hold the given RecordName and RealName names, uid, and account type
+declare str                   # working
+
+thiscommand=$0
+
+function usage {
+  print "Create a new staff or admin user"
+  print "Usage: $thiscommand username \"Real Full Name\" uid staff|admin"
+  print "Be sure to wrap the Real Full Name in double quotes."
+  if [[ "$*" != "" ]]; then print; print "Error: $*"; fi
+  return 1
+}
+
+ 
+
+
+
+
+# Check parameters
+#
+if [[ $# -ne 4 ]]; then
+    usage
+    return 1
+fi
+
+RecordName="$1"; RealName="$2"; uid="$3"; accnt="$4"
+
+group=${RecordName} 
+ 
+# check that the user id is numeric
+if [[ -z "$(print $uid | egrep "^[[:digit:]]+$")" ]]; then
+    usage "User ID must be numeric"
+    return 1
+fi
+ 
+# check that the users does not already have a home directory
+if [[ -e /Users/$RecordName ]]; then
+    usage "User $RecordName already exists at /Users/$RecordName"
+    return 11
+fi
+ 
+# search Directory Service for the given user - it should not exist
+
+str="$(dscl . -list /Users  |  grep -w $RecordName )"  
+
+if [[ $RecordName == $str ]];then
+    usage "User $RecordName already exists (but does not have a home directory)"
+    return 21
+fi
+ 
+# search Directory Service for the given uid - it should not exist
+# str="$(nireport . /users uid | grep -w $uid)"
+str="$(dscl . -list /Users UniqueID | awk '{print $2}'  | grep -w $uid)" 
+if [[ ! -z "$str" ]]; then
+  usage "User ID $uid already exists"
+  return 31
+fi
+ 
+# search Directory Service for the given group - it should not exist
+# str="$(nifind /groups/$group .)"
+str="$( dscl . -list /Groups | grep -w $group )"
+if [[ ! -z "$str" ]]; then
+    usage "Group $group already exists"
+    return 41
+fi
+ 
+# search Directory Service for the given gid - it should not exist
+#str="$(nireport . /groups gid | grep -w $uid)"
+str="$( dscl . -list /Users PrimaryGroupID | awk '{print $2}'  | grep -w $uid)"
+if [[ ! -z "$str" ]]; then
+    usage "Group ID $uid already exists"
+  return 1
+fi
+ 
+# ensure either staff or admin is given
+if [[ $4 != staff ]] && [[ $4 != admin ]]; then
+  usage "Give account type as 'staff' or 'admin'"
+  return 1
+fi
+ 
+
+# Add the new user to Directory Service
+#
+# add user and essential properties
+sudo dscl . create /users/$RecordName
+sudo dscl . create /users/$RecordName name $RecordName
+sudo dscl . create /users/$RecordName passwd "*"
+sudo dscl . create /users/$RecordName hint ""
+sudo dscl . create /users/$RecordName uid $uid
+sudo dscl . create /users/$RecordName gid $uid
+
+sudo dscl . create /users/$RecordName home /Users/$RecordName
+sudo dscl . create /users/$RecordName shell /bin/zsh
+sudo dscl . create /users/$RecordName realname "$RealName"
+sudo dscl . create /users/$RecordName picture "/Library/User Pictures/Fun/Gingerbread Man.tif" 
+sudo dscl . create /users/$RecordName sharedDir Public
+ 
+# add some other properties that are usually in Directory Service
+sudo  dscl . create /users/$RecordName _shadow_passwd ""
+#dscl . create /users/$RecordName _writers_hint $RecordName
+#dscl . create /users/$RecordName _writers_real_name $RecordName
+ 
+# add the new group
+sudo  dscl . create /groups/$RecordName
+sudo  dscl . create /groups/$RecordName name $RecordName
+sudo  dscl . create /groups/$RecordName passwd "*"
+sudo  dscl . create /groups/$RecordName gid $uid
+ 
+print "New user and group $RecordName created for $RealName"
+
+ 
+# Add admin users to the admin group
+#
+if [[ $4 = admin ]]; then 
+  sudo  dscl . merge /groups/admin users $RecordName 
+  sudo  dscl . merge /groups/appserverusr users $RecordName 
+  sudo  dscl . merge /groups/appserveradm users $RecordName 
+  print "User $RecordName added to groups admin, appserverusr, appserveradm"
+fi
+ 
+# Create the home directory, populate from the template, and set owners
+#
+sudo  mkdir /Users/$RecordName
+if [[ ! -d /Users/$RecordName ]]; then
+  print "Unable to create the user's home directory /Users/$RecordName"
+  return
+fi
+ 
+# Test for a /Users/Template account, and use that, or in its absence, the
+# default factory-supplied template, to create the new user's subdirectories
+# but don't create a problem if this is used to create the Template account
+if [[ -d /Users/Template && $RecordName != Template ]];then
+    sudo  ditto -rsrc  /Users/Template/  /Users/$RecordName
+    print "Home directory /Users/$RecordName created and populated from /Users/Template"
+else
+    sudo  ditto -rsrc /System/Library/User\ Template/English.lproj/ /Users/$RecordName
+    print "Home directory /Users/$RecordName created and populated from /System/Library/User\ Template"
+fi
+
+sudo  chown -R ${RecordName}:$RecordName /Users/$RecordName
+
+
+
+# Now give the user a password
+#
+print "A password for this account must be given, it is currently blank"
+sudo passwd $RecordName
+
+return 0

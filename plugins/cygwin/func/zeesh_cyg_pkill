@@ -1,0 +1,17 @@
+# kill matching processes
+zeesh_cyg_pkill () {
+    if [ $1 ]; then
+        pids=($(zeesh_psgrep "$@" | tr -s '[:space:]' | cut -d ' ' -f3 ))
+        if [[ $pids[1] != '' ]]; then
+            echo "killed:"
+            zeesh_psgrep "$@"
+            for pid in $pids
+            do
+                /bin/kill -f $pid
+            done
+        else
+            echo "No matches"
+        fi
+        unset pids
+    fi
+}

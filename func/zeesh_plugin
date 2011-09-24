@@ -1,0 +1,34 @@
+# zeesh plugin controller
+function zeesh_plugin() {
+    if [ $2 ] && [[ -d ~/.zsh/plugins/$2 ]]; then
+        case $1 in
+        desc|description)
+            zeesh_plugin_desc $2
+        ;;
+        enable)
+            echo ":: zeesh plugin $2 enabled"
+            source ~/.zsh/plugins/$2/plugin.zsh
+        ;;
+        prefs)
+            zeesh_prefs $2 $@[3,-1]
+        ;;
+        esac
+    else
+        case $1 in
+        create|new)
+            if [ $2 ]; then
+                zeesh_create_new_plugin $2
+            else
+                echo "please specify a name for your new plugin"
+            fi
+        ;;
+        list|ls)
+            echo ":: zeesh plugin :: available plugins"
+            /bin/ls ~/.zsh/plugins
+        ;;
+        *)
+            echo "not a valid command"
+        ;;
+        esac
+    fi
+}

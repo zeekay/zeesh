@@ -1,0 +1,20 @@
+#compdef hoodoo
+
+_hoodoo() {
+  _arguments -s \
+    '*::hoodoo command:_hoodoo_command'
+}
+
+(( $+functions[_hoodoo_command] )) ||
+_hoodoo_command(){
+  local ret=1
+
+  # newline delimited list of commands in command_name:description format
+  _hoodoo_cmds=(
+    ${(f)"$(hoodoo command_list)"}
+  )
+
+  _describe -t commands 'hoodoo command' _hoodoo_cmds
+
+  return ret
+}

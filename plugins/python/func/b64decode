@@ -1,0 +1,1 @@
+b64decode(){ python -c "import base64, sys; print base64.decodestring(''.join(sys.argv[1:]))" $@ }

@@ -1,0 +1,4 @@
+# precmd is called just before the prompt is printed
+function precmd() {
+    print -Pn "\e]0;%n@%m:%~\a"
+}

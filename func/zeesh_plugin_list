@@ -1,0 +1,1 @@
+function zeesh_plugin_list() { set -A reply $(/bin/ls ~/.zsh/plugins ${*} 2>/dev/null) }

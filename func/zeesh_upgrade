@@ -1,0 +1,22 @@
+# upgrades zeesh to latest version on repo
+function zeesh_upgrade() {
+    echo "Checking for upgrade..."
+
+    local zeesh_current=$(hg id -r tip ~/.zsh | cut -d ' ' -f1)
+    echo "Current version: $zeesh_current"
+
+    local zeesh_repo=$(cat ~/.zsh/.hg/hgrc | grep default | cut -d ' ' -f3)
+    local zeesh_remote=$(hg id $zeesh_repo)
+    echo "Remote version: $zeesh_remote"
+
+    if [[ $zeesh_current == $zeesh_remote ]]; then
+        hg log -r tip ~/.zsh
+        echo "You have the latest version of zeesh."
+    else
+        echo "Upgrading zeesh..."
+        cd ~/.zsh
+        hg pull
+        hg up
+        hg log -r tip
+    fi
+}

@@ -1,0 +1,28 @@
+# simple function to scp a file to my server and create a link for me
+function _scp_share() {
+    if [ -f ~/.zsh/plugins/share/local.conf ]; then
+        # load config
+        if [ -f ~/.zsh/plugins/share/local.conf ]; then
+            source ~/.zsh/plugins/share/local.conf
+        fi
+        if [ $2 ]; then
+            if [ -f $1 ] && [ $_scp_share_server[$2] ]; then
+                scp "$1" $_scp_share_server[$2] && echo "available at: $_scp_share_url[$2]$1 / copied to clipboard"
+                echo "$_scp_share_url[$2]$1" | pbcopy
+            else
+                echo "Please specify a file to share and/or configure default server"
+            fi
+        elif [ $1 ]; then
+            if [ -f $1 ] && [ $_scp_share_server[default] ]; then
+                scp "$1" $_scp_share_server[default] && echo "available at: $_scp_share_url[default]$1 / copied to clipboard"
+                echo "$_scp_share_url[default]$1" | pbcopy
+            else
+                echo "Please specify a file to share and/or configure default server"
+            fi
+        else
+            echo "Please specify a file to share"
+        fi
+    else
+        echo "Please configure ~/.zsh/plugins/share/local.conf first! Please refer to local.conf.example."
+    fi
+}

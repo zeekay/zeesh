@@ -1,0 +1,4 @@
+# check uptime on windows
+function zeesh_cyg_uptime() {
+    systeminfo | grep 'Boot Time' | cut -c28-
+}

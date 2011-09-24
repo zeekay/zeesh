@@ -1,0 +1,33 @@
+zeesh_remote_mvim(){
+    typeset -A prefs
+    zeesh_prefs remote_mvim get # get preferences, failing that create them
+    if [[ $prefs != '' ]]; then
+        local file=$@[-1]
+        local args=$@[1,-2]
+        local pwd=$(pwd)
+        if [ $1 ]; then
+            if [[ -d $file ]]; then
+                if [[ $file[-1] != '/' ]]; then
+                   file=$file'/'
+                fi
+                if [[ $file[1] == '/' ]]; then
+                    ssh $prefs[remote] -f "$prefs[cmd] $args -c ':Nread scp://$prefs[local]/$file'"
+                else
+                    echo "browsing $pwd/$file remotely on $prefs[remote] with mvim"
+                    ssh $prefs[remote] -f "$prefs[cmd] $args -c ':Nread scp://$prefs[local]/$pwd/$file'"
+                fi
+            else
+                if [[ $file[1] == '/' ]]; then
+                    echo "opening $file remotely on $prefs[remote] with mvim"
+                    ssh $prefs[remote] -f "$prefs[cmd] $args scp://$prefs[local]/$file"
+                else
+                    echo "opening $pwd/$file remotely on $prefs[remote] with mvim"
+                    ssh $prefs[remote] -f "$prefs[cmd] $args scp://$prefs[local]/$pwd/$file"
+                fi
+            fi
+        else
+           echo "browsing $pwd remotely on $prefs[remote] with mvim"
+           ssh $prefs[remote] -f "$prefs[cmd] $args -c ':Nread scp://$prefs[local]/$pwd/'"
+        fi
+    fi
+}

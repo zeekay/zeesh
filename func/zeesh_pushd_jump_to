@@ -1,0 +1,1 @@
+zeesh_pushd_jump_to () { pushd ~$1 }

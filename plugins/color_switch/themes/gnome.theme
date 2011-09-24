@@ -1,0 +1,17 @@
+# gnome theme
+echo -e "\e]4;00;#000000\a" | tr -d '\n' # black
+echo -e "\e]4;01;#aa0000\a" | tr -d '\n' # red
+echo -e "\e]4;02;#00aa00\a" | tr -d '\n' # green
+echo -e "\e]4;03;#ffff55\a" | tr -d '\n' # yellow
+echo -e "\e]4;04;#0000aa\a" | tr -d '\n' # blue
+echo -e "\e]4;05;#aa00aa\a" | tr -d '\n' # purple
+echo -e "\e]4;06;#00aaaa\a" | tr -d '\n' # cyan
+echo -e "\e]4;07;#aaaaaa\a" | tr -d '\n' # light gray
+echo -e "\e]4;08;#555555\a" | tr -d '\n' # gray
+echo -e "\e]4;09;#ff5555\a" | tr -d '\n' # light red
+echo -e "\e]4;10;#55ff55\a" | tr -d '\n' # light green
+echo -e "\e]4;11;#aaaaaa\a" | tr -d '\n' # brown
+echo -e "\e]4;12;#5555ff\a" | tr -d '\n' # light blue
+echo -e "\e]4;13;#ff55ff\a" | tr -d '\n' # light purple
+echo -e "\e]4;14;#55ffff\a" | tr -d '\n' # light cyan
+echo -e "\e]4;15;#ffffff\a" | tr -d '\n' # white

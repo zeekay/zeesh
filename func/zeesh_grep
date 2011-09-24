@@ -1,0 +1,8 @@
+# remove grep from grep automatically
+function zeesh_grep() {
+    if [[ $1 == "--orig" ]]; then
+        grep $argv[2,-1]
+     else
+        grep -i --color=always $@ | grep -v grep
+    fi
+}

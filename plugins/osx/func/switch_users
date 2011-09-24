@@ -1,0 +1,8 @@
+#compdef switch_users
+
+local expl users
+
+zstyle -a ":completion:${curcontext}:" users users &&
+_wanted users expl user compadd "$@" -a users && return 0
+
+_wanted users expl %B'possible users to switch to ----'%b compadd "$@" -k userdirs

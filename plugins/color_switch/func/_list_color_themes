@@ -1,0 +1,1 @@
+function _list_color_themes() { set -A reply $(ls ~/.zsh/plugins/color_switch/themes | cut -d . -f1 ${*} 2>/dev/null) }

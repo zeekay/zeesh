@@ -1,0 +1,171 @@
+#compdef zeesh_vbox_manage
+
+_zeesh_vbox_manage() {
+  _arguments -s '*::zeesh_vbox_manage command:_zeesh_vbox_manage_command'
+}
+
+# define zeesh_vbox_manage command dispatch function.
+(( $+functions[_zeesh_vbox_manage_command] )) ||
+_zeesh_vbox_manage_command() {
+
+  (( $+_zeesh_vbox_manage_cmds )) || _zeesh_vbox_manage_cmds=(
+    ${(f)"$(zeesh_vbox_manage commands)"}
+  )
+
+  if (( CURRENT == 1 )); then
+    _describe -t commands 'zeesh_vbox_manage command' _zeesh_vbox_manage_cmds
+  else
+    local curcontext="$curcontext"
+
+    cmd="${_zeesh_vbox_manage_cmds[(r)$words[1]:*]%%:*}"
+    if (( $#cmd )); then
+      curcontext="${curcontext%:*:*}:zeesh_vbox_manage-${cmd}:"
+      _call_function ret _zeesh_vbox_manage_$cmd || _message 'no more arguments'
+    else
+      _message "unknown zeesh_vbox_manage command: $words[1]"
+    fi
+    return ret
+  fi
+}
+
+# utility functions
+(( $+functions[_zeesh_vbox_manage_list_vms] )) ||
+_zeesh_vbox_manage_list_vms() {
+  compadd -M 'm:{a-zA-Z0-9-}={-0-9A-Za-z}' - \
+    $(_call_program listvbvirts zeesh_vbox_vms 2>&1 | sed 's/^"//; s/" {/ /; s/}$//')
+}
+
+(( $+functions[_zeesh_vbox_manage_list_snapshots] )) ||
+_zeesh_vbox_manage_list_snapshots() {
+  compadd -M 'm:{a-zA-Z0-9-}={-0-9A-Za-z}' - \
+    $(_call_program listsnapshots zeesh_vbox_snapshots $words[CURRENT-1] names 2>&1 | sed 's/^"//; s/" {/ /; s/}$//')
+}
+    
+(( $+functions[_zeesh_vbox_manage_n] )) ||
+_zeesh_vbox_manage_n() {
+  _message -e virtname "virt name"
+}
+
+# define completion functions for each zeesh_vbox_manage command
+(( $+functions[_zeesh_vbox_manage_start] )) ||
+_zeesh_vbox_manage_start() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '2:type:(gui vrdp headless)'
+}
+
+(( $+functions[_zeesh_vbox_manage_off] )) ||
+_zeesh_vbox_manage_off() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+}
+
+(( $+functions[_zeesh_vbox_manage_reset] )) ||
+_zeesh_vbox_manage_reset() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+}
+
+(( $+functions[_zeesh_vbox_manage_pause] )) ||
+_zeesh_vbox_manage_pause() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+}
+
+(( $+functions[_zeesh_vbox_manage_save] )) ||
+_zeesh_vbox_manage_save() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+}
+
+# TODO figure out how to support the --boot<1-4> and similar options
+(( $+functions[_zeesh_vbox_manage_modify] )) ||
+_zeesh_vbox_manage_modify() {
+  _arguments -s \
+    '--name:virtname:_zeesh_vbox_manage_n' \
+    '--ostype:os type:( )' \
+    '--memory[memory size in MB]:memorysize:( )' \
+    '--pagefusion[on|off]:pagefusion:(on off)' \
+    '--vram[vram size in MB]:vramsize:( )' \
+    '--acpi[on|off]:acpi:(on off)' \
+    '--ioapic[on|off]:ioapic:(on off)' \
+    '--pae[on|off]:pae:(on off)' \
+    '--hpet[on|off]:hpet:(on off)' \
+    '--hwvirtex[on|off]:hwvirtex:(on off)' \
+    '--nestedpaging[on|off]:nestedpaging:(on off)' \
+    '--largepages[on|off]:largepages:(on off)' \
+    '--vtxvpid[on|off]:vtxvpid:(on off)' \
+    '--synthcpu[on|off]:synthcpu:(on off)' \
+    '--cpuidset:cpuidset:(leaf eax abx ecx edx)' \
+    '--cpuidremove:cpuidremove:(leaf)' \
+    '--cpuidremoveall' \
+    '--hardwareuuid:--hardwareuuid:( )' \
+    '--cpus[number]:cpus:( )' \
+    '--rtcuseutc' \
+    '--monitorcount[number]:monitorcount:( )' \
+    '--accelerate3d[on|off]:accelerate3d:(on off)' \
+    '--accelerate2dvideo[on|off]:accelerate2dvideo:(on off)' \
+    '--firmware:firmware:(bios efi efi32 efi64)' \
+    '--bioslogofadein[on|off]:bioslogofadein:(on off)' \
+    '--bioslogofadeout[on|off]:bioslogofadeout:(on off)' \
+    '--bioslogodisplaytime[msec]:bioslogodisplaytime:( )' \
+    '--bioslogoimagepath[imagepath]:bioslogoimagepath:_files' \
+    '--biosbootmenu:biosbootmenu:(disabled menuonly messageandmenu)' \
+    '--biossystemtimeoffset[msec]:biossystemtimeoffset:( )' \
+    '--biospxedebug[on|off]:biospxedebug:(on off)' \
+    '--mouse:mouse:(ps2 usb usbtablet)' \
+    '--keyboard:keyboard:(ps2 usb)' \
+    '--guestmemoryballoon[memory size in MB]:guestmemoryballoon:( )' \
+    '--gueststatisticsinterval[seconds]:gueststatisticsinterval:( )' \
+    '--audio:audio:(none null coreaudio)' \
+    '--audiocontroller:audiocontroller:(ac97 sb16)' \
+    '--clipboard:clipboard:(disabled hosttoguest guesttohost bidirectional)' \
+    '--vrdp[on|off]:vrdp:(on off)' \
+    '--vrdpport[default|<ports>]:vrdpport:( )' \
+    '--vrdpaddress[host]:vrdpaddress:( )' \
+    '--vrdpauthtype:vrdpauthtype:(null external guest)' \
+    '--vrdpmulticon[on|off]:vrdpmulticon:(on off)' \
+    '--vrdpreusecon[on|off]:vrdpreusecon:(on off)' \
+    '--vrdpvideochannel[on|off]:vrdpvideochannel:(on off)' \
+    '--vrdpvideochannelquality[percent]:vrdpvideochannelquality:( )' \
+    '--usb[on|off]:usb:(on off)' \
+    '--usbehci[on|off]:usbehci:(on off)' \
+    '--snapshotfolder[default|<path>]:vrdpport:_files -/' \
+    '--teleporter[on|off]:teleporter:(on off)' \
+    '--teleporterport[port]:teleporterport:( )' \
+    '--teleporteraddress[address|empty]:teleporteraddress:( )' \
+    '--teleporterpassword:teleporterport:( )' \
+    '1:virtname:_zeesh_vbox_manage_list_vms'
+}
+
+(( $+functions[_zeesh_vbox_manage_info] )) ||
+_zeesh_vbox_manage_info() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+}
+
+(( $+functions[_zeesh_vbox_manage_state] )) ||
+_zeesh_vbox_manage_state() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+}
+
+(( $+functions[_zeesh_vbox_manage_snapshot] )) ||
+_zeesh_vbox_manage_snapshot() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+}
+
+(( $+functions[_zeesh_vbox_manage_snapshots] )) ||
+_zeesh_vbox_manage_snapshots() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+}
+
+(( $+functions[_zeesh_vbox_manage_switch] )) ||
+_zeesh_vbox_manage_switch() {
+  _arguments -s \
+    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '2:snapshot-name:_zeesh_vbox_manage_list_snapshots' \
+    '3:type:(gui vrdp headless)'
+}

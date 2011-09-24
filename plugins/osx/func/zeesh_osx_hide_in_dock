@@ -1,0 +1,17 @@
+zeesh_osx_hide_in_dock(){
+    if [ $1 ]; then
+        if [[ -d "$1/Contents" ]]; then
+            if [[ $(defaults read "$1/Contents/Info" LSUIElement) -eq '0' ]]; then
+                defaults write "$1/Contents/Info" LSUIElement 1
+                echo "Hiding $1"
+            else
+                defaults write "$1/Contents/Info" LSUIElement 0
+                echo "Showing $1"
+            fi
+        else
+            echo "Please specify a valid application"
+        fi
+    else
+        echo "Please specify a valid application"
+    fi
+}

@@ -1,0 +1,8 @@
+# switch to active virtualenv site-packages dir
+function cd_src_dir () {
+    if [ $VIRTUAL_ENV ]; then
+        cd $VIRTUAL_ENV/src
+    else
+        cd /usr/local/src
+    fi
+}

@@ -1,0 +1,47 @@
+# simple function to scp a file to my server and create a link for me
+function zeesh_pianobar() {
+    # control fifo
+    ctl=~/.config/pianobar/ctl
+
+    # check for ctl, create it if missing 
+    if [[ -p $ctl ]]; then
+    else
+        mkfifo $ctl
+    fi
+
+    # if input assume command is being sent
+    if [ $1 ]; then
+        case $1 in
+            "+")
+                echo '<3 current song'
+                echo -n '+' > $ctl
+            ;;
+            "-")
+                echo 'ban current song'
+                echo -n '-' > $ctl
+            ;;
+            "n")
+                echo 'next song'
+                echo -n 'n' > $ctl
+            ;;
+            "p")
+                echo 'pause/continue'
+                echo -n 'p' > $ctl
+            ;;
+            "q")
+                echo 'quit pianobar'
+                echo -n 'q' > $ctl
+            ;;
+            "b")
+                echo 'bookmark song/artist'
+                echo -n 'b' > $ctl
+            ;;
+        esac
+    else
+        if [[ $(screen -ls | grep pianobar) == '' ]]; then
+            screen -S pianobar pianobar
+        else
+            screen -dr pianobar
+        fi
+    fi
+}

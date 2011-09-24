@@ -1,0 +1,57 @@
+# setup basic python environment
+zeesh_python_bootstrap () {
+    version=$(python -c 'import sys; print sys.version' | grep --color=never -o '^[0-9].[0-9]')
+    case $version in
+        2.6)
+            curl -O http://python-distribute.org/distribute_setup.py
+            python distribute_setup.py
+            rm -rf distribute*.py
+            rm -rf distribute*.tar.gz
+            easy_install pip
+            easy_install readline
+            easy_install ipython
+            pip install virtualenv
+            pip install virtualenv-commands
+            pip install argparse
+            pip install fabric
+            pip install ropevim
+            pip install PyCrypto
+            pip install PyAns1
+            pip install -e svn+http://keyczar.googlecode.com/svn/trunk/python/
+            pip install pipe
+            pip install requests
+        ;;
+        2.7)
+            curl -O http://python-distribute.org/distribute_setup.py
+            python distribute_setup.py
+            rm -rf distribute*.py
+            rm -rf distribute*.tar.gz
+            easy_install pip
+            easy_install readline
+            easy_install ipython
+            pip install virtualenv
+            pip install virtualenv-commands
+            pip install fabric
+            pip install ropevim
+            pip install PyCrypto
+            pip install PyAns1
+            pip install -e svn+http://keyczar.googlecode.com/svn/trunk/python/
+            pip install pipe
+            pip install requests
+        ;;
+        3.0|3.1|3.2)
+            curl -O http://python-distribute.org/distribute_setup.py
+            python distribute_setup.py
+            rm -rf distribute*.py
+            rm -rf distribute*.tar.gz
+            easy_install pip
+            easy_install readline
+            #easy_install ipython
+            pip install virtualenv5
+            pip install ropevim
+        ;;
+        *)
+            echo 'unsupported version of python'
+        ;;
+    esac
+}

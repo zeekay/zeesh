@@ -1,0 +1,1 @@
+urlencode(){ python -c "import urllib, sys; print urllib.quote(''.join(sys.argv[1:]))" $@ }

@@ -1,0 +1,4 @@
+# enables zeesh plugins in .zshrc in background
+function zeesh_background() {
+    for plugin ($zeesh_background) source ~/.zsh/plugins/$plugin/plugin.zsh
+}

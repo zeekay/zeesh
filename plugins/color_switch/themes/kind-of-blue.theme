@@ -1,0 +1,17 @@
+# kind-of-blue theme
+echo -e "\e]4;00;#888888\a" | tr -d '\n' # black
+echo -e "\e]4;01;#FF3D3D\a" | tr -d '\n' # red
+echo -e "\e]4;02;#2BE480\a" | tr -d '\n' # green
+echo -e "\e]4;03;#f0e68c\a" | tr -d '\n' # yellow
+echo -e "\e]4;04;#59A3FF\a" | tr -d '\n' # blue
+echo -e "\e]4;05;#D6A0FF\a" | tr -d '\n' # purple
+echo -e "\e]4;06;#ffa0a0\a" | tr -d '\n' # cyan
+echo -e "\e]4;07;#f5deb3\a" | tr -d '\n' # light gray
+echo -e "\e]4;08;#999999\a" | tr -d '\n' # gray
+echo -e "\e]4;09;#ff5555\a" | tr -d '\n' # light red
+echo -e "\e]4;10;#55ff55\a" | tr -d '\n' # light green
+echo -e "\e]4;11;#ffff55\a" | tr -d '\n' # light yellow
+echo -e "\e]4;12;#A8D0FF\a" | tr -d '\n' # light blue
+echo -e "\e]4;13;#E2BFFF\a" | tr -d '\n' # light purple
+echo -e "\e]4;14;#3AC0FF\a" | tr -d '\n' # light cyan
+echo -e "\e]4;15;#ffffff\a" | tr -d '\n' # bold white

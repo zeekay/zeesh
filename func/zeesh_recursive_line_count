@@ -1,0 +1,7 @@
+zeesh_recursive_line_count(){
+    if [ $1 ]; then
+        find $1 -not -type d | xargs wc -l | cut -c 1-8 | awk '{total += $1} END {print total}' -
+    else
+        find ./ -not -type d | xargs wc -l | cut -c 1-8 | awk '{total += $1} END {print total}' -
+    fi
+}

@@ -1,0 +1,44 @@
+zeesh_uwsgi(){
+    typeset -A prefs
+    zeesh_prefs get uwsgi # try to get prefs or create new prefs file using default.prefs
+    if [[ $prefs != "" ]]; then
+        if [ $1 ] && [ $2 ]; then
+            if [[ -d $(pwd)/$2 ]]; then
+                app=$( echo $2 | sed s,/,,g )'.uwsgi'
+                eval "args=$prefs[args]"
+                case $1 in
+                start)
+                    if [[ $(ps | grep uwsgi | tr -s ' ' '\t' | cut -f11) == 'uwsgi' ]]; then
+                        echo 'uwsgi is already running!'
+                    else
+                        cmd='sudo uwsgi '$args
+                        echo "executing $cmd"
+                        echo $cmd | /bin/sh
+                    fi
+                ;;
+                stop)
+                    if [[ $(ps | grep uwsgi | tr -s ' ' '\t' | cut -f11) == 'uwsgi' ]]; then
+                        sudo pkill -9 uwsgi
+                    else
+                        echo 'uwsgi is not running!'
+                    fi
+                ;;
+                restart)
+                    if [[ $(ps | grep uwsgi | tr -s ' ' '\t' | cut -f11) == 'uwsgi' ]]; then
+                        sudo pkill -9 uwsgi
+                        cmd='sudo uwsgi '$args
+                        echo "executing $cmd"
+                        echo $cmd | /bin/sh
+                    else
+                        echo 'uwsgi is not running!'
+                    fi
+                ;;
+                esac
+            else
+                echo 'please specify a valid app'
+            fi
+        else
+            echo 'please specify a valid command and app'
+        fi
+    fi
+}

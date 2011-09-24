@@ -1,0 +1,11 @@
+# setup config arrays, configure below
+typeset -A _scp_share_server
+typeset -A _scp_share_url
+
+# server / url mappings, default is required for normal usage
+_scp_share_server[default]='user@host:/path/to/shared/dir'
+_scp_share_url[default]='http://host.com/path/to/shared/dir'
+_scp_share_server[alias]='user@host:/path/to/shared/dir'
+_scp_share_url[alias]='http://path/to/shared/dir'
+_scp_share_server[host2]='user@host2:/path/to/shared/dir'
+_scp_share_url[host2]='http://host2.com/path/to/shared/dir'

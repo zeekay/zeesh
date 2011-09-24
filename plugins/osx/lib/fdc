@@ -1,0 +1,31 @@
+#!/bin/sh
+
+if [ -n "$1" ]; then
+	if [ "${1%%/*}" = "" ]; then
+		thePath="$1"
+	else
+		thePath=`pwd`"/$1"
+	fi
+else
+	thePath=`pwd`
+fi
+
+osascript<<END
+set myPath to ( POSIX file "$thePath" as alias )
+try
+	tell application "Finder" to set the (folder of the front window) to myPath
+on error -- no open folder windows
+	tell application "Finder" to open myPath
+end try
+END
+
+# thePath=${thePath#/}
+# if [ "${thePath%%/*}" = "Volumes" ]; then
+#	thePath=${thePath#*/}
+# else
+#	thePath="Mildred/""$thePath"
+# fi
+# thePath=$( echo "$thePath" | /sw/bin/ssed 's/\//:/g' )
+#echo "$thePath"
+# osascript -e "tell application \"Finder\" to set the (folder of the front window) to \"$thePath\""
+

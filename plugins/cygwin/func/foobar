@@ -1,0 +1,3 @@
+foobar () {
+    /cygdrive/c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe $@ &!
+}

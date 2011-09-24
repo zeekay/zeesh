@@ -1,0 +1,3 @@
+zap () {
+    open -a AppZapper /Applications/"${1}".app
+}

@@ -1,0 +1,120 @@
+# various functions for zeesh
+function zeesh() {
+    if [ $1 ]; then
+        case $1 in
+            all|a)
+                echo "zeesh $(hg id -n ~/.zsh) :: all"
+                echo "\n:: aliases ::"
+                cat ~/.zsh/zeesh.zsh | grep alias
+                for plugin ($plugins) echo "\n:: $plugin aliases ::" && cat ~/.zsh/plugins/$plugin/plugin.zsh | grep alias 2>/dev/null
+                echo ":: functions ::"
+                for function ($(/bin/ls ~/.zsh/func)) echo $function
+                for plugin ($plugins) echo "\n:: $plugin functions ::" && for function ($(/bin/ls ~/.zsh/plugins/$plugin/func 2>/dev/null)) echo $function
+                echo "\n:: plugins available"
+                for plugin ($(/bin/ls ~/.zsh/plugins)) echo $plugin
+                echo "\n:: plugins active ::"
+                for plugin ($plugins) echo $plugin
+                echo ""
+            ;;
+            help|h)
+                echo "zeesh $(hg id -n ~/.zsh) :: help"
+                echo ""
+                echo 'all :: list all aliases, functions, and plugins'
+                echo 'help :: this is the command you are using now'
+                echo 'list <aliases|functions|plugins> :: lists information about aliases/functions/plugins'
+                echo 'plugin <pluginname> :: load new plugin'
+                echo 'reload :: reloads zsh'
+                echo 'stats :: shows a few stats on usage'
+                echo 'tips :: tips for using zeesh'
+                echo 'upgrade :: upgrades your version of zeesh'
+                echo ""
+                echo 'there are also aliases available: a, h, l <a|f|p>, p, r, s, t, u'
+                echo ""
+                echo 'try tips for a cheatsheet of what you can do with zeesh!'
+                echo ""
+            ;;
+            list|l)
+                if [ $2 ]; then
+                    case $2 in
+                        aliases|a)
+
+                            echo "zeesh $(hg id -n ~/.zsh) :: aliases"
+                            cat ~/.zsh/zeesh.zsh | grep alias
+                            for plugin ($plugins) echo "\n:: $plugin aliases ::" && cat ~/.zsh/plugins/$plugin/plugin.zsh | grep alias 2>/dev/null
+                        ;;
+                        functions|f)
+                            echo "zeesh $(hg id -n ~/.zsh) :: functions"
+                            for function ($(/bin/ls ~/.zsh/func)) echo $function
+                            for plugin ($plugins) echo "\n:: $plugin functions ::" && for function ($(/bin/ls ~/.zsh/plugins/$plugin/func 2>/dev/null)) echo $function
+                        ;;
+                        plugins|p)
+                            echo "zeesh $(hg id -n ~/.zsh) :: plugins"
+                            echo "\n:: plugins available"
+                            for plugin ($(/bin/ls ~/.zsh/plugins)) echo $plugin
+                            echo "\n:: plugins active ::"
+                            for plugin ($plugins) echo $plugin
+                        ;;
+                    esac
+                else
+                    echo ':: zeesh list :: (aliases|functions|plugins)'
+                fi
+            ;;
+            plugin|p)
+                if [ $2 ]; then
+                    _zeesh_plugin $2
+                else
+                    echo ""
+                    echo ":: zeesh plugin :: select a plugin to enable"
+                    for plugin ($(/bin/ls ~/.zsh/plugins)) echo $plugin
+                    echo ""
+                fi
+            ;;
+            reload|r)
+                exec zsh
+            ;;
+            stats|s)
+                echo ""
+                echo "zeesh $(hg id -n ~/.zsh) :: stats"
+                fc -l 1 | awk '{print $2}' | sort | uniq -c | sort -rn | head
+                echo ""
+            ;;
+            tips|t)
+                echo "zeesh $(hg id -n ~/.zsh) :: tips"
+                echo ""
+                echo ':: aliases ::'
+                echo 'type zeesh list aliases to see all the alises, there are a great number of aliases available'
+                echo ""
+                echo ':: autocompletion ::'
+                echo 'lots of functions and commands have autocompletion that you can take advantage of, try typing cd / followed by tab :D'
+                echo ""
+                echo ':: history ::'
+                echo 'history <search for> - lists last 20 commands or searches through command history'
+                echo '!<num> - execute command <num> from history'
+                echo ""
+                echo ':: navigation ::'
+                echo 'autocd - you can cd directly into a location just by typing the folder name'
+                echo 'push - every cd command is pushed into dirstack, and you can jump between locations easily, try cd - to move between two locations rapidly'
+                echo 'take - lets you create directories and cd into them automatically, creating as many directories as necessary'
+                echo ""
+                echo ':: plugins ::'
+                echo 'plugins are easy to use! simply add the plugin name to your .zshrc and reload!'
+                echo ""
+                echo ':: themes ::'
+                echo 'you can change the look of zeesh using the oh_my_zsh and color_switch plugins, try theme and color-switch out!'
+                echo ""
+                echo ':: transfer ::'
+                echo 'rscp - resume broken scp transfers'
+                echo 'serve_this - serves cwd with python HTTP server'
+                echo 'share - uses scp to copy file to remote server and returns url for linking'
+                echo ""
+            ;;
+            upgrade|u)
+                _zeesh_upgrade
+            ;;
+        esac
+    else
+        echo "zeesh $(hg id -n ~/.zsh) :: commands"
+        echo "all help list plugin reload stats tips upgrade"
+        echo ""
+    fi
+}

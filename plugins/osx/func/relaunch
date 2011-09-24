@@ -1,0 +1,8 @@
+relaunch () {
+    for app in $*; do
+        osascript -e 'quit app "'$app'"';
+        sleep 2;
+        open -a $app
+    done
+}
+

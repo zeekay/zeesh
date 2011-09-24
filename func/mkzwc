@@ -1,0 +1,18 @@
+mkzwc () {
+    autoload -U zrecompile
+
+    for a in $fpath
+    do
+        [ -w $a:r -a $a/_*(N[1]) ] && zrecompile -p $a.zwc $a/_*
+    done
+
+    conf=(~/.zshrc ~/.zsh/zeesh.zsh)
+    for a in $conf
+    do
+        zrecompile -p $a
+        if [ -f $a.zwc.old ]; then
+            rm -f $a.zwc.old
+        fi
+    done
+}
+

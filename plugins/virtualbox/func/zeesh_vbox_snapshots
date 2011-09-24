@@ -1,0 +1,47 @@
+# returns a list of snapshots for a vm
+zeesh_vbox_snapshots() {
+    local vm=$1
+    local cmd=$2
+
+    [ -n "$vm" ] || { echo 'No vm specified'; return 1 }
+
+    typeset -A prefs
+    zeesh_prefs virtualbox get
+    local vboxmanage=$prefs[vboxmanage]
+
+    _names() {
+        $vboxmanage showvminfo --machinereadable $vm | /usr/bin/grep -o 'SnapshotName.*' | cut -d '=' -f2 | tr -d '"'
+    }
+    _uuids() {
+        $vboxmanage showvminfo --machinereadable $vm | /usr/bin/grep -o 'SnapshotUUID.*' | cut -d '=' -f2 | tr -d '"'
+    }
+    _current() {
+        $vboxmanage showvminfo $vm | /usr/bin/grep '*' | tr -s ' ' | cut -d ' ' -f 3- | tr -d '*'
+    }
+
+    case "$cmd" in
+        current)
+            _current
+        ;;
+        names)
+           _names
+        ;;
+        uuids)
+           _uuids
+        ;;
+        *)
+            n=( ${(f)"$(_names)"} )
+            u=( ${(f)"$(_uuids)"} )
+            c=$( _current )
+
+            for i in {1..${#n}}; do
+                l="$n[$i] (UUID: $u[$i])"
+                if [[ "$l " == "$c" ]]; then
+                    l="$( _bold $l )"
+                fi
+                echo $l
+            done
+            unset n u c l
+        ;;
+    esac
+}

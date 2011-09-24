@@ -1,0 +1,10 @@
+# list packages in site-packages dir
+zeesh_python_ls_site_packages() {
+    if [ $VIRTUAL_ENV ]; then
+        local sp_dir=$VIRTUAL_ENV/lib/python*/site-packages
+    else
+        local sp_dir=$PYTHON_SITE_PACKAGES
+    fi
+
+    set -A reply $(/bin/ls $sp_dir ${*} 2>/dev/null)
+}

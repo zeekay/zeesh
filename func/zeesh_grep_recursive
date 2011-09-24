@@ -1,0 +1,2 @@
+# search files recursively
+function zeesh_grep_recursive () { grep -ir --color=auto $1 . }

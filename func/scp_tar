@@ -1,0 +1,3 @@
+function scp_tar(){
+    tar czf - $1 | ssh $2 "cat > $3.tgz"
+}

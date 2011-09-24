@@ -1,0 +1,7 @@
+# find and replace text in files recursively
+function find_replace_recursive () {
+    a="find . -name '*' -type f -exec perl -pi -e 's"
+    b="g' {} \;"
+    echo $a/$1/$2/$b | sh
+}
+

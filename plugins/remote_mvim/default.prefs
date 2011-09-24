@@ -1,0 +1,4 @@
+# remote_mvim example preferences file
+local: <local hostname>
+remote: <remote hostname>
+cmd: <full path to mvim>
