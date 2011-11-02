@@ -15,5 +15,5 @@ zeesh_plugins=(
     history-substring-search
     theme
 )
-
 source ~/.zsh/zeesh.zsh
+source ~/.zsh/local/zshrc
