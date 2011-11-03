@@ -2,7 +2,7 @@
 fpath=( ~/.zsh/plugins/cygwin/func $fpath )
 autoload -U  ~/.zsh/plugins/cygwin/func/*(:t)
 
-# cygwin specific conf
+export LS_COLORS='di=34:ln=35:so=32:pi=33;40:ex=31:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
 export USING_CYGWIN=1
 export EDITOR=/usr/bin/nano
 export SHELL='/bin/zsh'

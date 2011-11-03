@@ -12,20 +12,47 @@ fi
 if [ "$basedir" != "$home/.zsh" ]; then
     echo "...removing previous configuration"
     rm -rf ~/.zsh
-    rm ~/.zshrc
 
     echo "...linking ~/.zsh and ~/.zshrc"
     ln -s $basedir ~/.zsh
-    ln -s $basedir/zshrc ~/.zshrc
-else
-    echo "...removing previous configuration"
-    rm ~/.zshrc
-
-    echo "...linking ~/.zshrc"
-    ln -s $basedir/zshrc ~/.zshrc
 fi
 
-echo "...creating ~/.zsh/local/zshrc for local customizations"
-echo '# automatically sourced from ~/.zshrc, add your local customizations here.' > ~/.zsh/local/zshrc
+echo -n "install skeleton ~/.zshrc? (y/n) "
+read input
+if [ "$input" == "y" ]; then
+    platform=`uname | tr [A-Z] [a-z]`
+    case $platform in
+        darwin)
+            platform='osx    '
+        ;;
+        freebsd)
+            platform='freebsd'
+        ;;
+        linux)
+            platform='linux  '
+        ;;
+        cygwin*)
+            platform='cygwin '
+        ;;
+    esac
+
+    cat > ~/.zshrc << EOF
+zeesh_plugins=(
+    autocomplete                # enables on autocompletion
+    $platform                     # platform-specific
+    python                      # python funcs/aliases
+    virtualenv                  # virtualenv wrapper
+    mercurial                   # mercurial func/aliases
+    django                      # django func/aliases
+    virtualbox                  # wrapper for virtualbox
+    vcs_info                    # provides command line vcs info
+    syntax-highlighting         # cli syntax highlighting
+    history-substring-search    # search history from substring
+    theme                       # themes
+)
+source ~/.zsh/zeesh.zsh
+EOF
+
+fi
 
 echo "...done!"

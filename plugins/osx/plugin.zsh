@@ -2,7 +2,8 @@
 fpath=( ~/.zsh/plugins/osx/func $fpath )
 autoload -U ~/.zsh/plugins/osx/func/*(:t)
 
-# osx specific conf
+export LSCOLORS=ExfxcxdxbxegedabagAcEx
+
 export PATH=\
 ~/.bin:\
 ~/.zsh/plugins/osx/lib:\

@@ -154,32 +154,6 @@ bindkey -s '^N' '> /dev/null 2>&1\n'
 # setup prompt
 PS1='%n@%m:${PWD/$HOME/~}%# '
 
-### load lib files ###
-for lib (~/.zsh/lib/*sh) source $lib
-
-### platform-specific ###
-case "${$(uname):l}" in
-    darwin)
-        export LSCOLORS=ExfxcxdxbxegedabagAcEx
-        source ~/.zsh/plugins/osx/plugin.zsh
-        source ~/.zsh/plugins/autocomplete/plugin.zsh
-    ;;
-    freebsd)
-        export LSCOLORS=ExfxcxdxbxegedabagAcEx
-        source ~/.zsh/plugins/freebsd/plugin.zsh
-        source ~/.zsh/plugins/autocomplete/plugin.zsh
-    ;;
-    linux)
-        export LS_COLORS='di=1;34:ln=35:so=32:pi=33;40:ex=31:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
-        source ~/.zsh/plugins/linux/plugin.zsh
-        source ~/.zsh/plugins/autocomplete/plugin.zsh
-    ;;
-    cygwin*)
-        export LS_COLORS='di=34:ln=35:so=32:pi=33;40:ex=31:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
-        source ~/.zsh/plugins/cygwin/plugin.zsh
-    ;;
-esac
-
 ### zsh plugins ###
 # enable plugins
 zeesh_enable_plugins
