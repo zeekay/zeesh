@@ -97,12 +97,6 @@ alias ssh_proxy='ssh -C2qTnN -D 9999'
 alias wc_recursive=zeesh_recursive_line_count
 alias prefs=zeesh_prefs
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
-# rlwraps
-alias clj='rlwrap clj'
-alias csi='rlwrap csi'
-alias racket='rlwrap racket'
-alias nc='rlwrap nc'
-
 ### keybindings ###
 # Delete bitches
 bindkey "\e[3~" delete-char

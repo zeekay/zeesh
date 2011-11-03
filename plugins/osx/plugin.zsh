@@ -103,3 +103,4 @@ function disable_dynamic_pager() {
 function enable_dynamic_pager() {
     sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
 }
+alias flushcache='dscacheutil -flushcache'
