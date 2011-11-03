@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "setting up zsh config"
+echo "zeesh! installation script"
 
 # if setup is run from dot-files/setup.sh use basedir provided
 if [ "$repo_basedir" ]; then
@@ -55,4 +55,14 @@ EOF
 
 fi
 
-echo "...done!"
+cat << EOF
+Installation complete.
+                             __ 
+                     __     / /
+ ____  ____ ___ ____/ /_   / /
+/_  / / __/ __// __/ __ \ /_/
+ / /_/ __/ __/_\ \  / / /__ 
+/___/___/___/____/_/ /_/__/
+
+...is now installed.
+EOF
