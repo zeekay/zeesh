@@ -5,7 +5,7 @@ echo "setting up zsh config"
 if [ "$repo_basedir" ]; then
     basedir=$repo_basedir
 else
-    basedir="$( cd -p "$( dirname "$0" )" && pwd )"
+    basedir="$( cd -P "$( dirname "$0" )" && pwd )"
 fi
 
 # remove previous configuration and link to destination if not cloned directly there
