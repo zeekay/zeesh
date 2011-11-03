@@ -2,5 +2,4 @@
 
 function precmd() {
     title "%n@%m:%~"
-    z --add "$(pwd -P)"
 }
