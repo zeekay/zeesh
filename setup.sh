@@ -16,13 +16,13 @@ if [ "$basedir" != "$home/.zsh" ]; then
 
     echo "...linking ~/.zsh and ~/.zshrc"
     ln -s $basedir ~/.zsh
-    ln -s $basedir ~/.zshrc
+    ln -s $basedir/zshrc ~/.zshrc
 else
     echo "...removing previous configuration"
     rm ~/.zshrc
 
     echo "...linking ~/.zshrc"
-    ln -s $basedir ~/.zshrc
+    ln -s $basedir/zshrc ~/.zshrc
 fi
 
 echo "...creating ~/.zsh/local/zshrc for local customizations"
