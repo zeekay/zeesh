@@ -19,7 +19,7 @@ fi
 
 echo -n "install skeleton ~/.zshrc? (y/n) "
 read input
-if [ "$input" == "y" ]; then
+if [ "$input" = "y" ]; then
     platform=`uname | tr [A-Z] [a-z]`
     case $platform in
         darwin)
