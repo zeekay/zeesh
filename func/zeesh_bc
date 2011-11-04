@@ -1,3 +1,0 @@
-zeesh_bc() {
-    echo $@ | bc
-}
