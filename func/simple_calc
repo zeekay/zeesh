@@ -1,4 +1,0 @@
-# simple calc
-function simple_calc() {
-    print $(( $@ ))
-}
