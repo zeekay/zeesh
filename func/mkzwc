@@ -6,7 +6,7 @@ mkzwc () {
         [ -w $a:r -a $a/_*(N[1]) ] && zrecompile -p $a.zwc $a/_*
     done
 
-    conf=(~/.zshrc ~/.zsh/zeesh.zsh)
+    conf=(~/.zshrc ~/.zsh/zeesh.zsh ~/.zcompdump)
     for a in $conf
     do
         zrecompile -p $a
