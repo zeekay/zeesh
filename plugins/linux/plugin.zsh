@@ -7,3 +7,12 @@ alias ls='ls --color=always -AF'
 
 # no core dumps
 ulimit -S -c 0 > /dev/null 2>&1
+
+
+function ps(){
+    if [ $1 ]; then
+        /bin/ps $@
+    else
+        /bin/ps ux
+    fi
+}

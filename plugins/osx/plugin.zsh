@@ -105,3 +105,10 @@ function enable_dynamic_pager() {
     sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
 }
 alias flushcache='dscacheutil -flushcache'
+function ps() {
+    if [ $1 ]; then
+        /bin/ps $@
+    else
+        /bin/ps ux -U `whoami`
+    fi
+}

@@ -8,3 +8,11 @@ compctl -c info
 compctl -c which
 # no core dumps
 limit core 0
+
+function ps(){
+    if [ $1 ]; then
+        /bin/ps $@
+    else
+        /bin/ps ux
+    fi
+}
