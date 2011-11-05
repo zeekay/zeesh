@@ -1,7 +1,6 @@
 # freebsd zshfu plugin
 
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
-export EDITOR=/usr/local/bin/nano
 alias ls='ls -AGF'
 compctl -K list_sysctls sysctl
 compctl -c man
