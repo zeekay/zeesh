@@ -4,20 +4,7 @@ autoload -U ~/.zsh/plugins/osx/func/*(:t)
 
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
 
-export PATH=\
-~/.bin:\
-~/.zsh/plugins/osx/lib:\
-~/.cabal/bin:\
-/usr/local/share/python:\
-/usr/local/share/python3:\
-/Library/Frameworks/Python.framework/Versions/Current/bin:\
-/usr/local/bin:\
-/usr/local/sbin:\
-/Developer/usr/bin:\
-/usr/bin:\
-/usr/sbin:\
-/bin:\
-/sbin
+export PATH=$PATH:~/.zsh/plugins/osx/lib:/usr/local/share/python:/usr/local/share/python3:/Library/Frameworks/Python.framework/Versions/Current/bin:/Developer/usr/bin
 
 # no core dumps
 limit core 0
@@ -109,6 +96,6 @@ function ps() {
     if [ $1 ]; then
         /bin/ps $@
     else
-        /bin/ps ux -U `whoami`
+        ps ux -U `whoami`
     fi
 }
