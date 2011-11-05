@@ -97,7 +97,6 @@ alias ssh_proxy='ssh -C2qTnN -D 9999'
 alias wc_recursive=zeesh_recursive_line_count
 alias prefs=zeesh_prefs
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
-alias dotfiles-update='~/.dot-files/update.sh'
 
 ### keybindings ###
 # Delete bitches
