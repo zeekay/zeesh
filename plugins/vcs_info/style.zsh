@@ -1,10 +1,21 @@
-# rev+changes branch misc
-zstyle ':vcs_info:hg*' formats "(%s)[%i:%b%m%u]"
-zstyle ':vcs_info:hg*' actionformats "(%s|%a)[%i:%b%m%u]"
+zstyle ':vcs_info:*' enable hg git svn
+zstyle ':vcs_info:hg*:*' get-bookmarks true
+zstyle ':vcs_info:*' get-revision true
+zstyle ':vcs_info:*' check-for-changes true
 
-# hash changes branch misc
-zstyle ':vcs_info:git*' formats "(%s)[%12.12i%u:%b%m]"
-zstyle ':vcs_info:git*' actionformats "(%s|%a)[%12.12i%u:%b%m]"
+# simple
+zstyle ':vcs_info:hg*:' use-simple true
+zstyle ':vcs_info:hg*' formats "%b:%i%m%u"
+zstyle ':vcs_info:hg*' actionformats "%b:%i%m%u"
+zstyle ':vcs_info:git*' formats "%12.12i%u:%b%m"
+zstyle ':vcs_info:git*' actionformats "%12.12i%u:%b%m"
+
+# # complex
+# zstyle ':vcs_info:hg*:' use-simple false
+# zstyle ':vcs_info:hg*' formats "(%s)[%i:%b%m%u]"
+# zstyle ':vcs_info:hg*' actionformats "(%s|%a)[%i:%b%m%u]"
+# zstyle ':vcs_info:git*' formats "(%s)[%12.12i%u:%b%m]"
+# zstyle ':vcs_info:git*' actionformats "(%s|%a)[%12.12i%u:%b%m]"
 
 #zstyle ':vcs_info:hg*:*' get-mq true
 #zstyle ':vcs_info:hg*:*' get-unapplied true
