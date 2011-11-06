@@ -24,7 +24,7 @@ function ipy_pdb() {
 }
 compctl -K zeesh_python_ls_site_packages zeesh_python_cd_site_packages
 
-export PYTHONSTARTUP=~/.pythonrc.py
+export PYTHONSTARTUP=~/.pythonrc
 
 pye(){ echo 'exec compile(''"'$@[1,-1]'"'', "<cmdline>", "single")' | python - }
 alias pye='noglob pye'
