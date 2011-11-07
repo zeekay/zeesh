@@ -12,6 +12,7 @@ alias kill='kill -f'
 alias ps='ps -W -a -f'
 alias pk='zeesh_cyg_pkill'
 alias uptime='zeesh_cyg_uptime'
-
+alias open='cygstart'
+alias o='cygstart'
 # no core dumps
 ulimit -S -c 0 > /dev/null 2>&1
