@@ -4,7 +4,7 @@ autoload -U ~/.zsh/plugins/osx/func/*(:t)
 
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
 
-export PATH=$PATH:~/.zsh/plugins/osx/lib:/usr/local/share/python:/usr/local/share/python3:/Library/Frameworks/Python.framework/Versions/Current/bin:/Developer/usr/bin
+export PATH=~/.zsh/plugins/osx/lib:/usr/local/share/python:/usr/local/share/python3:/Library/Frameworks/Python.framework/Versions/Current/bin:/Developer/usr/bin:$PATH
 
 # no core dumps
 limit core 0

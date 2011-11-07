@@ -49,7 +49,7 @@ SAVEHIST=10000
 ### exports ###
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export PATH=$PATH:~/.dot-files/scripts:~/.bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+export PATH=~/.dot-files/scripts:~/.bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$PATH
 export PAGER=less
 
 ### aliases ###
