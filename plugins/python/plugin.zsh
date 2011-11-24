@@ -8,6 +8,7 @@ alias ipy=ipython
 alias pyinstall='python setup.py install'
 alias pystrap=zeesh_python_bootstrap
 alias cds=zeesh_python_cd_site_packages
+alias pipr='pip install -r requirements.txt'
 
 # Start a local SMTP server and dump emails sent to it to the console
 alias smtpconsole='python -m smtpd -n -c DebuggingServer localhost:1025'
