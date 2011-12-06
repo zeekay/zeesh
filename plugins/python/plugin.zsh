@@ -38,3 +38,6 @@ noipy(){
     python
     unset NOIPYTHON
 }
+py-upgrade(){
+    pip freeze --local | cut -d = -f 1 | xargs echo pip install -U
+}

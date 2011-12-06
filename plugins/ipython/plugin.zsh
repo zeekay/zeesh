@@ -9,10 +9,9 @@
 export _kernel_home=~/.ipython/profile_default/security
 
 ipython-kernel-launch(){
-    ipython kernel --no-stdout --no-stderr > /dev/null 2>&1 &!
+    ipython kernel &!
     local pid=$!
     echo "--existing kernel-$pid.json" | pbcopy
-    echo "launched kernel-$pid"
 }
 
 ipython-kernel-list(){
