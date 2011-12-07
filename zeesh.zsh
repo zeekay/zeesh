@@ -49,7 +49,7 @@ SAVEHIST=10000
 ### exports ###
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export PATH=~/.dot-files/scripts:~/.bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$PATH
+export PATH=~/.dotfiles/scripts:~/.bin:$PATH
 export PAGER=less
 
 ### aliases ###
@@ -97,10 +97,9 @@ alias ssh_proxy='ssh -C2qTnN -D 9999'
 alias wc_recursive=zeesh_recursive_line_count
 alias prefs=zeesh_prefs
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
-alias dfu='dotfiles-update'
-alias dfp='dotfiles-push'
-alias dfs='dotfiles-status'
-alias dfv='dotfiles-version'
+alias dfu='df-up'
+alias dfp='df-push'
+alias dfs='df-status'
 
 ### keybindings ###
 # Delete bitches
@@ -131,7 +130,7 @@ bindkey ' ' magic-space
 bindkey '^[[Z' reverse-menu-complete
 # History search bound to Ctrl-R
 bindkey '^r' history-incremental-search-backward
-# On an empty command line runs bg (so that Ctrl+Z Ctrl+Z suspends a program 
+# On an empty command line runs bg (so that Ctrl+Z Ctrl+Z suspends a program
 # and immediately resumes it in the background).
 # On a non-empty command line, suspend the current command edition:
 # let me type another command, and when that second command line finished, I get back the first command to edit.
