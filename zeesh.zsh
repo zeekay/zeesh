@@ -54,8 +54,9 @@ export PAGER=vimpager
 export EDITOR=vim
 
 ### aliases ###
-alias o=_ogrep
 alias vi=vim
+alias vm=vim
+alias o=_ogrep
 alias cdsrc=cd_src_dir
 alias cd/='cd /'
 alias lsa='ls -lah'
@@ -103,6 +104,7 @@ alias dfp='df-push'
 alias dfs='df-status'
 
 ### keybindings ###
+bindkey "^J" self-insert
 # Delete bitches
 bindkey "\e[3~" delete-char
 # Home / End
@@ -110,12 +112,14 @@ bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
 bindkey '\e[H' beginning-of-line
 bindkey '\e[F' end-of-line
-# PageUp / PageDown
-bindkey '\e[5~' beginning-of-history # PageUp
-bindkey '\e[6~' end-of-history # PageDown
 # Home / End
 bindkey '\e[7~' beginning-of-line
 bindkey '\e[8~' end-of-line
+
+# PageUp / PageDown
+# bindkey '\e[5~' beginning-of-history
+# bindkey '\e[6~' end-of-history
+
 # Up Arrow / Down Arrow
 #bindkey '^[[5~' up-line-or-history
 #bindkey '^[[6~' down-line-or-history
@@ -130,7 +134,7 @@ bindkey ' ' magic-space
 # Shift+Tab reverse through menu completions
 bindkey '^[[Z' reverse-menu-complete
 # History search bound to Ctrl-R
-bindkey '^r' history-incremental-search-backward
+bindkey '^R' history-incremental-search-backward
 # On an empty command line runs bg (so that Ctrl+Z Ctrl+Z suspends a program
 # and immediately resumes it in the background).
 # On a non-empty command line, suspend the current command edition:
@@ -152,6 +156,34 @@ bindkey -s '^L' '|less\n'
 bindkey '^Q' quote-line
 # Ctrl-N redirect to /dev/null
 bindkey -s '^N' '> /dev/null 2>&1\n'
+
+# use vi mode keybindings
+bindkey -v
+
+bindkey -M vicmd "u" undo
+bindkey -M vicmd "^R" redo
+# bindkey "^P" vi-up-line-or-history
+# bindkey "^N" vi-down-line-or-history
+bindkey -M viins "^U" vi-change-whole-line
+bindkey -M vicmd "^U" vi-change-whole-line
+
+# delete
+bindkey -M vicmd "^?" vi-delete-char
+bindkey "^[[1~" vi-beginning-of-line   # Home
+bindkey "^[[4~" vi-end-of-line         # End
+bindkey "^A" vi-beginning-of-line
+bindkey "^E" vi-end-of-line
+
+bindkey '^[[2~' beep                   # Insert
+bindkey '^[[3~' delete-char            # Del
+bindkey '^[[5~' vi-backward-blank-word # Page Up
+bindkey '^[[6~' vi-forward-blank-word  # Page Down
+bindkey -M viins '^r' history-incremental-search-backward
+# bindkey -M vicmd '^r' history-incremental-search-backward
+# bindkey -M viins '^[[A' vi-history-search-backward
+# bindkey -M viins '^[[B' vi-history-search-forward
+# bindkey -M vicmd 'K' vi-history-search-backward
+# bindkey -M vicmd 'J' vi-history-search-forward
 
 ### default prompt ###
 # setup prompt

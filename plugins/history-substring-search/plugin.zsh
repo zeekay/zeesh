@@ -74,6 +74,16 @@ zle -N history-substring-search-down
 
 bindkey '\e[A' history-substring-search-up
 bindkey '\e[B' history-substring-search-down
+bindkey '^n' history-substring-search-up
+bindkey '^p' history-substring-search-down
+bindkey -M viins '^K' history-substring-search-up
+bindkey -M viins '^J' history-substring-search-down
+bindkey -M vicmd '^K' history-substring-search-up
+bindkey -M vicmd '^J' history-substring-search-down
+bindkey -M viins '^[[A' history-substring-search-up
+bindkey -M viins '^[[B' history-substring-search-down
+bindkey -M vicmd 'K' history-substring-search-up
+bindkey -M vicmd 'J' history-substring-search-down
 
 #-----------------------------------------------------------------------------
 # implementation details
