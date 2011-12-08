@@ -50,7 +50,8 @@ SAVEHIST=10000
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export PATH=~/.dotfiles/scripts:~/.bin:$PATH
-export PAGER=less
+export PAGER=vimpager
+export EDITOR=vim
 
 ### aliases ###
 alias o=_ogrep
