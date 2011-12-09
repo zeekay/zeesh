@@ -76,14 +76,18 @@ bindkey '\e[A' history-substring-search-up
 bindkey '\e[B' history-substring-search-down
 bindkey '^n' history-substring-search-up
 bindkey '^p' history-substring-search-down
-bindkey -M viins '^K' history-substring-search-up
-bindkey -M viins '^J' history-substring-search-down
-bindkey -M vicmd '^K' history-substring-search-up
-bindkey -M vicmd '^J' history-substring-search-down
-bindkey -M viins '^[[A' history-substring-search-up
-bindkey -M viins '^[[B' history-substring-search-down
-bindkey -M vicmd 'K' history-substring-search-up
-bindkey -M vicmd 'J' history-substring-search-down
+
+bindkey -M vicmd '^[[A' history-substring-search-up
+bindkey -M vicmd '^[[B' history-substring-search-down
+bindkey -M vicmd '^n' history-substring-search-up
+bindkey -M vicmd '^p' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# bindkey -M viins '^[[A' history-substring-search-up
+# bindkey -M viins '^[[B' history-substring-search-down
+bindkey -M viins '^k' history-substring-search-up
+bindkey -M viins '^j' history-substring-search-down
 
 #-----------------------------------------------------------------------------
 # implementation details
