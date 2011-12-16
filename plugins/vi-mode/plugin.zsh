@@ -14,13 +14,16 @@ bindkey -M vicmd "^R" redo
 bindkey -M viins "^U" vi-change-whole-line
 bindkey -M vicmd "^U" vi-change-whole-line
 bindkey -M vicmd "^?" vi-delete-char
-bindkey "^[[1~" vi-beginning-of-line   # Home
-bindkey "^[[4~" vi-end-of-line         # End
-bindkey "^A" vi-beginning-of-line
-bindkey "^E" vi-end-of-line
+
+bindkey -M vicmd '\e[H'  vi-beginning-of-line
+bindkey -M vicmd '\e[F'  vi-end-of-line
+bindkey -M vicmd "^[[1~" vi-beginning-of-line   # Home
+bindkey -M vicmd "^[[4~" vi-end-of-line         # End
+
 bindkey '^[[2~' beep                   # Insert
 bindkey '^[[3~' delete-char            # Del
 bindkey '^[[5~' vi-backward-blank-word # Page Up
 bindkey '^[[6~' vi-forward-blank-word  # Page Down
-bindkey '^H' vi-backward-delete-char
-
+bindkey -M viins '' backward-delete-char
+bindkey -M vicmd '' backward-delete-char
+bindkey -M vicmd '^[[3~' delete-char
