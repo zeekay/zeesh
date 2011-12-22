@@ -1,17 +1,13 @@
-ve-newnev() {
+ve-newenv() {
     if [ $1 ]; then
         local venv=$VIRTUALENVS_DIR/$1
-        if [ $2 ]; then
-            virtualenv $@[2,-1] $venv
-        else
-            virtualenv $venv
-        fi
+        virtualenv `echo ${VIRTUALENV_OPTS[@]}` $venv
         # default postactivate script
         echo `cat << EOF
         if [ -d $venv/$1 ]; then \n
             cd $venv/$1\n
         fi` > $venv/bin/postactivate
     else
-        virtualenv
+        echo "What would you have me call your virtualenv then?"
     fi
 }

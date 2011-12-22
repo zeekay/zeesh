@@ -54,6 +54,7 @@ export PAGER=vimpager
 export EDITOR=vim
 
 ### aliases ###
+alias vim='vim -p'
 alias vi=vim
 alias vm=vim
 alias o=_ogrep

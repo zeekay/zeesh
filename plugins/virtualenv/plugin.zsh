@@ -8,7 +8,8 @@ compctl -K ve-list ve-activate
 alias act=ve-activate
 alias dact=ve-deactivate
 alias cdv=ve-cd
-alias newenv='ve-newenv --system-site-packages --unzip-setuptools --distribute'
+alias newenv=ve-newenv
 
 # virtualenv config
 export VIRTUALENVS_DIR=~/ve
+export VIRTUALENV_OPTS="--system-site-packages --unzip-setuptools --distribute"
