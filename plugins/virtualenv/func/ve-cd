@@ -1,5 +1,5 @@
 # switch to project dir in active virtualenv
-zeesh_ve_cd_proj_dir () {
+ve-cd() {
     if [ $VIRTUAL_ENV ]; then
         $VIRTUAL_ENV
     else

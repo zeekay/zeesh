@@ -2,14 +2,13 @@
 fpath=( ~/.zsh/plugins/virtualenv/func $fpath )
 autoload -U ~/.zsh/plugins/virtualenv/func/*(:t)
 
-compctl -K zeesh_ve_list zeesh_ve_activate
+compctl -K ve-list ve-activate
 
 # aliases
-alias act=zeesh_ve_activate
-alias dact=zeesh_ve_deactivate
-alias cdv=zeesh_ve_cd_proj_dir
-alias newenv=zeesh_ve_newenv
+alias act=ve-activate
+alias dact=ve-deactivate
+alias cdv=ve-cd
+alias newenv='ve-newenv --system-site-packages --unzip-setuptools --distribute'
 
 # virtualenv config
-export VIRTUALENV_USE_DISTRIBUTE
 export VIRTUALENVS_DIR=~/ve

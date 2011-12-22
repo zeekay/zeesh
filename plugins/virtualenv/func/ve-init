@@ -1,4 +1,4 @@
-zeesh_ve_init () {
+ve-init() {
     if [ $1 ]; then
         if [ -d $1 ]; then
             echo 'Please pick a different location for virtualenv'

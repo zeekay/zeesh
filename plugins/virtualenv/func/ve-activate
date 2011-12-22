@@ -1,5 +1,5 @@
 # activate virtualenv
-zeesh_ve_activate () {
+ve-activate() {
     if [ $1 ]; then
         local venv=$VIRTUALENVS_DIR/$1
         if [ -d $venv ]; then

@@ -1,4 +1,4 @@
-zeesh_ve_newenv(){
+ve-newnev() {
     if [ $1 ]; then
         local venv=$VIRTUALENVS_DIR/$1
         if [ $2 ]; then
