@@ -1,4 +1,4 @@
-zeesh_osx_hide() {
+hide() {
     if [ $1 ]; then
         SetFile -a "V" $1
     else

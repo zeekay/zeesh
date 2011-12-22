@@ -1,16 +1,18 @@
-# osx zeesh plugin
+### osx / zeesh! plugin
+
 fpath=( ~/.zsh/plugins/osx/func $fpath )
 autoload -U ~/.zsh/plugins/osx/func/*(:t)
-
-export LSCOLORS=ExfxcxdxbxegedabagAcEx
-
-export PATH=~/.zsh/plugins/osx/lib:/usr/local/share/python:/usr/local/share/python3:/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH:/Developer/usr/bin
 
 # no core dumps
 limit core 0
 
-compctl -K list_sysctls sysctl
+compctl -K list-sysctls sysctl
 
+## exports
+export LSCOLORS=ExfxcxdxbxegedabagAcEx
+export PATH=~/.zsh/plugins/osx/lib:/usr/local/share/python:/usr/local/share/python3:/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH:/Developer/usr/bin
+
+## aliases
 alias ls='ls -AGF'
 alias q1='qlmanage -p 2>/dev/null'
 alias topc='top -o cpu'
@@ -22,19 +24,15 @@ alias cwd='pwd | pbcopy'
 alias gowd='cd "`pbpaste`"'
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airPort'
 alias o=open
-alias pkill=zeesh_osx_pkill
-alias kill='/bin/kill -9'
-alias pk='zeesh_osx_pkill'
-alias growl='zeesh_growlnotify'
+alias pkill=psg-kill
+alias pk=psg-kill
 alias xc='open *xcodeproj'
-# plugin funcs
-alias hide='zeesh_osx_hide'
-alias hide_in_dock='zeesh_osx_hide_in_dock'
-alias clear_scrollback='zeesh_osx_clear_scrollback'
-alias fs_usage='fs_usage -w -f filesys'
+alias fs-usage='fs_usage -w -f filesys'
 alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &'
+alias flushcache='dscacheutil -flushcache'
 
-upgrade_visor(){
+# functions
+visor-upgrade() {
     local p='/Applications'
     cp -rf $p/iTerm.app $p/iTermVisor.app
     mv $p/iTermVisor.app/Contents/MacOS/iTerm $p/iTermVisor.app/Contents/MacOS/iTermVisor
@@ -46,7 +44,7 @@ upgrade_visor(){
     mv $p/iTermVisor.app ~$p
 }
 
-lion_hacks() {
+lion-hacks() {
     # i like to repeat my self
     defaults write -g ApplePressAndHoldEnabled -bool NO
     # jesus no
@@ -66,7 +64,7 @@ lion_hacks() {
     killall Dock
 }
 
-edit_keymapping() {
+edit-keymapping() {
     # To modify keyboard mappings navigate to com.apple.keyboard.modifiermapping.* and swap keycodes:
     # None            1
     # Caps Lock       0
@@ -84,15 +82,16 @@ edit_keymapping() {
     open ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
 }
 
-function disable_dynamic_pager() {
+dynamic-pager-enable() {
     sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
     sudo rm -rf /var/vm/*
 }
-function enable_dynamic_pager() {
+
+dynamic-pager-disable() {
     sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
 }
-alias flushcache='dscacheutil -flushcache'
-function ps() {
+
+ps() {
     if [ $1 ]; then
         /bin/ps $@
     else

@@ -1,4 +1,4 @@
-zeesh_osx_hide_in_dock(){
+hide-in-dock() {
     if [ $1 ]; then
         if [[ -d "$1/Contents" ]]; then
             if [[ $(defaults read "$1/Contents/Info" LSUIElement) -eq '0' ]]; then

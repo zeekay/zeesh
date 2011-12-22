@@ -1,11 +1,8 @@
 ### uwsgi / zeesh! plugin
-
-##desc
-# wrapper for uwsgi to make restarting a bit easier
-##csed
+### wrapper for uwsgi to make restarting a bit easier
 
 fpath=( ~/.zsh/plugins/uwsgi/func $fpath )
 autoload -U ~/.zsh/plugins/uwsgi/func/*(:t)
 
 ## aliases
-alias uwsgi=zeesh_uwsgi
+alias uwsgi=uwsgi-wrapper

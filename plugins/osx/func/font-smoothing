@@ -1,4 +1,4 @@
-font_smoothing(){
+font-smoothing(){
     if [[ $1 -gt 0 ]] && [[ $1 -lt 5 ]]; then
         defaults -currentHost write -g AppleFontSmoothing -int $1
         echo "set AppleFontSmoothing to $1"
