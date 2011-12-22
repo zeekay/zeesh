@@ -1,6 +1,7 @@
-# pianobar plugin
-fpath=( ~/.zsh/plugins/pianobar/func $fpath )
-autoload -U zeesh_pianobar
+### pianobar / zeesh! plugin
 
-# share
-alias pianobar=zeesh_pianobar
+fpath=( ~/.zsh/plugins/pianobar/func $fpath )
+autoload -U ~/.zsh/plugins/pianobar/func/*(:t)
+
+## aliases
+alias pianobar=pianobar-wrapper

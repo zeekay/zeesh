@@ -1,9 +1,8 @@
-# simple function to scp a file to my server and create a link for me
-function zeesh_pianobar() {
+pianobar-wrapper() {
     # control fifo
     ctl=~/.config/pianobar/ctl
 
-    # check for ctl, create it if missing 
+    # check for ctl, create it if missing
     if [[ -p $ctl ]]; then
     else
         mkfifo $ctl

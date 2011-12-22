@@ -1,4 +1,6 @@
-# login_info zeesh plugin
+### login-info / zeesh! plugin
+### displays version information on login
+
 if [[ -o interactive ]]; then
     versions=(`~/.dot-files/scripts/dotfiles-version`)
     in_array zeesh_plugins themes && theme=`cat .zsh/local/theme.last`

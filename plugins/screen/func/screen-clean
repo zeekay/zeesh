@@ -1,4 +1,4 @@
-zeesh_screen_kill_detached() {
+screen-clean() {
     local -a screens
     screens=( ${(f)"$(screen -ls | grep '(Detached)' | grep -o '[0-9]*.tty[0-9]*')"} )
     for screen in $screens

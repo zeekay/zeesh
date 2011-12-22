@@ -1,4 +1,4 @@
-# color_switch zshfu plugin
+### color-switch / zeesh! plugin
 
 # you can easily craft new themes using ansi escape codes
 # save your new .theme in ~/.zsh/plugins/color_switch/themes
@@ -23,7 +23,7 @@
 # 14 - light cyan
 # 15 - bold white
 
-fpath=( ~/.zsh/plugins/color_switch/func $fpath )
+fpath=( ~/.zsh/plugins/color-switch/func $fpath )
 autoload  _color_switch  _list_color_themes
 
 # theme completion

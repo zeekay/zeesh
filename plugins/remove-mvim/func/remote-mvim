@@ -1,4 +1,4 @@
-zeesh_remote_mvim(){
+remote-mvim() {
     typeset -A prefs
     zeesh_prefs remote_mvim get # get preferences, failing that create them
     if [[ $prefs != '' ]]; then
