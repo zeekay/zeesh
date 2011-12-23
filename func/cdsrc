@@ -1,5 +1,5 @@
-# switch to active virtualenv site-packages dir
-function cd_src_dir () {
+# switch to src dir
+function cdsrc() {
     if [ $VIRTUAL_ENV ]; then
         cd $VIRTUAL_ENV/src
     else
