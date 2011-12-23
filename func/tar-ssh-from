@@ -1,0 +1,3 @@
+tar-ssh-from() {
+    ssh $1 "tar czf - $2" | tar xzvf - -C $3
+}
