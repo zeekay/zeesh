@@ -1,4 +1,0 @@
-# removes files recursively that match pattern
-find-remove-recusive() {
-    find . -name $1 | xargs rm -rf
-}
