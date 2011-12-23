@@ -1,0 +1,3 @@
+function tar-ssh-to() {
+    tar czf - $1 | ssh $2 tar xzf - -C $3
+}

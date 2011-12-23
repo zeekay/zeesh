@@ -94,6 +94,7 @@ alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlay
 alias dfu='df-up'
 alias dfp='df-push'
 alias dfs='df-status'
+alias ack="ack --color-filename='bold blue' --color-lineno='magenta' --color-match='bold red' -i -a"
 
 # rlwrap aliases
 alias nc='rlwrap nc'
