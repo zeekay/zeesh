@@ -1,8 +1,0 @@
-function zeesh_ogrep() {
-    local ls=ls; [[ -n $aliases[ls] ]] && local ls=$aliases[ls]
-    local grep=grep; [[ -n $aliases[grep] ]] && local grep=$aliases[grep]
-    if [ $1 ]; then
-        o=$(echo $ls | sh | $grep "$@")
-        open $o
-    fi
-}

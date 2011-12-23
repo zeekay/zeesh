@@ -1,0 +1,9 @@
+ogrep() {
+    if [ $1 ]; then
+        files=("${$(ls | grep -i $1)}")
+        for file in $files; do
+            echo opening $file
+            open $file
+        done
+    fi
+}

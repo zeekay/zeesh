@@ -20,6 +20,7 @@ ls(){
         /bin/ls -AGF
     fi
 }
+alias o=open
 alias ql='qlmanage -p 2>/dev/null'
 alias topc='top -o cpu'
 alias topm='top - vsize'
@@ -29,7 +30,6 @@ alias forceeject='hdiutil detach -force'
 alias cwd='pwd | pbcopy'
 alias gowd='cd "`pbpaste`"'
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airPort'
-alias o=open
 alias xc='open *xcodeproj'
 alias fs-usage='fs_usage -w -f filesys'
 alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &'

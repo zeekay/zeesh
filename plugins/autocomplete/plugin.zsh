@@ -53,9 +53,5 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 #zstyle ':completion:*:warnings' format 'No matches for: %d'
 #zstyle ':completion:*' group-name ''
 
-# rationalize dot
-#zle -N _rationalize_dot
-#bindkey . _rationalize_dot
-
 # zshfu plugin list autocomplete
 compctl -K zeesh_plugin_list zeesh_plugin

@@ -1,7 +1,0 @@
-zeesh_rationalize_dot() {
-  if [[ $LBUFFER = *.. ]]; then
-    LBUFFER+=/..
-  else
-    LBUFFER+=.
-  fi
-}

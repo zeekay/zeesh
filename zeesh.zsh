@@ -57,7 +57,7 @@ export EDITOR=vim
 alias vim='vim -p'
 alias vi=vim
 alias vm=vim
-alias o=_ogrep
+alias .=cd
 alias cd/='cd /'
 alias lsa='ls -lah'
 alias l='ls -la'
@@ -85,7 +85,6 @@ alias zip='zip -r -9'
 alias scp='scp -C'
 alias rscp='rsync --partial --progress --rsh=ssh'
 alias ssh_proxy='ssh -C2qTnN -D 9999'
-alias wc_recursive=zeesh_recursive_line_count
 alias prefs=zeesh_prefs
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 alias dfu='df-up'
@@ -100,6 +99,9 @@ alias racket='rlwrap racket'
 alias clj='rlwrap clj'
 
 ## keybindings ###
+# rationalize dot
+zle -N rationalize-dot
+bindkey . rationalize-dot
 bindkey "^J" self-insert
 # Delete bitches
 bindkey "\e[3~" delete-char

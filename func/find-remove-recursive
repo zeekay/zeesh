@@ -1,4 +1,4 @@
 # removes files recursively that match pattern
-func zeesh_find_remove_recusive() {
+find-remove-recusive() {
     find . -name $@ | xargs rm -rf
 }
