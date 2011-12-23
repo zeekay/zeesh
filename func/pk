@@ -12,7 +12,7 @@ pk() {
             ps $opts | head -n 1
             for pid in $pids
             do
-                echo $pid | grep --color=always $@ | grep -v grep
+                echo $pid | grep $@ | grep -v grep
                 pid=("${(s: :)pid}")
                 kill -9 $pid[2]
             done

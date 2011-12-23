@@ -3,7 +3,8 @@ lsg() {
         args=($@)
         search=$args[-1]
         args[-1]=()
-        ls $args | grep $search
+        [ $args ] || args="-la"
+        ls $args | grep -i --color=always $search
         unset args search
     fi
 }

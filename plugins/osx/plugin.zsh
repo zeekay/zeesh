@@ -13,7 +13,13 @@ export LSCOLORS=ExfxcxdxbxegedabagAcEx
 export PATH=~/.zsh/plugins/osx/lib:/usr/local/share/python:/usr/local/share/python3:/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH:/Developer/usr/bin
 
 ## aliases
-alias ls='ls -AGF'
+ls(){
+    if [ $1 ]; then
+        /bin/ls $@
+    else
+        /bin/ls -AGF
+    fi
+}
 alias ql='qlmanage -p 2>/dev/null'
 alias topc='top -o cpu'
 alias topm='top - vsize'
