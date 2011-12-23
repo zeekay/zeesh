@@ -7,7 +7,7 @@
 source ~/.zsh/plugins/z/lib/z.sh
 
 # precmd is called just before the prompt is printed
-function precmd() {
+precmd() {
     title "%n@%m:%~"
     z --add "$(pwd -P)"
 }
