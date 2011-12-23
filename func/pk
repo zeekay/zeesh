@@ -1,18 +1,18 @@
 # kill matching processes
-function zeesh_pkill() {
+pk() {
     if [ $1 ]; then
         local whoami=$(whoami)
         if [[ $whoami == 'root' ]]; then
-            pids=($(zeesh_psgrep "$@" | tr -s '[:space:]' | cut -d ' ' -f2 ))
+            pids=($(ps uax | grep -i --color=always "$@" | grep -v grep "$@" | tr -s '[:space:]' | cut -d ' ' -f2 ))
         else
-            pids=($(zeesh_psgrep "$@" | grep $whoami | tr -s '[:space:]' | cut -d ' ' -f2 ))
+            pids=($(ps uax | grep -i --color=always "$@" | grep -v grep "$@" | grep $whoami | tr -s '[:space:]' | cut -d ' ' -f2 ))
         fi
         if [[ $pids[1] != '' ]]; then
             echo "killed:"
             if [[ $whoami == 'root' ]]; then
-                zeesh_psgrep "$@"
+                ps uax | grep -i --color=always "$@" | grep -v grep "$@"
             else
-                zeesh_psgrep "$@" | grep $whoami
+                ps uax | grep -i --color=always "$@" | grep -v grep "$@" | grep $whoami
             fi
             for pid in $pids
             do

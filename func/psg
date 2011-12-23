@@ -1,0 +1,6 @@
+function psg() {
+    ps uax | head -n 1
+    if [ $1 ]; then
+        ps uax | grep -i --color=always "$@" | grep -v grep
+    fi
+}

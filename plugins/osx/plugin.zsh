@@ -14,7 +14,7 @@ export PATH=~/.zsh/plugins/osx/lib:/usr/local/share/python:/usr/local/share/pyth
 
 ## aliases
 alias ls='ls -AGF'
-alias q1='qlmanage -p 2>/dev/null'
+alias ql='qlmanage -p 2>/dev/null'
 alias topc='top -o cpu'
 alias topm='top - vsize'
 alias hdimount='hdiutil mount'
@@ -24,8 +24,6 @@ alias cwd='pwd | pbcopy'
 alias gowd='cd "`pbpaste`"'
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airPort'
 alias o=open
-alias pkill=psg-kill
-alias pk=psg-kill
 alias xc='open *xcodeproj'
 alias fs-usage='fs_usage -w -f filesys'
 alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &'

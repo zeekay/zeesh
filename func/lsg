@@ -1,4 +1,4 @@
-function zeesh_lsgrep() {
+lsg() {
     local ls=ls; [[ -n $aliases[ls] ]] && local ls=$aliases[ls]
     local grep=grep; [[ -n $aliases[grep] ]] && local grep=$aliases[grep]
     if [ $1 ]; then
@@ -7,7 +7,5 @@ function zeesh_lsgrep() {
         else
             echo $ls | sh |  $grep -i "$@"
         fi
-    else
-        ls
     fi
 }

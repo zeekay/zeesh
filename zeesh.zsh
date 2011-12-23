@@ -71,14 +71,11 @@ alias md='mkdir -p'
 alias rd='rmdir -p'
 alias cp='nocorrect cp'
 alias mv='nocorrect mv'
-alias grep=zeesh_grep
+alias grep='grep -i --color=always'
 alias g=grep
 alias gr='grep -r'
 alias fr=find-replace-recursive
 alias remove_recursive=zeesh_find_remove_recursive
-alias lsg=zeesh_lsgrep
-alias psg=zeesh_psgrep
-alias pk=zeesh_pkill
 alias upgrade=zeesh_upgrade
 alias plugin=zeesh_plugin
 alias help='zeesh help'

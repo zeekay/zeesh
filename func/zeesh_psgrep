@@ -1,4 +1,0 @@
-function zeesh_psgrep() {
-    ps uax | head -n 1
-    ps uax | zeesh_grep -i "$@"
-}
