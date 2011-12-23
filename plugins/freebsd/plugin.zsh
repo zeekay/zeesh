@@ -9,7 +9,7 @@ compctl -c which
 # no core dumps
 limit core 0
 
-function ps(){
+ps() {
     if [ $1 ]; then
         /bin/ps $@
     else

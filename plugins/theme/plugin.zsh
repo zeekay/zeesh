@@ -2,7 +2,7 @@
 
 autoload colors; colors;
 
-function _theme() {
+theme() {
     if [ $1 ]; then
         if [ -f ~/.zsh/plugins/theme/themes/$1.zsh ]; then
             source ~/.zsh/plugins/theme/themes/$1.zsh
@@ -26,18 +26,15 @@ function _theme() {
     fi
 }
 
-function _list_themes() {
+_list_themes() {
     reply=(`ls ~/.zsh/plugins/theme/themes | cut -d . -f1`)
 }
 
 # theme completion
-compctl -K _list_themes _theme
+compctl -K _list_themes theme
 
 # Load last theme
 if [ -f ~/.zsh/local/theme.last ]; then
     local theme=$(cat ~/.zsh/local/theme.last | sed -e 's/^[ \t]*//')
     source ~/.zsh/plugins/theme/themes/$theme.zsh
 fi
-
-# Alias for theme switcher
-alias theme=_theme

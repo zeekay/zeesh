@@ -1,16 +1,16 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 setopt PROMPT_SUBST
 
-function ve(){
+ve() {
     [ $VIRTUAL_ENV ] && echo -e " %K{black}${${(s:/:)VIRTUAL_ENV}[-1]}%k"
 }
 
-function rc(){
+rc() {
     rc=$?
     [[ $rc != 0 ]] && echo -e "%F{red}$rc!%f "
 }
 
-function is_vcs(){
+is_vcs() {
     [ -d "`pwd`/.hg" ] || [ -d "`pwd`/.git" ] && return 0
     return 1
 }
