@@ -19,19 +19,18 @@ zeesh-new-plugin(){
                 echo 'fpath=( ~/.zsh/plugins/'$1'/func $fpath )' >> $plugin_dir/plugin.zsh
                 echo 'autoload -U ~/.zsh/plugins/'$1'/func/*(:t)' >> $plugin_dir/plugin.zsh
                 echo "\n"'## aliases' >> $plugin_dir/plugin.zsh
-                echo 'alias uwsgi=zeesh_uwsgi' >> $plugin_dir/plugin.zsh
-                echo 'zeesh_'$1'(){' > $plugin_dir/func/zeesh_$1
+                echo $1'(){' > $plugin_dir/func/$1
                 echo 'do you want to use zeesh-prefs? (y/n): \c'; read ans
                 if [[ $ans[1]:l == 'y' ]]; then
                     echo '# default prefs for '$1', only used by zeesh-prefs to create new prefs file' > $plugin_dir/default.prefs
                     echo '# to modify your actual preferences for this plugin edit ~/.zsh/local/'$1'.prefs' >> $plugin_dir/default.prefs
                     echo 'key: value' >> $plugin_dir/default.prefs
-                    echo '    typeset -A prefs' >> $plugin_dir/func/zeesh_$1
-                    echo '    zeesh-prefs get '$1' # try to get prefs or create new prefs file using default.prefs' >> $plugin_dir/func/zeesh_$1
-                    echo '    if [[ "$prefs" != "" ]]; then' >> $plugin_dir/func/zeesh_$1
-                    echo '    fi' >> $plugin_dir/func/zeesh_$1
+                    echo '    typeset -A prefs' >> $plugin_dir/func/$1
+                    echo '    zeesh-prefs get '$1' # try to get prefs or create new prefs file using default.prefs' >> $plugin_dir/func/$1
+                    echo '    if [[ "$prefs" != "" ]]; then' >> $plugin_dir/func/$1
+                    echo '    fi' >> $plugin_dir/func/$1
                 fi
-                echo '}' >> $plugin_dir/func/zeesh_$1
+                echo '}' >> $plugin_dir/func/$1
             fi
         fi
     else
