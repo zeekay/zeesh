@@ -1,88 +1,88 @@
-#compdef zeesh_vbox_manage
+#compdef vbox-manage
 
-_zeesh_vbox_manage() {
-  _arguments -s '*::zeesh_vbox_manage command:_zeesh_vbox_manage_command'
+_vbox-manage() {
+  _arguments -s '*::vbox-manage command:_vbox-manage-command'
 }
 
-# define zeesh_vbox_manage command dispatch function.
-(( $+functions[_zeesh_vbox_manage_command] )) ||
-_zeesh_vbox_manage_command() {
+# define vbox-manage command dispatch function.
+(( $+functions[_vbox-manage_command] )) ||
+_vbox-manage-command() {
 
-  (( $+_zeesh_vbox_manage_cmds )) || _zeesh_vbox_manage_cmds=(
-    ${(f)"$(zeesh_vbox_manage commands)"}
+  (( $+_vbox-manage-cmds )) || _vbox-manage-cmds=(
+    ${(f)"$(vbox-manage commands)"}
   )
 
   if (( CURRENT == 1 )); then
-    _describe -t commands 'zeesh_vbox_manage command' _zeesh_vbox_manage_cmds
+    _describe -t commands 'vbox-manage command' _vbox-manage-cmds
   else
     local curcontext="$curcontext"
 
-    cmd="${_zeesh_vbox_manage_cmds[(r)$words[1]:*]%%:*}"
+    cmd="${_vbox-manage-cmds[(r)$words[1]:*]%%:*}"
     if (( $#cmd )); then
-      curcontext="${curcontext%:*:*}:zeesh_vbox_manage-${cmd}:"
-      _call_function ret _zeesh_vbox_manage_$cmd || _message 'no more arguments'
+      curcontext="${curcontext%:*:*}:vbox-manage-${cmd}:"
+      _call_function ret _vbox-manage_$cmd || _message 'no more arguments'
     else
-      _message "unknown zeesh_vbox_manage command: $words[1]"
+      _message "unknown vbox-manage command: $words[1]"
     fi
     return ret
   fi
 }
 
 # utility functions
-(( $+functions[_zeesh_vbox_manage_list_vms] )) ||
-_zeesh_vbox_manage_list_vms() {
+(( $+functions[_vbox-manage_list_vms] )) ||
+_vbox-manage_list_vms() {
   compadd -M 'm:{a-zA-Z0-9-}={-0-9A-Za-z}' - \
-    $(_call_program listvbvirts zeesh_vbox_vms 2>&1 | sed 's/^"//; s/" {/ /; s/}$//')
+    $(_call_program listvbvirts vbox-vms 2>&1 | sed 's/^"//; s/" {/ /; s/}$//')
 }
 
-(( $+functions[_zeesh_vbox_manage_list_snapshots] )) ||
-_zeesh_vbox_manage_list_snapshots() {
+(( $+functions[_vbox-manage_list_snapshots] )) ||
+_vbox-manage_list_snapshots() {
   compadd -M 'm:{a-zA-Z0-9-}={-0-9A-Za-z}' - \
-    $(_call_program listsnapshots zeesh_vbox_snapshots $words[CURRENT-1] names 2>&1 | sed 's/^"//; s/" {/ /; s/}$//')
+    $(_call_program listsnapshots vbox-snapshots $words[CURRENT-1] names 2>&1 | sed 's/^"//; s/" {/ /; s/}$//')
 }
-    
-(( $+functions[_zeesh_vbox_manage_n] )) ||
-_zeesh_vbox_manage_n() {
+
+(( $+functions[_vbox-manage_n] )) ||
+_vbox-manage_n() {
   _message -e virtname "virt name"
 }
 
-# define completion functions for each zeesh_vbox_manage command
-(( $+functions[_zeesh_vbox_manage_start] )) ||
-_zeesh_vbox_manage_start() {
+# define completion functions for each vbox-manage command
+(( $+functions[_vbox-manage_start] )) ||
+_vbox-manage_start() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
     '2:type:(gui vrdp headless)'
 }
 
-(( $+functions[_zeesh_vbox_manage_off] )) ||
-_zeesh_vbox_manage_off() {
+(( $+functions[_vbox-manage_off] )) ||
+_vbox-manage_off() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
 }
 
-(( $+functions[_zeesh_vbox_manage_reset] )) ||
-_zeesh_vbox_manage_reset() {
+(( $+functions[_vbox-manage_reset] )) ||
+_vbox-manage_reset() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
 }
 
-(( $+functions[_zeesh_vbox_manage_pause] )) ||
-_zeesh_vbox_manage_pause() {
+(( $+functions[_vbox-manage_pause] )) ||
+_vbox-manage_pause() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
 }
 
-(( $+functions[_zeesh_vbox_manage_save] )) ||
-_zeesh_vbox_manage_save() {
+(( $+functions[_vbox-manage_save] )) ||
+_vbox-manage_save() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
 }
 
 # TODO figure out how to support the --boot<1-4> and similar options
-(( $+functions[_zeesh_vbox_manage_modify] )) ||
-_zeesh_vbox_manage_modify() {
+(( $+functions[_vbox-manage_modify] )) ||
+_vbox-manage_modify() {
   _arguments -s \
-    '--name:virtname:_zeesh_vbox_manage_n' \
+    '--name:virtname:_vbox-manage_n' \
     '--ostype:os type:( )' \
     '--memory[memory size in MB]:memorysize:( )' \
     '--pagefusion[on|off]:pagefusion:(on off)' \
@@ -135,37 +135,37 @@ _zeesh_vbox_manage_modify() {
     '--teleporterport[port]:teleporterport:( )' \
     '--teleporteraddress[address|empty]:teleporteraddress:( )' \
     '--teleporterpassword:teleporterport:( )' \
-    '1:virtname:_zeesh_vbox_manage_list_vms'
+    '1:virtname:_vbox-manage_list_vms'
 }
 
-(( $+functions[_zeesh_vbox_manage_info] )) ||
-_zeesh_vbox_manage_info() {
+(( $+functions[_vbox-manage_info] )) ||
+_vbox-manage_info() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
 }
 
-(( $+functions[_zeesh_vbox_manage_state] )) ||
-_zeesh_vbox_manage_state() {
+(( $+functions[_vbox-manage_state] )) ||
+_vbox-manage_state() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
 }
 
-(( $+functions[_zeesh_vbox_manage_snapshot] )) ||
-_zeesh_vbox_manage_snapshot() {
+(( $+functions[_vbox-manage_snapshot] )) ||
+_vbox-manage_snapshot() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
 }
 
-(( $+functions[_zeesh_vbox_manage_snapshots] )) ||
-_zeesh_vbox_manage_snapshots() {
+(( $+functions[_vbox-manage_snapshots] )) ||
+_vbox-manage_snapshots() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
+    '1:virtname:_vbox-manage_list_vms' \
 }
 
-(( $+functions[_zeesh_vbox_manage_switch] )) ||
-_zeesh_vbox_manage_switch() {
+(( $+functions[_vbox-manage_switch] )) ||
+_vbox-manage_switch() {
   _arguments -s \
-    '1:virtname:_zeesh_vbox_manage_list_vms' \
-    '2:snapshot-name:_zeesh_vbox_manage_list_snapshots' \
+    '1:virtname:_vbox-manage_list_vms' \
+    '2:snapshot-name:_vbox-manage_list_snapshots' \
     '3:type:(gui vrdp headless)'
 }
