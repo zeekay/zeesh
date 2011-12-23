@@ -1,18 +1,35 @@
-mkzwc () {
+#!/usr/bin/env zsh
+
+# pre-compiles zsh functions
+
+mkzwc() {
     autoload -U zrecompile
 
-    for a in $fpath
-    do
-        [ -w $a:r -a $a/_*(N[1]) ] && zrecompile -p $a.zwc $a/_*
+    # compile functions found in $fpath
+    for path in $fpath; do
+        for func in `/bin/ls $path`; do
+            local a=$path/$func
+            zrecompile -p $a
+            if [ -f $a.zwc.old ]; then
+                rm -f $a.zwc.old
+            fi
+        done
     done
 
+    # compile zsh files
     conf=(~/.zshrc ~/.zsh/zeesh.zsh ~/.zcompdump)
-    for a in $conf
-    do
+    for a in $conf; do
         zrecompile -p $a
         if [ -f $a.zwc.old ]; then
             rm -f $a.zwc.old
         fi
     done
-}
 
+    # compile plugins
+    for plugin in ${zeesh_plugins[*]}; do
+        zrecompile -p ~/.zsh/plugins/$plugin/plugin.zsh
+        if [ -f $a.zwc.old ]; then
+            rm -f $a.zwc.old
+        fi
+    done
+}
