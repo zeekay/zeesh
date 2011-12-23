@@ -1,4 +1,4 @@
-zeesh_django_startapp () {
+django-startapp() {
     mkdir -p $1/templates/$1
     touch $1/__init__.py
     echo "from django.db import models\n\n" > $1/models.py
