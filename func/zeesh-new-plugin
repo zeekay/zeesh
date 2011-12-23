@@ -10,16 +10,18 @@ zeesh-new-plugin(){
             mkdir $plugin_dir
             echo '### '$1' / zeesh! plugin' > $plugin_dir/plugin.zsh
             echo 'enter description:'; read desc
-            echo "\n"'##desc' >> $plugin_dir/plugin.zsh
+            echo "\n"'### desc' >> $plugin_dir/plugin.zsh
             echo '# '$desc >> $plugin_dir/plugin.zsh
-            echo '##csed'"\n" >> $plugin_dir/plugin.zsh
             echo 'will your plugin use any functions? (y/n): \c'; read ans
             if [[ $ans[1]:l == 'y' ]]; then
                 mkdir $plugin_dir/func
                 echo 'fpath=( ~/.zsh/plugins/'$1'/func $fpath )' >> $plugin_dir/plugin.zsh
                 echo 'autoload -U ~/.zsh/plugins/'$1'/func/*(:t)' >> $plugin_dir/plugin.zsh
+                echo "\n"'## exports' >> $plugin_dir/plugin.zsh
                 echo "\n"'## aliases' >> $plugin_dir/plugin.zsh
-                echo $1'(){' > $plugin_dir/func/$1
+                echo "\n"'## functions' >> $plugin_dir/plugin.zsh
+                echo '#!/usr/bin/env zsh' > $plugin_dir/func/$1
+                echo $1'(){' >> $plugin_dir/func/$1
                 echo 'do you want to use zeesh-prefs? (y/n): \c'; read ans
                 if [[ $ans[1]:l == 'y' ]]; then
                     echo '# default prefs for '$1', only used by zeesh-prefs to create new prefs file' > $plugin_dir/default.prefs
