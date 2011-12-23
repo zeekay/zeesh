@@ -1,0 +1,3 @@
+cat-sort-unique() {
+    cat $1 | sort | uniq -c | sort -n
+}

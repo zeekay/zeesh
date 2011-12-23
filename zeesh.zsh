@@ -104,7 +104,13 @@ alias dfu='df-up'
 alias dfp='df-push'
 alias dfs='df-status'
 
-### keybindings ###
+# rlwrap aliases
+alias nc='rlwrap nc'
+alias csi='rlwrap csi'
+alias racket='rlwrap racket'
+alias clj='rlwrap clj'
+
+## keybindings ###
 bindkey "^J" self-insert
 # Delete bitches
 bindkey "\e[3~" delete-char
