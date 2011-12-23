@@ -14,7 +14,7 @@ zstyle ':completion:*:complete:-command-:*' ignored-patterns '*.dll' \
        'dev*' 'activate_this.py' 'hg-diff3-merge' 'HG_LOGIN_INFO' 'HG_REMOTE_PATH' \
        'histchars' 'HISTCHARS' 'HISTFILE' 'historywords' 'HISTSIZE' \
        'PYTHONSTARTUP' 'VENDOR' '_*'
-zstyle ':completion:*:(all-|)files' ignored-patterns '_*' 'zeesh_*'
+zstyle ':completion:*:(all-|)files' ignored-patterns '_*'
 zstyle ':completion:*:*:open:*' matcher 'm:{a-z}={A-Z} r: ||[^ ]=**'
 
 # case-insensitive (all), partial-word and then substring completion
@@ -54,4 +54,4 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 #zstyle ':completion:*' group-name ''
 
 # zshfu plugin list autocomplete
-compctl -K zeesh_plugin_list zeesh_plugin
+compctl -K zeesh-plugin-list zeesh-plugin

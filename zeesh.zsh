@@ -74,10 +74,10 @@ alias mv='nocorrect mv'
 alias grep='grep -i --color=always'
 alias g=grep
 alias gr='grep -r'
-alias fr=find-replace-recursive
-alias remove_recursive=zeesh_find_remove_recursive
-alias upgrade=zeesh_upgrade
-alias plugin=zeesh_plugin
+alias frp=find-replace-recursive
+alias frm-find-remove-recursive
+alias upgrade=zeesh-upgrade
+alias plugin=zeesh-plugin
 alias help='zeesh help'
 alias reload='zeesh reload'
 alias tips='zeesh tips'
@@ -85,7 +85,7 @@ alias zip='zip -r -9'
 alias scp='scp -C'
 alias rscp='rsync --partial --progress --rsh=ssh'
 alias ssh_proxy='ssh -C2qTnN -D 9999'
-alias prefs=zeesh_prefs
+alias prefs=zeesh-prefs
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 alias dfu='df-up'
 alias dfp='df-push'
@@ -137,7 +137,7 @@ bindkey '^R' history-incremental-search-backward
 # and immediately resumes it in the background).
 # On a non-empty command line, suspend the current command edition:
 # let me type another command, and when that second command line finished, I get back the first command to edit.
-_zeesh_fancy-ctrl-z () {
+fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
     echo ''
     bg
@@ -146,8 +146,8 @@ _zeesh_fancy-ctrl-z () {
     zle push-input
   fi
 }
-zle -N _zeesh_fancy-ctrl-z
-bindkey '^Z' _zeesh_fancy-ctrl-z
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
 # Ctrl-L pipes to less
 bindkey -s '^L' '|less\n'
 # Ctrl+Q to quote line
@@ -161,4 +161,4 @@ PS1='%n@%m:${PWD/$HOME/~}%# '
 
 ### zsh plugins ###
 # enable plugins
-zeesh_enable_plugins
+zeesh-enable-plugins

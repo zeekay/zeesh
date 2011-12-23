@@ -3,7 +3,7 @@ vbox-running() {
     local vm=$1
 
     typeset -A prefs
-    zeesh_prefs virtualbox get
+    zeesh-prefs virtualbox get
     local vboxmanage=$prefs[vboxmanage]
 
     running=$($vboxmanage list runningvms | /usr/bin/grep -o '^".*"' | cut -d '"' -f2)

@@ -61,7 +61,7 @@ function zeesh() {
             ;;
             plugin|p)
                 if [ $2 ]; then
-                    _zeesh_plugin $2
+                    _zeesh-plugin $2
                 else
                     echo ""
                     echo ":: zeesh plugin :: select a plugin to enable"
@@ -109,7 +109,7 @@ function zeesh() {
                 echo ""
             ;;
             upgrade|u)
-                _zeesh_upgrade
+                _zeesh-upgrade
             ;;
         esac
     else

@@ -1,0 +1,101 @@
+zeesh-prefs(){
+    local usage="zeesh-prefs is a zeesh! helper that manages preference files for plugins\n  usage: prefs <plugin> <create|get|list|set>"
+    local plugin=$1
+    local cmd=$2
+    local pref_file=~/.zsh/local/$plugin.prefs
+    local default_pref_file=~/.zsh/plugins/$plugin/default.prefs
+
+    # get me out of here if not called right!
+    [ -n "$cmd" ] || { echo $usage; return }
+    [ -d ~/.zsh/plugins/$plugin ] || { echo $usage; return }
+
+    case $cmd in
+    create)
+        if [[ -f $pref_file ]]; then
+            echo "preferences file already exists!"
+            local ans
+            echo "copy default preferences over $pref_file? (y/n): \c"; read ans
+            if [[ -f $default_pref_file ]]; then
+                cat $default_pref_file > $pref_file
+                local ans
+                echo "edit preferences now? (y/n): \c"; read ans
+                if [[ $ans[1]:l == 'y' ]]; then
+                    $EDITOR $pref_file
+                fi
+            else
+                echo "no preferences found, no example preferences found!"
+                echo "try to manually create $pref_file"
+            fi
+        else
+            if [[ -f $default_pref_file ]]; then
+                cat $default_pref_file > $pref_file
+                echo "no preferences found, creating $pref_file"
+                local ans
+                echo "edit preferences now? (y/n): \c"; read ans
+                if [[ $ans[1]:l == 'y' ]]; then
+                    $EDITOR $pref_file
+                fi
+            else
+                echo "no preferences found, no example preferences found!"
+                echo "try to manually create $pref_file"
+            fi
+        fi
+    ;;
+    get)
+        if [[ -f $pref_file ]]; then
+            typeset -a lines
+            lines=("${(f)$(cat $pref_file | grep -v "^$" | grep -v "^#")}")
+            for i in $lines; do
+                local key=$i[(ws': ')1]
+                local value=$i[(ws': ')2]
+                prefs[$key]=$value
+            done
+        else
+            zeesh-prefs create $plugin
+        fi
+    ;;
+    list)
+        if [[ -f $pref_file ]]; then
+            typeset -a lines
+            lines=("${(f)$(cat $pref_file | grep -v "^$" | grep -v "^#")}")
+            for i in $lines; do
+                echo $i
+            done
+        else
+            echo 'preferences file not found'
+        fi
+    ;;
+    set)
+        if [[ -f $pref_file ]] && [ $3 ] && [ $4 ]; then
+            typeset -a lines
+            lines=("${(f)$(cat $pref_file)}")
+            tmp_file=$pref_file.tmp
+            touch $tmp_file
+            local found=false
+            for line in $lines; do
+                local key=$line[(ws': ')1]
+                if [[ $key == $3 ]]; then
+                    found=true
+                    pref="$key: $4"
+                    echo $pref >> $tmp_file
+                    echo "set $pref"
+                else
+                    echo $line >> $tmp_file
+                fi
+            done
+            if [[ $found == false ]]; then
+                local ans
+                echo "key not found, add setting anyways? (y/n): \c"; read ans
+                if [[ $ans[1]:l == 'y' ]]; then
+                    echo 'yayaya'
+                    echo "$3: $4" >> $pref_file
+                fi
+            else
+                mv $tmp_file $pref_file
+            fi
+        else
+            zeesh-prefs $cmd create
+        fi
+    ;;
+    esac
+}

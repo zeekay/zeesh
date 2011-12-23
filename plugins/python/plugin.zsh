@@ -3,7 +3,7 @@
 fpath=( ~/.zsh/plugins/python/func $fpath )
 autoload -U ~/.zsh/plugins/python/func/*(:t)
 
-compctl -K zeesh_python_ls_site_packages zeesh_python_cd_site_packages
+compctl -K site-packages-ls site-packages-cd
 
 ## exports
 export PYTHONSTARTUP=~/.pythonrc
@@ -12,8 +12,7 @@ export PYTHONSTARTUP=~/.pythonrc
 alias py=python
 alias ipy=ipython
 alias pyinstall='python setup.py install'
-alias pystrap=zeesh_python_bootstrap
-alias cds=zeesh_python_cd_site_packages
+alias cds=site-packages-cd
 alias pipi='pip install --use-mirrors'
 alias pipu='pip install -U --use-mirrors'
 alias pipr='pip install --use-mirrors -r requirements.txt'

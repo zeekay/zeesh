@@ -1,0 +1,4 @@
+# enables zeesh plugins in .zshrc
+function zeesh-enable-plugins() {
+    for plugin ($plugins) source ~/.zsh/plugins/$plugin/plugin.zsh
+}

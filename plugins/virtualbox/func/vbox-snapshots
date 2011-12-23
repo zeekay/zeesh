@@ -6,7 +6,7 @@ vbox-snapshots() {
     [ -n "$vm" ] || { echo 'No vm specified'; return 1 }
 
     typeset -A prefs
-    zeesh_prefs virtualbox get
+    zeesh-prefs virtualbox get
     local vboxmanage=$prefs[vboxmanage]
 
     _names() {

@@ -7,7 +7,7 @@ vbox-manage(){
     local extraopts=$4
 
     typeset -A prefs
-    zeesh_prefs virtualbox get
+    zeesh-prefs virtualbox get
     local default=$prefs[default]
     local vboxmanage=$prefs[vboxmanage]
 

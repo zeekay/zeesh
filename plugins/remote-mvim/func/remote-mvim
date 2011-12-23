@@ -1,6 +1,6 @@
 remote-mvim() {
     typeset -A prefs
-    zeesh_prefs remote_mvim get # get preferences, failing that create them
+    zeesh-prefs remote_mvim get # get preferences, failing that create them
     if [[ $prefs != '' ]]; then
         local file=$@[-1]
         local args=$@[1,-2]

@@ -1,6 +1,6 @@
 uwsgi-wrapper() {
     typeset -A prefs
-    zeesh_prefs get uwsgi # try to get prefs or create new prefs file using default.prefs
+    zeesh-prefs get uwsgi # try to get prefs or create new prefs file using default.prefs
     if [[ $prefs != "" ]]; then
         if [ $1 ] && [ $2 ]; then
             if [[ -d $(pwd)/$2 ]]; then

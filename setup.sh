@@ -37,7 +37,7 @@ if [ "$input" = "y" ]; then
     esac
 
     cat > ~/.zshrc << EOF
-zeesh_plugins=(
+plugins=(
     autocomplete                # enables on autocompletion
     $platform                     # platform-specific
     python                      # python funcs/aliases
