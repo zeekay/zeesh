@@ -1,3 +1,0 @@
-function zeesh_redo_as_sudo (){
-    sudo $(fc -l -n -1)
-}

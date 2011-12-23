@@ -1,0 +1,3 @@
+redo() {
+    sudo $(fc -l -n -1)
+}
