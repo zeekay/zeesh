@@ -13,7 +13,7 @@ alias o=xdg-open
 # no core dumps
 ulimit -S -c 0 > /dev/null 2>&1
 
-function ps(){
+ps() {
     if [ $1 ]; then
         /bin/ps $@
     else

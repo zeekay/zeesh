@@ -24,18 +24,14 @@
 # 15 - bold white
 
 fpath=( ~/.zsh/plugins/color-switch/func $fpath )
-autoload  _color_switch  _list_color_themes
+autoload  color-switch  color-switch-themes
 
 # theme completion
-compctl -K _list_color_themes _color_switch
-
-# Alias for theme switcher
-alias color_switch=_color_switch
-alias color-switch=color_switch
+compctl -K color-switch color-switch-themes
 
 # Load last theme
 if [ -f ~/.zsh/local/color_switch.last ]; then
-    local theme=$(cat ~/.zsh/local/color_switch.last | sed -e 's/^[ \t]*//')
-    source ~/.zsh/plugins/color_switch/themes/$theme.theme  &!
+    local theme=$(cat ~/.zsh/local/color-switch.last | sed -e 's/^[ \t]*//')
+    source ~/.zsh/plugins/color-switch/themes/$theme.theme  &!
     export COLOR_SWITCH_THEME=$theme
 fi

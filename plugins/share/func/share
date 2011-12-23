@@ -1,5 +1,5 @@
 # simple function to scp a file to my server and create a link for me
-function _scp_share() {
+share() {
     if [ -f ~/.zsh/plugins/share/local.conf ]; then
         # load config
         if [ -f ~/.zsh/plugins/share/local.conf ]; then

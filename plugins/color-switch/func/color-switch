@@ -1,16 +1,16 @@
-function _color_switch() {
+color-switch() {
     if [ $1 ]; then
-        if [ -f ~/.zsh/plugins/color_switch/themes/$1.theme ]; then
-            source ~/.zsh/plugins/color_switch/themes/$1.theme
-            if [ -f ~/.zsh/local/color_switch.last ]; then
-                rm ~/.zsh/local/color_switch.last
+        if [ -f ~/.zsh/plugins/color-switch/themes/$1.theme ]; then
+            source ~/.zsh/plugins/color-switch/themes/$1.theme
+            if [ -f ~/.zsh/local/color-switch.last ]; then
+                rm ~/.zsh/local/color-switch.last
             fi
-            echo $1 > ~/.zsh/local/color_switch.last
+            echo $1 > ~/.zsh/local/color-switch.last
         else
             echo "Can't find that theme"
         fi
     else
-        LAST_THEME=$(cat ~/.zsh/local/color_switch.last | sed -e 's/^[ \t]*//')
+        LAST_THEME=$(cat ~/.zsh/local/color-switch.last | sed -e 's/^[ \t]*//')
         echo -e "current theme: "$LAST_THEME
         echo -e "\\e[0mnc (No color)"
         echo -e "\\e[1;37mwhite\\t\\e[0;30mblack"
