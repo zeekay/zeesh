@@ -1,5 +1,5 @@
 # returns a list of snapshots for a vm
-zeesh_vbox_snapshots() {
+vbox-snapshots() {
     local vm=$1
     local cmd=$2
 

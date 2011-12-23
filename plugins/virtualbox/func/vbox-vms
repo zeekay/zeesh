@@ -1,9 +1,9 @@
 # checks if vm exists or returns a list of vms
-zeesh_vbox_vms() {
+vbox-vms() {
     local vm=$1
 
     typeset -A prefs
-    zeesh_prefs virtualbox get 
+    zeesh_prefs virtualbox get
     local vboxmanage=$prefs[vboxmanage]
 
     vms=$($vboxmanage list vms | /usr/bin/grep -o '^".*"' | cut -d '"' -f2)

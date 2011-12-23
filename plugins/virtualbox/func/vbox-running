@@ -1,5 +1,5 @@
 # check if vm is running or returns a list of running vms
-zeesh_vbox_running() {
+vbox-running() {
     local vm=$1
 
     typeset -A prefs

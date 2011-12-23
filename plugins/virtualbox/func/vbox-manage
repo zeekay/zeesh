@@ -1,5 +1,5 @@
 # zeesh virtualbox management wrapper
-zeesh_vbox_manage(){
+vbox-manage(){
     usage='usage: (list|info|state|start|off|reset|pause|resume|save|snapshot|snapshots|switch|modify)'
     local cmd=$1
     local vm=$2
@@ -16,7 +16,7 @@ zeesh_vbox_manage(){
 
     # handle non-vm specific commands
     non_vm_cmds=(commands list running)
-    if [ -n "$non_vm_cmds[(r)$cmd]" ]; then 
+    if [ -n "$non_vm_cmds[(r)$cmd]" ]; then
         case $cmd in
             commands)
                 echo 'list:list vms'
@@ -34,10 +34,10 @@ zeesh_vbox_manage(){
                 echo 'state:show vm state'
             ;;
             list)
-                vms=( ${(f)"$( zeesh_vbox_vms )"} )
-    
+                vms=( ${(f)"$( vbox-vms )"} )
+
                 for i in {1..${#vms}}; do
-                    echo "$( _bold $vms[$i] ): $( $vboxmanage showvminfo $vms[$i] | /usr/bin/grep 'State:' | tr -s ' ' | cut -d ' ' -f 2 ) / $(zeesh_vbox_snapshots $vms[$i] current )"
+                    echo "$( _bold $vms[$i] ): $( $vboxmanage showvminfo $vms[$i] | /usr/bin/grep 'State:' | tr -s ' ' | cut -d ' ' -f 2 ) / $(vbox-snapshots $vms[$i] current )"
                 done
                 unset vms
             ;;
@@ -46,12 +46,12 @@ zeesh_vbox_manage(){
     fi
 
     # need a vm
-    zeesh_vbox_vms $vm || { echo 'specify a valid virtual machine'; return }
+    vbox-vms $vm || { echo 'specify a valid virtual machine'; return }
 
     # vm management commands
     case $cmd in
         start)
-            zeesh_vbox_running $vm && { echo "$vm is already running"; return }
+            vbox-running $vm && { echo "$vm is already running"; return }
             if [ -n "$opts" ]; then
                 $vboxmanage startvm $vm --type $@[3,-1]
             else
@@ -59,33 +59,33 @@ zeesh_vbox_manage(){
             fi
         ;;
         off)
-            zeesh_vbox_running $vm || { echo "$vm is not running"; return }
+            vbox-running $vm || { echo "$vm is not running"; return }
             $vboxmanage controlvm $vm poweroff
         ;;
         reset)
-            zeesh_vbox_running $vm || { echo "$vm is not running"; return }
+            vbox-running $vm || { echo "$vm is not running"; return }
             $vboxmanage controlvm $vm reset
         ;;
         pause)
-            zeesh_vbox_running $vm || { echo "$vm is not running"; return }
+            vbox-running $vm || { echo "$vm is not running"; return }
             $vboxmanage controlvm $vm pause
         ;;
         resume)
-            zeesh_vbox_running $vm && { echo "$vm is not running"; return }
+            vbox_running $vm && { echo "$vm is not running"; return }
             $vboxmanage controlvm $vm resume
         ;;
         save)
-            zeesh_vbox_running $vm || { echo "$vm is not running"; return }
+            vbox-running $vm || { echo "$vm is not running"; return }
             $vboxmanage controlvm $vm savestate
         ;;
         snapshot)
             $vboxmanage snapshot $vm take $opts
         ;;
         snapshots)
-            zeesh_vbox_snapshots $vm
+            vbox-snapshots $vm
         ;;
         switch)
-            zeesh_vbox_running $vm && {
+            vbox-running $vm && {
                 $vboxmanage controlvm $vm poweroff
                 $vboxmanage snapshot $vm restore $opts
                 if [ -n "$extraopts" ]; then
@@ -102,10 +102,10 @@ zeesh_vbox_manage(){
         ;;
         state)
             echo "$( _bold state ): $( $vboxmanage showvminfo $vm | /usr/bin/grep 'State:' | tr -s ' ' | cut -d ' ' -f 2- )"
-            echo "$( _bold snapshot ): $(zeesh_vbox_snapshots $vm current )"
+            echo "$( _bold snapshot ): $(vbox-snapshots $vm current )"
         ;;
         modify)
-            zeesh_vbox_running $vm && { echo "stop $vm first"; return }
+            vbox-running $vm && { echo "stop $vm first"; return }
             $vboxmanage modifyvm $vm $@[3,-1]
         ;;
         *)
