@@ -1,22 +1,20 @@
 # kill matching processes
 pk() {
     if [ $1 ]; then
-        local whoami=$(whoami)
-        if [[ $whoami == 'root' ]]; then
-            pids=($(ps uax | grep -i --color=always "$@" | grep -v grep "$@" | tr -s '[:space:]' | cut -d ' ' -f2 ))
+        if [[ `whoami` == 'root' ]]; then
+            opts="uax"
         else
-            pids=($(ps uax | grep -i --color=always "$@" | grep -v grep "$@" | grep $whoami | tr -s '[:space:]' | cut -d ' ' -f2 ))
+            opts="ux"
         fi
-        if [[ $pids[1] != '' ]]; then
+            pids=("${(f)$(ps $opts | grep --color=no $@ | grep -v grep)}")
+        if [ $pids ]; then
             echo "killed:"
-            if [[ $whoami == 'root' ]]; then
-                ps uax | grep -i --color=always "$@" | grep -v grep "$@"
-            else
-                ps uax | grep -i --color=always "$@" | grep -v grep "$@" | grep $whoami
-            fi
+            ps $opts | head -n 1
             for pid in $pids
             do
-                kill -9 $pid
+                echo $pid | grep --color=always $@ | grep -v grep
+                pid=("${(s: :)pid}")
+                kill -9 $pid[2]
             done
         else
             echo "No matches"
