@@ -12,9 +12,9 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*:complete:-command-:*' ignored-patterns '*.dll' \
        '*.tlb' 'aclocal*' '*.exe' '*.com' 'deb*' 'dec*' 'de-*' '*cpl' 'D*' \
        'dev*' 'activate_this.py' 'hg-diff3-merge' 'HG_LOGIN_INFO' 'HG_REMOTE_PATH' \
-       'histchars' 'HISTCHARS' 'HISTFILE' 'historywords' 'HISTSIZE' \
+       'histchars' 'HISTCHARS' 'historywords' 'HISTSIZE' \
        'PYTHONSTARTUP' 'VENDOR' '_*'
-zstyle ':completion:*:(all-|)files' ignored-patterns '_*'
+zstyle ':completion:*:(all-|)files' ignored-patterns '_*' 'HISTFILE'
 zstyle ':completion:*:*:open:*' matcher 'm:{a-z}={A-Z} r: ||[^ ]=**'
 
 # case-insensitive (all), partial-word and then substring completion
