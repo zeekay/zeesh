@@ -2,8 +2,8 @@
 setopt extended_glob
 setopt prompt_subst
 autoload -U add-zsh-hook
-autoload -U url-quote-magic
-zle -N self-insert url-quote-magic
+# autoload -U url-quote-magic
+# zle -N self-insert url-quote-magic
 
 # autoload zeesh funcs
 fpath=( ~/.zsh/func $fpath )
