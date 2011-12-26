@@ -6,30 +6,23 @@ mkzwc() {
     autoload -U zrecompile
 
     # compile functions found in $fpath
-    for path in $fpath; do
-        for func in `/bin/ls $path`; do
-            local a=$path/$func
+    for p ($fpath); do
+        for f (`find $p -type f -not -name '*.zwc' -not -name '*.old'`); do
+            a=$p/$f
+            echo $a
             zrecompile -p $a
-            if [ -f $a.zwc.old ]; then
-                rm -f $a.zwc.old
-            fi
         done
     done
 
     # compile zsh files
     conf=(~/.zshrc ~/.zsh/zeesh.zsh ~/.zcompdump)
-    for a in $conf; do
+    for a ($conf); do
         zrecompile -p $a
-        if [ -f $a.zwc.old ]; then
-            rm -f $a.zwc.old
-        fi
     done
 
     # compile plugins
-    for plugin in $zeesh_plugins; do
-        zrecompile -p ~/.zsh/plugins/$plugin/plugin.zsh
-        if [ -f $a.zwc.old ]; then
-            rm -f $a.zwc.old
-        fi
+    for a ($zeesh_plugins); do
+        zrecompile -p ~/.zsh/plugins/$a/plugin
     done
+    unset a p conf
 }
