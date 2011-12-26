@@ -1,6 +1,6 @@
 # virtualenv zshfu plugin
-fpath=( ~/.zsh/plugins/virtualenv/func $fpath )
-autoload -U ~/.zsh/plugins/virtualenv/func/*(:t)
+fpath=( $plugin_dir/func $fpath )
+autoload -U $plugin_dir/func/*(:t)
 
 compctl -K ve-list ve-activate
 

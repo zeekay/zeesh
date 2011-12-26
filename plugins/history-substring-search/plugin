@@ -2,4 +2,4 @@
 
 [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
-source "$plugin_dir/lib/zsh-$plugin.zsh" >/dev/null 2>&1
+source "$plugin_dir/lib/zsh-$plugin.zsh"

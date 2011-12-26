@@ -5,9 +5,9 @@
 # default: <virtual machine to apply commands to by default>
 # vboxmanage: <location of VBoxManage, typically /usr/bin/VBoxManage or /c/cygdrive/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe>
 
-fpath=( ~/.zsh/plugins/virtualbox/func ~/.zsh/plugins/virtualbox/comp $fpath )
-autoload -U ~/.zsh/plugins/virtualbox/func/*(:t)
-autoload -U ~/.zsh/plugins/virtualbox/comp/*(:t)
+fpath=( $plugin_dir/func $plugin_dir/comp $fpath )
+autoload -U $plugin_dir/func/*(:t)
+autoload -U $plugin_dir/comp/*(:t)
 
 ## aliases
 alias vbox='vbox-manage'

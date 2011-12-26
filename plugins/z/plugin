@@ -1,10 +1,8 @@
 ### z / zeesh! plugin
 
-##desc
-# adds z navigation/completion
-##csed
+[ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
-source ~/.zsh/plugins/z/lib/z.sh
+source "$plugin_dir/lib/z.sh"
 
 # precmd is called just before the prompt is printed
 precmd() {
