@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+REPO="git://github.com/zsh-users/$PLUGIN.git"
+
+echo -n "I can't find $PLUGIN would you like me to install it for you? (y/n) "
+read ans
+if [[ "$ans" == "y" ]]; then
+    git clone $REPO $PLUGIN_DIR/lib
+    echo "...installed $PLUGIN"
+    reload
+fi
