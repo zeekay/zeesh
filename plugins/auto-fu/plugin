@@ -1,11 +1,8 @@
 ### auto-fu / zeesh! plugin
 
-REPO='git://github.com/hchbaw/auto-fu.zsh.git'
+[ -d $plugin_dir/lib ] || . $plugin_dir/install
 
-# install
-[ -f ~/.zsh/plugins/auto-fu/lib/auto-fu.zsh ] || . ~/.zsh/plugins/auto-fu/install.zsh && exit 1
-
-source ~/.zsh/plugins/auto-fu/auto-fu; auto-fu-install;
+source $plugin_dir/lib/auto-fu; auto-fu-install;
 zstyle ':auto-fu:highlight' input bold
 zstyle ':auto-fu:highlight' completion fg=black,bold
 zstyle ':auto-fu:highlight' completion/one fg=white,bold,underline

@@ -1,0 +1,11 @@
+repo='git://github.com/hchbaw/auto-fu.zsh.git'
+
+echo -n "I can't find auto-fu.zsh, would you like me to install it for you? (y/n) "
+read ans
+if [[ "$ans" == "y" ]]; then
+    git clone $repo $plugin_dir/lib
+    source $plugin_dir/lib/auto-fu.zsh
+    auto-fu-zcompile $plugin_dir/lib/auto-fu.zsh $plugin_dir/lib/ > /dev/null 2>&1
+    echo "...installed auto-fu!"
+fi
+unset ans repo
