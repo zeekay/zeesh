@@ -37,18 +37,39 @@ if [ "$input" = "y" ]; then
     esac
 
     cat > ~/.zshrc << EOF
-plugins=(
-    autocomplete                # enables on autocompletion
-    $platform                     # platform-specific
-    python                      # python funcs/aliases
-    virtualenv                  # virtualenv wrapper
-    mercurial                   # mercurial func/aliases
-    django                      # django func/aliases
-    virtualbox                  # wrapper for virtualbox
-    vcs_info                    # provides command line vcs info
-    syntax-highlighting         # cli syntax highlighting
-    history-substring-search    # search history from substring
-    theme                       # themes
+zeesh_plugins=(
+    # enables autocompletion
+    autocomplete
+
+    # platform-specific
+    $platform
+
+    # python funcs/aliases
+    # python
+
+    # virtualenv wrapper
+    # virtualenv
+
+    # mercurial func/aliases
+    # mercurial
+
+    # django func/aliases
+    # django
+
+    # wrapper for virtualbox
+    # virtualbox
+
+    # provides command line vcs info
+    # vcs_info
+
+    # cli syntax highlighting
+    # syntax-highlighting
+
+    # search history from substring
+    # history-substring-search
+
+    # themes
+    # theme
 )
 source ~/.zsh/zeesh.zsh
 EOF
@@ -57,11 +78,11 @@ fi
 
 cat << EOF
 Installation complete.
-                             __ 
+                             __
                      __     / /
  ____  ____ ___ ____/ /_   / /
 /_  / / __/ __// __/ __ \ /_/
- / /_/ __/ __/_\ \  / / /__ 
+ / /_/ __/ __/_\ \  / / /__
 /___/___/___/____/_/ /_/__/
 
 ...is now installed.
