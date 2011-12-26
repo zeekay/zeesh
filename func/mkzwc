@@ -7,9 +7,7 @@ mkzwc() {
 
     # compile functions found in $fpath
     for p ($fpath); do
-        for f (`find $p -type f -not -name '*.zwc' -not -name '*.old'`); do
-            a=$p/$f
-            echo $a
+        for a (`find $p -type f -not -name '*.zwc' -not -name '*.old'`); do
             zrecompile -p $a
         done
     done
