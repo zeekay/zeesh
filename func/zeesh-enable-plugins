@@ -1,7 +1,8 @@
 # enables zeesh plugins in .zshrc
 function zeesh-enable-plugins() {
-    for PLUGIN ($zeesh_plugins); do
-        PLUGIN_DIR="$HOME/.zsh/plugins/$PLUGIN"
-        source "$PLUGIN_DIR/plugin.zsh"
+    for plugin ($zeesh_plugins); do
+        plugin_dir="$HOME/.zsh/plugins/$plugin"
+        source "$plugin_dir/plugin"
     done
+    unset plugin plugin_dir
 }

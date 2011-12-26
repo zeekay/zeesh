@@ -1,18 +1,18 @@
 ### zsh-syntax-highlighting / zeesh! plugin
 
-[ -d "$PLUGIN_DIR/lib" ] || source "$PLUGIN_DIR/install"
+[ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
-source "$PLUGIN_DIR/lib/zsh-syntax-highlighting.zsh" >/dev/null 2>&1
+source "$plugin_dir/lib/zsh-syntax-highlighting.zsh" >/dev/null 2>&1
 
 # manually enable highlighters because _zsh_highlight_load_highlighters() is problematic
 typeset -gA ZSH_HIGHLIGHT_STYLES
 
-HIGHLIGHTERS_DIR="$PLUGIN_DIR/lib/highlighters/"
-for DIR ($HIGHLIGHTERS_DIR/*/); do
-    NAME="${DIR:t}"
-    source $DIR/$NAME-highlighter.zsh
+HIGHLIGHTERS_DIR="$plugin_dir/lib/highlighters/"
+local dir name
+for dir ($HIGHLIGHTERS_DIR/*/); do
+    name="${dir:t}"
+    source $dir/$name-highlighter.zsh
 done
-unset DIR NAME
 
 # override some styles
 ZSH_HIGHLIGHT_STYLES[default]='none'
