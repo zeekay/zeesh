@@ -1,7 +1,7 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 _prompt() {
-    s=''
+    local s="%B%F{magenta}%n%f%b on %B%F{magenta}%m%f%b in %F{blue}%B${PWD/$HOME/~}%b"
 
     # print virtualenv name if active
     if [ $VIRTUAL_ENV ]; then
@@ -14,17 +14,15 @@ _prompt() {
     fi
 
     echo -e $s
-    unset s
 }
 
 _rprompt() {
-    rc=$?
+    local rc=$?
     if [[ $rc != 0 ]]; then
         echo -e "%F{red}$rc!%f"
     fi
-    unset rc
 }
 
-PROMPT='%B%F{magenta}%n%f%b on %B%F{magenta}%m%f%b in %F{blue}%B${PWD/$HOME/~}%b$(_prompt)
+PROMPT='$(_prompt)
 %#%f '
 RPROMPT='$(_rprompt)'
