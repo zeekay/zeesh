@@ -1,0 +1,11 @@
+hgc() {
+    if [[ $# == 0 ]]; then
+        hg ci
+    else
+        local message=''
+        for i; do
+            message="$message $i"
+        done
+        hg ci -m "$message"
+    fi
+}
