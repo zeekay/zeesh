@@ -14,13 +14,14 @@ export LSCOLORS=ExfxcxdxbxegedabagAcEx
 export PATH=/usr/local/share/ruby:/usr/local/share/python:~/.zsh/plugins/osx/lib:$PATH:/Developer/usr/bin
 
 ## aliases
-ls(){
-    if [ $1 ]; then
-        /bin/ls $@
-    else
-        /bin/ls -AGF
-    fi
+ls() {
+    /bin/ls -GF $@
 }
+alias la='ls -A'
+alias ll='ls -lh'
+alias lla='ls -lhA'
+alias lt='ls -lht'
+alias lta='ls -lhtA'
 alias o=open
 alias ql='qlmanage -p 2>/dev/null'
 alias topc='top -o cpu'
