@@ -27,3 +27,7 @@ ps() {
         /bin/ps ux
     fi
 }
+
+last-modified(){
+    stat -c '%Y' $1
+}

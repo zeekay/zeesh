@@ -103,3 +103,7 @@ ps() {
         ps ux -U `whoami`
     fi
 }
+
+last-modified(){
+    stat -f '%m' $1
+}

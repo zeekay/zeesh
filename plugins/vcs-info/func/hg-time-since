@@ -1,15 +1,14 @@
 hg-time-since() {
     local hgdir=".hg"
     local now=`date +%s`
+    local last=$now
     while [ ! -d "$hgdir" ]; do
         hgdir="../$hgdir"
     done
     if [ -f "$hgdir/undo.dirstate" ]; then
-        eval `stat -s $hgdir/undo.dirstate`
-    else
-        local st_mtime=$now
+        last=`last-modified $hgdir/undo.dirstate`
     fi
-    local since=$(( $now - $st_mtime ))
+    local since=$(( $now - $last ))
     if [[ $since -lt 3600 ]]; then
         echo $(( $since / 60 ))m
     elif [[ $since -lt 86400 ]]; then
