@@ -11,9 +11,10 @@ alias hgpl='hg pull'
 alias hgps='hg push'
 alias hgf='hg fetch'
 alias hgu='hg up'
+
 _hg_commit(){
     if [[ $# == 0 ]]; then
-        echo 'commit message missing'
+        hg ci
     else
         local ci_message=''
         for i; do
@@ -22,6 +23,7 @@ _hg_commit(){
         hg ci -m "$ci_message"
     fi
 }
+
 alias hgc='noglob _hg_commit'
 alias hgcp='hg ci && hg push'
 alias hgm='hg merge'
