@@ -1,6 +1,7 @@
 # basic options
 setopt  extended_glob       \
         prompt_subst        \
+        transientrprompt    \
         auto_name_dirs      \
         ignore_eof          \
         always_to_end       \

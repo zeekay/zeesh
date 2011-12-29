@@ -1,20 +1,30 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=true
-setopt PROMPT_SUBST
 
-ve(){
-    [ $VIRTUAL_ENV ] && echo -e "%F{black}(%F{magenta}${${(s:/:)VIRTUAL_ENV}[-1]}%F{black})%f"
+_prompt() {
+    s=''
+
+    # print virtualenv name if active
+    if [ $VIRTUAL_ENV ]; then
+        s="$s %K{black}${${(s:/:)VIRTUAL_ENV}[-1]}%k"
+    fi
+
+    # display vcs info
+    if [ "$vcs_info_msg_0_" ]; then
+        s="$s %K{black}$vcs_info_msg_0_%k"
+    fi
+
+    echo -e $s
+    unset s
 }
 
-rc(){
+_rprompt() {
     rc=$?
-    [[ $rc != 0 ]] && echo %F{red}$rc!%f
+    if [[ $rc != 0 ]]; then
+        echo -e "%F{red}$rc!%f"
+    fi
+    unset rc
 }
 
-is_vcs(){
-    [ -d "`pwd`/.hg" ] || [ -d "`pwd`/.git" ] && return 0
-    return 1
-}
-
-PROMPT='%B%F{magenta}%n%f%b on %B%F{magenta}%m%f%b in %F{blue}%B${PWD/$HOME/~}%b `is_vcs && echo -e %K{black}${vcs_info_msg_0_}%k`
-$(ve)%F{magenta}%#%f '
-RPROMPT='$(rc)'
+PROMPT='%B%F{magenta}%n%f%b on %B%F{magenta}%m%f%b in %F{blue}%B${PWD/$HOME/~}%b$(_prompt)
+%#%f '
+RPROMPT='$(_rprompt)'

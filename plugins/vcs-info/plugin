@@ -14,6 +14,3 @@ vcs-prompt-chpwd() {
     FORCE_RUN_VCS_INFO=1
 }
 add-zsh-hook chpwd vcs-prompt-chpwd
-
-setopt TRANSIENT_RPROMPT
-RPROMPT='${vcs_info_msg_0_}'
