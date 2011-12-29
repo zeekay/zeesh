@@ -6,7 +6,14 @@ autoload -U $plugin_dir/func/*(:t)
 setopt extended_glob
 export LS_COLORS='di=1;34:ln=35:so=32:pi=33;40:ex=31:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
 
-alias ls='ls --color=always -AF'
+alias l='ls'
+alias ls='ls -F --color=always'
+alias la='ls -AF --color=always'
+alias ll='ls -lhF --color=always'
+alias lla='ls -lhAF --color=always'
+alias lt='ls -lhtF --color=always'
+alias lta='ls -lhtAF --color=always'
+
 alias open=xdg-open
 alias o=xdg-open
 
