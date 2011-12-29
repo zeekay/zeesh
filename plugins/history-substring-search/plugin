@@ -3,3 +3,11 @@
 [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
 source "$plugin_dir/lib/zsh-$plugin.zsh"
+
+# keybindings
+bindkey -M viins '^n' history-substring-search-up
+bindkey -M vicmd '^n' history-substring-search-up
+bindkey -M viins '^p' history-substring-search-down
+bindkey -M vicmd '^p' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

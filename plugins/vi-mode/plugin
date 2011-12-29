@@ -6,10 +6,10 @@ bindkey -v
 bindkey -M vicmd "u" undo
 bindkey -M vicmd "^R" redo
 bindkey -M vicmd "ga" what-cursor-position
-bindkey -M viins '^p' history-beginning-search-backward
-bindkey -M vicmd '^p' history-beginning-search-backward
-bindkey -M viins '^n' history-beginning-search-forward
-bindkey -M vicmd '^n' history-beginning-search-forward
+bindkey -M viins '^n' history-search-backward
+bindkey -M vicmd '^n' history-search-backward
+bindkey -M viins '^p' history-search-forward
+bindkey -M vicmd '^p' history-search-forward
 bindkey -M viins "^U" vi-change-whole-line
 bindkey -M vicmd "^U" vi-change-whole-line
 bindkey -M vicmd "^?" vi-delete-char
