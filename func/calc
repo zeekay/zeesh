@@ -1,0 +1,4 @@
+calc() {
+    zmodload zsh/mathfunc
+    echo $(( $@ ))
+}

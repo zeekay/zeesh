@@ -1,0 +1,16 @@
+hg-time-since() {
+    local hgdir=".hg"
+    while [ ! -d "$hgdir" ]; do
+        hgdir="../$hgdir"
+    done
+    eval `stat -s $hgdir`
+    local now=`date +%s`
+    local since=$(( $now - $st_mtime ))
+    if [[ $since -lt 3600 ]]; then
+        echo $(( $since / 60 ))m
+    elif [[ $since -lt 86400 ]]; then
+        echo $(( $since / 3600 ))h
+    else
+        echo $(( $since / 86400 ))d
+    fi
+}

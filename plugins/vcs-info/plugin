@@ -1,16 +1,25 @@
 # this plugin enables vcs_info for zsh
 autoload -Uz add-zsh-hook vcs_info
 
+fpath=( $plugin_dir/func $fpath )
+autoload -U $plugin_dir/func/*(:t)
+
 source $plugin_dir/style
 
 # Call vcs_info as precmd before every prompt.
-vcs-prompt-precmd() {
+_vcspromptprecmd() {
     vcs_info
 }
-add-zsh-hook precmd vcs-prompt-precmd
+add-zsh-hook precmd _vcspromptprecmd
 
 # Must run vcs_info when changing directories.
-vcs-prompt-chpwd() {
+_vcspromptchpwd() {
     FORCE_RUN_VCS_INFO=1
 }
-add-zsh-hook chpwd vcs-prompt-chpwd
+add-zsh-hook chpwd _vcspromptchpwd
+
+# Add hook to show time since last change for mercurial repos
+zstyle ':vcs_info:hg+set-message:*' hooks hg-time-since
++vi-hg-time-since() {
+    hook_com[branch]="`hg-time-since`:$hook_com[branch]"
+}
