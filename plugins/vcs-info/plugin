@@ -1,5 +1,5 @@
 # this plugin enables vcs_info for zsh
-autoload -Uz vcs_info
+autoload -Uz add-zsh-hook vcs_info
 
 source $plugin_dir/style
 

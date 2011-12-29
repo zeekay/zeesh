@@ -12,15 +12,15 @@ alias hgps='hg push'
 alias hgf='hg fetch'
 alias hgu='hg up'
 
-_hg_commit(){
+_hg_commit() {
     if [[ $# == 0 ]]; then
         hg ci
     else
-        local ci_message=''
+        local message=''
         for i; do
-            ci_message="$ci_message $i"
+            message="$message $i"
         done
-        hg ci -m "$ci_message"
+        hg ci -m "$message"
     fi
 }
 
