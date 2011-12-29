@@ -13,8 +13,8 @@ zstyle ':completion:*:complete:-command-:*' ignored-patterns '*.dll' \
        '*.tlb' 'aclocal*' '*.exe' '*.com' 'deb*' 'dec*' 'de-*' '*cpl' 'D*' \
        'dev*' 'activate_this.py' 'hg-diff3-merge' 'HG_LOGIN_INFO' 'HG_REMOTE_PATH' \
        'histchars' 'HISTCHARS' 'historywords' 'HISTSIZE' \
-       'PYTHONSTARTUP' 'VENDOR' '_*'
-zstyle ':completion:*:(all-|)files' ignored-patterns '_*' 'HISTFILE'
+       'PYTHONSTARTUP' 'VENDOR' '_*' '+*' '*.zwc' '*.old'
+zstyle ':completion:*:(all-|)files' ignored-patterns '_*' '+*' '*.zwc'
 zstyle ':completion:*:*:open:*' matcher 'm:{a-z}={A-Z} r: ||[^ ]=**'
 
 # case-insensitive (all), partial-word and then substring completion
