@@ -14,7 +14,7 @@ export LSCOLORS=ExfxcxdxbxegedabagAcEx
 export PATH=/usr/local/share/ruby:/usr/local/share/python:~/.zsh/plugins/osx/lib:$PATH:/Developer/usr/bin
 
 ## aliases
-alias l='ls'
+alias l='/bin/ls'
 alias ls='ls -GF'
 alias la='ls -AGF'
 alias ll='ls -lhGF'
