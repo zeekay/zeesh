@@ -1,0 +1,7 @@
+invisible() {
+    if [ `GetFileInfo -a $1 | /usr/bin/grep V` ]; then
+        setFile -a v $1
+    else
+        setFile -a V $1
+    fi
+}
