@@ -1,0 +1,3 @@
+mds-enable(){
+    sudo mdutil -a -i on
+}

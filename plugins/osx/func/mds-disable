@@ -1,0 +1,3 @@
+mds-disable() {
+    sudo mdutil -a -i off
+}
