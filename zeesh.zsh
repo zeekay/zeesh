@@ -103,6 +103,10 @@ bindkey '^[[B' history-search-forward
 bindkey ' ' magic-space
 bindkey '^[[Z' reverse-menu-complete
 bindkey '^R' history-incremental-search-backward
+bindkey -s '^L' '|less\n'
+bindkey '^Q' quote-line
+bindkey -s '^N' '> /dev/null 2>&1\n'
+
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
     echo ''
@@ -112,11 +116,9 @@ fancy-ctrl-z () {
     zle push-input
   fi
 }
+
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
-bindkey -s '^L' '|less\n'
-bindkey '^Q' quote-line
-bindkey -s '^N' '> /dev/null 2>&1\n'
 
 # default prompt
 PS1='%n@%m:${PWD/$HOME/~}%# '
@@ -127,3 +129,5 @@ autoload -U ~/.zsh/func/*(:t)
 
 # enable plugins
 zeesh-enable-plugins
+
+
