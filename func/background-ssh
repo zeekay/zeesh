@@ -1,11 +1,7 @@
 background-ssh(){
     if [ $1 ]; then
-        if [ ! "`screen -ls | grep ssh-control-master`" ]; then
-            screen -d -m -S ssh-control-master
-            sleep 3
+        if [ ! "`screen -ls | grep ssh-control-master-$1`" ]; then
+            screen -d -m -S ssh-control-master-$1 ssh $1 sleep 365d
         fi
-        screen -S ssh-control-master -X screen -t $1
-        sleep 1
-        screen -S ssh-control-master -p $1 -X eval 'stuff "ssh '$1'\015"'
     fi
 }
