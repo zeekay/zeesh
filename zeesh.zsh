@@ -53,6 +53,8 @@ alias md='mkdir -p'
 alias rd='rmdir -p'
 alias cp='nocorrect cp'
 alias mv='nocorrect mv'
+alias rm='nocorrect rm'
+alias rmf='rm -rf'
 alias grep='grep -i --color=always'
 alias g=grep
 alias gr='grep -r'
