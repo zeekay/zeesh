@@ -1,0 +1,73 @@
+zeesh-plugin-new(){
+    local plugin_name=$1
+    local plugin_dir=~/.zsh/plugins/$plugin_name
+    local plugin=$plugin_dir/plugin
+    local fp=''
+    local desc
+
+    if [ ! $1 ]; then
+        echo "Please specify a name for your plugin"
+        return
+    fi
+    if [ -d $plugin_dir ]; then
+        echo "A plugin by that name already exists!"
+        return
+    fi
+
+    # Create plugin dir and create initial plugin skeleton
+    mkdir $plugin_dir
+    echo '### '$plugin_name' / zeesh! plugin' > $plugin
+
+    # Plugin description
+    echo 'Please enter a short description of your plugin:'
+    read desc
+    echo "\n" >> $plugin
+    echo '### '$desc >> $plugin
+
+    # Options
+    ask 'Do you want to load functions for your plugin automatically? (y/n):' && enable_functions=yes
+    if [ $enable_functions]; then
+        ask 'Do you want me to include a sample functions for you? (y/n):' && enable_sample=yes
+    fi
+    ask 'Do you want to use zeesh-prefs? (y/n):' && enable_prefs=yes
+    ask 'Do you want to load completions for your plugin automatically? (y/n):' && enable_plugins=yes
+
+    # Setup functions
+    if [ $enable_functions ]; then
+        fp='$plugin_dir/func '
+        mkdir $plugin_dir/func
+        if [ $enable_sample ]; then
+            echo $plugin_name'(){' > $plugin_dir/func/$plugin_name
+            if [ $enable_prefs ]; then
+                echo '# default prefs for '$plugin_name', only used by zeesh-prefs to create new prefs file' > $plugin_dir/default.prefs
+                echo '# to modify your actual preferences for this plugin edit ~/.zsh/local/'$plugin_name'.prefs' >> $plugin_dir/default.prefs
+                echo 'key: value' >> $plugin_dir/default.prefs
+                echo '    typeset -A prefs' >> $plugin_dir/func/$plugin_name
+                echo '    zeesh-prefs get '$plugin_name' # try to get prefs or create new prefs file using default.prefs' >> $plugin_dir/func/$plugin_name
+                echo '    if [[ "$prefs" != "" ]]; then' >> $plugin_dir/func/$plugin_name
+                echo '    fi' >> $plugin_dir/func/$plugin_name
+            fi
+            echo '}' >> $plugin_dir/func/$plugin_name
+            echo "# vim: ft=zsh" >> $/plugin_dir/func/$plugin_name
+        fi
+    fi
+
+    # Create skeleton/dir
+    if [ $enable_completions ]; then
+        fp=$fp'$plugin_dir/comp '
+    fi
+
+    if [ $fp ]; then
+        echo 'fpath=( '$fpath')' >> $plugin
+    fi
+
+    if [ $enable_functions ]; then
+        echo 'autoload -U $plugin_dir/func/*(:t)' >> $plugin
+    fi
+
+    # Echo out end of plugin file
+    echo "\n"'## exports' >> $plugin
+    echo "\n"'## aliases' >> $plugin
+    echo "\n"'## functions' >> $plugin
+    echo "# vim: ft=zsh" >> $plugin
+}

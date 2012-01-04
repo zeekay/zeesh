@@ -1,0 +1,11 @@
+ask(){
+    echo -n "$1 \c"
+    read ans
+    if [[ $ans[1]:l == 'y' ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# vim: ft=zsh

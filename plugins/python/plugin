@@ -1,7 +1,7 @@
 ### python / zeesh! plugin
 
-fpath=( ~/.zsh/plugins/python/func $fpath )
-autoload -U ~/.zsh/plugins/python/func/*(:t)
+fpath=( $plugin_dir/func $fpath )
+autoload -U $plugin_dir/func/*(:t)
 
 compctl -K site-packages-ls site-packages-cd
 

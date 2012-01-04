@@ -132,4 +132,4 @@ autoload -U ~/.zsh/func/*(:t)
 # enable plugins
 zeesh-enable-plugins
 
-
+# vim: ft=zsh

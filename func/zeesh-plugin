@@ -17,7 +17,7 @@ function zeesh-plugin() {
         case $1 in
         create|new)
             if [ $2 ]; then
-                zeesh-new-plugin $2
+                zeesh-plugin-new $2
             else
                 echo "please specify a name for your new plugin"
             fi

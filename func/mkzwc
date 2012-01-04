@@ -1,26 +1,23 @@
-#!/usr/bin/env zsh
+autoload -U zrecompile
 
-# pre-compiles zsh functions
+zrecompile -p \
+    -R ~/.zshrc -- \
+    -M ~/.zcompdump -- \
+    -R ~/.zsh/zeesh --
 
-mkzwc() {
-    autoload -U zrecompile
+zrecompile -p ~/.zsh/comp.zwc ~/.zsh/comp/_*
+zrecompile -p ~/.zsh/func.zwc ~/.zsh/func/*
 
-    # compile functions found in $fpath
-    for p ($fpath); do
-        for a (`find $p -type f -not -name '*.zwc' -not -name '*.old'`); do
-            zrecompile -p $a
-        done
-    done
+for a in ~/.zsh/plugins/*/plugin; do
+    zrecompile -p -R $a --
+done
 
-    # compile zsh files
-    conf=(~/.zshrc ~/.zsh/zeesh.zsh ~/.zcompdump)
-    for a ($conf); do
-        zrecompile -p $a
-    done
+for a in ~/.zsh/plugins/*/func; do
+    zrecompile -p $a.zwc $a/*
+done
 
-    # compile plugins
-    for a ($zeesh_plugins); do
-        zrecompile -p ~/.zsh/plugins/$a/plugin
-    done
-    unset a p conf
-}
+for a in ~/.zsh/plugins/*/comp; do
+    zrecompile -p $a.zwc $a/*
+done
+
+# vim: ft=zsh
