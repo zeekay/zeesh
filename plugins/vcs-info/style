@@ -1,5 +1,5 @@
 zstyle ':vcs_info:*' enable hg git svn
-zstyle ':vcs_info:hg*:*' get-bookmarks true
+zstyle ':vcs_info:hg*:*' get-bookmarks false
 zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 
