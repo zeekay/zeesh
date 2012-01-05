@@ -1,0 +1,21 @@
+# switch to project dir in active virtualenv
+cdv() {
+    if [ $VIRTUAL_ENV ]; then
+        local project_dir="$VIRTUAL_ENV/${${(s:/:)VIRTUAL_ENV}[-1]}"
+        if [ $1 ] && [ $1 = "--location" ]; then
+            if [ -d "$project_dir" ]; then
+                echo $project_dir
+            else
+                echo $VIRTUAL_ENV
+            fi
+        else
+            if [ -d "$project_dir" ]; then
+                cd $project_dir/$1
+            else
+                cd $VIRTUAL_ENV/$1
+            fi
+        fi
+    else
+        echo "No virtualenv activated"
+    fi
+}

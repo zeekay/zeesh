@@ -1,13 +1,12 @@
 # virtualenv zshfu plugin
-fpath=( $plugin_dir/func $fpath )
-autoload -U $plugin_dir/func/*(:t)
+fpath=( $plugin_dir/func $plugin_dir/comp $fpath )
+autoload -U $plugin_dir/func/*(:t) $plugin_dir/comp/*(:t)
 
 compctl -K ve-list ve-activate
 
 # aliases
 alias act=ve-activate
 alias dact=ve-deactivate
-alias cdv=ve-cd
 alias newenv=ve-newenv
 
 # virtualenv config

@@ -1,0 +1,2 @@
+#compdef cdv
+_files -W `cdv --location` -/

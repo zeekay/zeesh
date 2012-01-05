@@ -1,0 +1,2 @@
+#compdef cdsrc
+_files -W `cdsrc --location` -/
