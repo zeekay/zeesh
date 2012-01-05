@@ -1,10 +1,7 @@
 hg-time-since() {
-    local hgdir=".hg"
+    local hgdir=$1
     local now=`date +%s`
     local last=$now
-    while [ ! -d "$hgdir" ]; do
-        hgdir="../$hgdir"
-    done
     if [ -f "$hgdir/undo.dirstate" ]; then
         last=`last-modified $hgdir/undo.dirstate`
     fi
