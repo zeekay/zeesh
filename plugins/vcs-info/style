@@ -1,14 +1,48 @@
 zstyle ':vcs_info:*' enable hg git svn
-zstyle ':vcs_info:hg*:*' get-bookmarks false
+zstyle ':vcs_info:hg*:*' get-bookmarks true
 zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 
 # simple
 zstyle ':vcs_info:hg*:' use-simple true
-zstyle ':vcs_info:hg*' formats "%b:%i%m%u"
-zstyle ':vcs_info:hg*' actionformats "%b:%i%m%u"
+zstyle ':vcs_info:hg*' formats "%b%m:%i%u"
+zstyle ':vcs_info:hg*' actionformats "%b%m:%i%u (%a)"
 zstyle ':vcs_info:git*' formats "%12.12i%u:%b%m"
 zstyle ':vcs_info:git*' actionformats "%12.12i%u:%b%m"
+
+zstyle ':vcs_info:hg+gen-hg-bookmark-string:*' hooks hgbookmarks
+
+function +vi-hgbookmarks() {
+    # The default is to connect all bookmark names by
+    # commas. This mixes things up a little.
+    # Imagine, there's one type of bookmarks that is
+    # special to you. Say, because it's *your* work.
+    # Those bookmarks look always like this: "sh/*"
+    # (because your initials are sh, for example).
+    # This makes the bookmarks string use only those
+    # bookmarks. If there's more than one, it
+    # concatenates them using commas.
+    local s i
+    # The bookmarks returned by `hg' are available in
+    # the functions positional parameters.
+    for i in "$@"; do
+        if [[ $i != "master" ]]; then
+            [[ -n $s ]] && s=$s,
+            s=${s}$i
+        fi
+    done
+    [[ -n $s ]] && s=/$s
+    # Now, the communication with the code that calls
+    # the hook functions is done via the hook_com[]
+    # hash. The key, at which the `gen-hg-bookmark-string'
+    # hook looks at is `hg-bookmark-string'. So:
+    hook_com[hg-bookmark-string]=$s
+    # And to signal, that we want to use the sting we
+    # just generated, set the special variable `ret' to
+    # something other than the default zero:
+    ret=1
+    return 0
+}
 
 # # complex
 # zstyle ':vcs_info:hg*:' use-simple false
@@ -28,3 +62,5 @@ zstyle ':vcs_info:hg*:*' branchformat "%b" # only show branch
 
 zstyle ':vcs_info:hg+set-hgrev-format:*' hooks hg-storerev
 zstyle ':vcs_info:hg+set-message:*' hooks hg-branchhead
+
+# vim: ft=zsh
