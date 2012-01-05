@@ -1,9 +1,5 @@
 # this plugin enables vcs_info for zsh
 autoload -Uz add-zsh-hook vcs_info
-
-fpath=( $plugin_dir/func $fpath )
-autoload -U $plugin_dir/func/*(:t)
-
 source $plugin_dir/style
 
 # Call vcs_info as precmd before every prompt.
