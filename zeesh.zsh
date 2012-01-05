@@ -79,7 +79,7 @@ alias nc='rlwrap nc'
 alias csi='rlwrap csi'
 alias racket='rlwrap racket'
 alias clj='rlwrap clj'
-alias vcs='zeesh-plugin-enable vcs'
+alias vcs='zeesh-plugin-enable vcs-info'
 
 # keybindings
 zle -N rationalize-dot
