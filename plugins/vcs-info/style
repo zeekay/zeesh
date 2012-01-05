@@ -33,10 +33,53 @@ function +vi-hg-bookmarks() {
     return 0
 }
 
-zstyle ':vcs_info:hg+set-message:*' hooks hg-branchhead
-function +vi-hg-branchhead() {
-    export HOOK_COM=$hook_com
-    hook_com[rev]="^ ${hook_com[rev]}"
+
+zstyle ':vcs_info:hg+set-hgrev-format:*' hooks hg-shorthash
+function +vi-hg-shorthash() {
+    local -a parents
+
+    parents=( ${(s:+:)hook_com[hash]} )
+    parents=( ${(@r:12:)parents} )
+    hook_com[rev-replace]=${(j:+:)parents}
+
+    ret=1
 }
+
+# Show time since last change for mercurial repos
++vi-hg-time-since() {
+    hook_com[branch]="`hg-time-since $hook_com[base]`:$hook_com[branch]"
+}
+
+zstyle ':vcs_info:hg+set-hgrev-format:*' hooks hg-storerev
+zstyle ':vcs_info:hg+set-message:*' hooks hg-branchhead hg-time-since
+
+# The hash is available in the hgrev-format hook, store a copy of it in the
+# user_data array so we can access it in the second function
+function +vi-hg-storerev() {
+    user_data[hash]=${hook_com[hash]}
+}
+
+function +vi-hg-branchhead() {
+    local branchheadsfile i_tiphash i_branchname
+    local -a branchheads
+
+    local branchheadsfile=${hook_com[base]}/.hg/cache/branchheads
+
+    # Bail out if any mq patches are applied
+    [[ -s ${hook_com[base]}/.hg/patches/status ]] && return 0
+
+    if [[ -r ${branchheadsfile} ]] ; then
+        while read -r i_tiphash i_branchname ; do
+            branchheads+=( $i_tiphash )
+        done < ${branchheadsfile}
+
+        if [[ ! ${branchheads[(i)${user_data[hash]}]} -le ${#branchheads} ]] ; then
+            hook_com[revision]="!${hook_com[revision]}"
+        fi
+    fi
+}
+
+# Uncomment this for verbose debugging info
+# zstyle ':vcs_info:*+*:*' debug true
 
 # vim: ft=zsh
