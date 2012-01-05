@@ -3,7 +3,7 @@ autoload -U zrecompile
 zrecompile -p \
     -R ~/.zshrc -- \
     -M ~/.zcompdump -- \
-    -R ~/.zsh/zeesh --
+    -R ~/.zsh/zeesh.zsh --
 
 zrecompile -p ~/.zsh/comp.zwc ~/.zsh/comp/_*
 zrecompile -p ~/.zsh/func.zwc ~/.zsh/func/*

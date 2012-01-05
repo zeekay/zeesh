@@ -1,0 +1,2 @@
+#compdef cdsp
+_files -W `cdsp --location` -/

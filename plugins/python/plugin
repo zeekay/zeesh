@@ -1,9 +1,7 @@
 ### python / zeesh! plugin
 
-fpath=( $plugin_dir/func $fpath )
-autoload -U $plugin_dir/func/*(:t)
-
-compctl -K site-packages-ls site-packages-cd
+fpath=( $plugin_dir/func $plugin_dir/comp $fpath )
+autoload -U $plugin_dir/func/*(:t) $plugin_dir/comp/*(:t)
 
 ## exports
 export PYTHONSTARTUP=~/.pythonrc
@@ -12,7 +10,6 @@ export PYTHONSTARTUP=~/.pythonrc
 alias py=python
 alias ipy=ipython
 alias pyinstall='python setup.py install'
-alias cdsp=site-packages-cd
 alias pipi='pip install --use-mirrors'
 alias pipu='pip install -U --use-mirrors'
 alias pipr='pip install --use-mirrors -r requirements.txt'

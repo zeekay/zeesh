@@ -1,0 +1,13 @@
+# switch to active virtualenv site-packages dir
+cdsp() {
+    local spdir=`python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'`
+    if [ $1 ]; then
+        if [ "$1" = '--location' ]; then
+            echo $spdir
+        else
+            cd $spdir/$1
+        fi
+    else
+        cd $spdir
+    fi
+}
