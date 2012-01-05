@@ -10,9 +10,15 @@ export PYTHONSTARTUP=~/.pythonrc
 alias py=python
 alias ipy=ipython
 alias pyinstall='python setup.py install'
-alias pipi='pip install --use-mirrors'
-alias pipu='pip install -U --use-mirrors'
-alias pipr='pip install --use-mirrors -r requirements.txt'
+alias pipi='pip install'
+alias pipu='pip install -U'
+pipr(){
+    if [ $1 ]; then
+        pip install -r $@
+    else
+        pip install -r requirements.txt
+    fi
+}
 alias smtpconsole='python -m smtpd -n -c DebuggingServer localhost:1025'
 alias serve-this='python -m SimpleHTTPServer'
 alias pye='noglob pye'
