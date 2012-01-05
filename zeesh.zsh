@@ -79,6 +79,7 @@ alias nc='rlwrap nc'
 alias csi='rlwrap csi'
 alias racket='rlwrap racket'
 alias clj='rlwrap clj'
+alias vcs='zeesh-plugin-enable vcs'
 
 # keybindings
 zle -N rationalize-dot
@@ -130,6 +131,6 @@ fpath=( ~/.zsh/func $fpath )
 autoload -U ~/.zsh/func/*(:t)
 
 # enable plugins
-zeesh-enable-plugins
+zeesh-plugin-enable
 
 # vim: ft=zsh

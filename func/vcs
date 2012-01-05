@@ -1,3 +1,0 @@
-vcs() {
-    source ~/.zsh/plugins/vcs-info/plugin.zsh
-}

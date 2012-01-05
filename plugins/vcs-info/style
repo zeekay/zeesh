@@ -2,7 +2,6 @@ zstyle ':vcs_info:*' enable hg git svn
 zstyle ':vcs_info:hg*:*' get-bookmarks true
 zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:hg*:' use-simple true
 
 zstyle ':vcs_info:*:*' unstagedstr "+"
 zstyle ':vcs_info:git*:*' stagedstr "^"
@@ -15,9 +14,8 @@ zstyle ':vcs_info:hg*' actionformats "%b%m:%i%u/%a"
 zstyle ':vcs_info:git*' formats "%b%m@%12.12i%u"
 zstyle ':vcs_info:git*' actionformats "%b%m@%12.12i%u/%a"
 
-zstyle ':vcs_info:hg+gen-hg-bookmark-string:*' hooks hgbookmarks
-
-function +vi-hgbookmarks() {
+zstyle ':vcs_info:hg+gen-hg-bookmark-string:*' hooks hg-bookmarks
+function +vi-hg-bookmarks() {
     local s i
     # The bookmarks returned by `hg' are available in
     # the functions positional parameters.
@@ -35,33 +33,10 @@ function +vi-hgbookmarks() {
     return 0
 }
 
-zstyle ':vcs_info:hg*+set-message:*' hooks hg-storerev hg-branchhead
-
-### Store the localrev and global hash for use in other hooks
-function +vi-hg-storerev() {
-    user_data[localrev]=${hook_com[localrev]}
-    user_data[hash]=${hook_com[hash]}
-}
-
-### Show marker when the working directory is not on a branch head
-# This may indicate that running `hg up` will do something
+zstyle ':vcs_info:hg+set-message:*' hooks hg-branchhead
 function +vi-hg-branchhead() {
-    local branchheadsfile i_tiphash i_branchname
-    local -a branchheads
-
-    local branchheadsfile=${hook_com[base]}/.hg/branchheads.cache
-
-    # Bail out if any mq patches are applied
-    [[ -s ${hook_com[base]}/.hg/patches/status ]] && return 0
-
-    if [[ -r ${branchheadsfile} ]] ; then
-        while read -r i_tiphash i_branchname ; do
-            branchheads+=( $i_tiphash )
-        done < ${branchheadsfile}
-
-        if [[ ! ${branchheads[(i)${user_data[hash]}]} -le ${#branchheads} ]] ; then
-            hook_com[revision]="${c4}!${c2}${hook_com[revision]}"
-        fi
-    fi
+    export HOOK_COM=$hook_com
+    hook_com[rev]="^ ${hook_com[rev]}"
 }
+
 # vim: ft=zsh
