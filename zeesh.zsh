@@ -33,7 +33,7 @@ SAVEHIST=10000
 # default exports
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export PATH=~/.dotfiles/scripts:~/.bin:$PATH
+export PATH=~/.dotfiles/scripts:~/.bin:/usr/local/bin:$PATH
 export PAGER=vimpager
 export EDITOR=vim
 
@@ -82,6 +82,8 @@ alias clj='rlwrap clj'
 alias vcs='zeesh-plugin-enable vcs-info'
 
 # keybindings
+# force emacs mode
+bindkey -e
 zle -N rationalize-dot
 bindkey . rationalize-dot
 bindkey "^J" self-insert
