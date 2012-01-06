@@ -4,12 +4,12 @@
 bindkey -v
 
 # This prevents the prompt from being reset (which is very slow)
+# as well as preventing the cursor from moving backwards
 vi-cmd-mode() {
     zle -K vicmd
-    # zle -N redisplay
 }
-
 zle -N vi-cmd-mode
+
 bindkey -M viins "" vi-cmd-mode
 bindkey -M vicmd "^m" accept-line
 bindkey -M vicmd "u" undo
