@@ -9,26 +9,28 @@ if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_TIMESINCE_FMT=' $s'
     VCS_INFO_HG_FMT='on %F{magenta}%b%m%f at %F{magenta}%i%u%f'
     VCS_INFO_GIT_FMT='on %F{magenta}%b%m%f at %F{magenta}%10.10i%u%f'
-    VCS_INFO_HGACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%i%u%f'
-    VCS_INFO_GITACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%10.10i%u%f'
+    VCS_INFO_HGACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%i%u %a%f'
+    VCS_INFO_GITACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%10.10i%u %a%f'
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
 _prompt() {
     local s="%B%F{magenta}%n%f%b at %B%F{magenta}%m%f%b in %F{blue}%B${PWD/$HOME/~}%b%f"
 
-    # print virtualenv name if active
-    if [ $VIRTUAL_ENV ]; then
-        s="$s %K{black}${${(s:/:)VIRTUAL_ENV}[-1]}%k"
-    fi
-
     # display vcs info
     if [ "$vcs_info_msg_0_" ]; then
         s="$s $vcs_info_msg_0_"
     fi
 
-    # display newline after prompt
-    echo -e "\n$s"
+    # display newline before prompt
+    s="$s\n"
+
+    # print virtualenv name if active
+    if [ $VIRTUAL_ENV ]; then
+        s="$s%K{black}${${(s:/:)VIRTUAL_ENV}[-1]}%k"
+    fi
+
+    echo -e "\n$s%F{magenta}>%f "
 }
 
 _rprompt() {
@@ -40,6 +42,5 @@ _rprompt() {
     echo -e $s
 }
 
-PROMPT='$(_prompt)
-> '
+PROMPT='$(_prompt)'
 RPROMPT='$(_rprompt)'
