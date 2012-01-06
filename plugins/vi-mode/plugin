@@ -1,8 +1,17 @@
 ### vi-mode / zeesh! plugin
-# vi-mode keybindings
 
-# use vi mode keybindings
+# switch vi mode mappings
 bindkey -v
+
+# This prevents the prompt from being reset (which is very slow)
+vi-cmd-mode() {
+    zle -K vicmd
+    # zle -N redisplay
+}
+
+zle -N vi-cmd-mode
+bindkey -M viins "" vi-cmd-mode
+bindkey -M vicmd "^m" accept-line
 bindkey -M vicmd "u" undo
 bindkey -M vicmd "^R" redo
 bindkey -M vicmd "ga" what-cursor-position
