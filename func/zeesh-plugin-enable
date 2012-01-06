@@ -4,7 +4,15 @@ function zeesh-plugin-enable() {
         plugin_dir="$HOME/.zsh/plugins/$plugin"
         source "$plugin_dir/plugin"
     else
-        for plugin ($zeesh_plugins); do
+        # we convert zeesh_plugins array
+        # to an associative array for easy lookups later
+        # plugin and plugin_dir are global variables made
+        # available for individual plugins
+        local a
+        a=( $zeesh_plugins )
+        typeset -A zeesh_plugins
+        for plugin in $a; do
+            zeesh_plugins[$plugin]=enabled
             plugin_dir="$HOME/.zsh/plugins/$plugin"
             source "$plugin_dir/plugin"
         done

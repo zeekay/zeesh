@@ -1,21 +1,21 @@
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
-if [ `in-array zeesh_plugins vcs-info` ]; then
+if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_UNSTAGED_FMT='+'
     VCS_INFO_STRAGED_FMT='^'
     VCS_INFO_BRANCH_FMT='%b'
     VCS_INFO_HGREV_FMT='%r'
     VCS_INFO_HGBOOKMARK_FMT=''
     VCS_INFO_TIMESINCE_FMT=' $s'
-    VCS_INFO_HG_FMT='%F{grey}%s%f %F{magenta}%b%m%f at %F{magenta}%i%u%f'
-    VCS_INFO_HGACTION_FMT='%s:%b%m@%i%u'
-    VCS_INFO_GIT_FMT='%s:%b%m@%10.10i%u'
-    VCS_INFO_GITACTION_FMT='%s:%b%m@%10.10i%u'
+    VCS_INFO_HG_FMT='on %F{magenta}%b%m%f at %F{magenta}%i%u%f'
+    VCS_INFO_GIT_FMT='on %F{magenta}%b%m%f at %F{magenta}%10.10i%u%f'
+    VCS_INFO_HGACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%i%u%f'
+    VCS_INFO_GITACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%10.10i%u%f'
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
 _prompt() {
-    local s="%B%F{magenta}%n%f%b on %B%F{magenta}%m%f%b in %F{blue}%B${PWD/$HOME/~}%b%f"
+    local s="%B%F{magenta}%n%f%b at %B%F{magenta}%m%f%b in %F{blue}%B${PWD/$HOME/~}%b%f"
 
     # print virtualenv name if active
     if [ $VIRTUAL_ENV ]; then
