@@ -8,10 +8,10 @@ zstyle ':vcs_info:git*:*' stagedstr "^"
 zstyle ':vcs_info:*:*' branchformat "%b"
 zstyle ':vcs_info:hg*:*' hgrevformat "%r"
 
-zstyle ':vcs_info:hg*' formats "%b%m:%i%u"
-zstyle ':vcs_info:hg*' actionformats "%b%m:%i%u/%a"
+zstyle ':vcs_info:hg*' formats "%b%m@%i%u"
+zstyle ':vcs_info:hg*' actionformats "%b%m@%i%u«%a"
 zstyle ':vcs_info:git*' formats "%b%m@%10.10i%u"
-zstyle ':vcs_info:git*' actionformats "%b%m@%10.10i%u/%a"
+zstyle ':vcs_info:git*' actionformats "%b%m@%10.10i%u«%a"
 
 # use-simple reduces hg overhead but doesn't show dirty or local rev numbers
 # zstyle ':vcs_info:hg*:*' use-simple true
