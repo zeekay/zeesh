@@ -38,9 +38,6 @@ if [ "$input" = "y" ]; then
 
     cat > ~/.zshrc << EOF
 zeesh_plugins=(
-    # enables autocompletion
-    autocomplete
-
     # platform-specific
     $platform
 
@@ -60,7 +57,7 @@ zeesh_plugins=(
     # virtualbox
 
     # provides command line vcs info
-    # vcs_info
+    # vcs-info
 
     # cli syntax highlighting
     # syntax-highlighting
@@ -70,6 +67,10 @@ zeesh_plugins=(
 
     # themes
     # theme
+
+    # enables autocompletion
+    autocomplete
+
 )
 source ~/.zsh/zeesh.zsh
 EOF
