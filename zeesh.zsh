@@ -34,8 +34,9 @@ SAVEHIST=10000
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export PATH=~/.dotfiles/scripts:~/.bin:/usr/local/bin:$PATH
-export PAGER=vimpager
 export EDITOR=vim
+export PAGER=vimpager
+export RSYNC_RSH=ssh
 
 # default aliases
 alias less=vimpager
