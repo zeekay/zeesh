@@ -1,9 +1,0 @@
-# checks for existence of string inside array
-# first argument is array, second is string
-in-array(){
-    if [ `eval echo '${'"$1"'[(i)'"$2"']}'` -le `eval echo '${#'"$1"'}'` ]; then
-        return 0
-    else
-        return 1
-    fi
-}
