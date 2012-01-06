@@ -10,13 +10,6 @@ export VCS_INFO_HGACTION_FMT='%b%m@%i%u'
 export VCS_INFO_GIT_FMT='%b%m@%10.10i%u'
 export VCS_INFO_GITACTION_FMT='%b%m@%10.10i%u'
 
-function zle-line-init zle-keymap-select {
-        PR_VIMODE="${${KEYMAP/vicmd/:}/(main|viins)/%%}"
-        PR_VICOLOR="${${KEYMAP/vicmd/%B%F{magenta}}/(main|viins)/%B%F{black}}"
-        zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
 
 _prompt() {
     local s="%B%F{magenta}%n%f%b on %B%F{magenta}%m%f%b in %F{blue}%B${PWD/$HOME/~}%b"
@@ -42,5 +35,5 @@ _rprompt() {
 }
 
 PROMPT='$(_prompt)
-${PR_VIMODE} '
+%#%f '
 RPROMPT='$(_rprompt)'

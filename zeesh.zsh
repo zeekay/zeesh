@@ -83,7 +83,7 @@ alias vcs='zeesh-plugin-enable vcs-info'
 
 # keybindings
 # force emacs mode
-bindkey -e
+# bindkey -e
 zle -N rationalize-dot
 bindkey . rationalize-dot
 bindkey "^J" self-insert
