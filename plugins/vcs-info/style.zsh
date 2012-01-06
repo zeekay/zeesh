@@ -3,15 +3,14 @@ zstyle ':vcs_info:hg*:*' get-bookmarks true
 zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 
-zstyle ':vcs_info:*:*' unstagedstr "+"
-zstyle ':vcs_info:git*:*' stagedstr "^"
-zstyle ':vcs_info:*:*' branchformat "%b"
-zstyle ':vcs_info:hg*:*' hgrevformat "%r"
-
-zstyle ':vcs_info:hg*' formats "%b%m@%i%u"
-zstyle ':vcs_info:hg*' actionformats "%b%m@%i%u«%a"
-zstyle ':vcs_info:git*' formats "%b%m@%10.10i%u"
-zstyle ':vcs_info:git*' actionformats "%b%m@%10.10i%u«%a"
+zstyle ':vcs_info:*:*' unstagedstr $VCS_INFO_UNSTAGED_FMT
+zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
+zstyle ':vcs_info:*:*' branchformat $VCS_INFO_BRANCH_FMT
+zstyle ':vcs_info:hg*:*' hgrevformat $VCS_INFO_HGREV_FMT
+zstyle ':vcs_info:hg*' formats $VCS_INFO_HG_FMT
+zstyle ':vcs_info:hg*' actionformats $VCS_INFO_HGACTION_FMT
+zstyle ':vcs_info:git*' formats $VCS_INFO_GIT_FMT
+zstyle ':vcs_info:git*' actionformats $VCS_INFO_GITACTION_FMT
 
 # use-simple reduces hg overhead but doesn't show dirty or local rev numbers
 # zstyle ':vcs_info:hg*:*' use-simple true
@@ -56,7 +55,7 @@ zstyle ':vcs_info:git*' actionformats "%b%m@%10.10i%u«%a"
     fi
 
     # jam time-since in front of branch
-    hook_com[branch]="$since:${hook_com[branch]}"
+    hook_com[vcs]=$since
 }
 
 # git: Time since last commit
@@ -73,7 +72,7 @@ zstyle ':vcs_info:git*' actionformats "%b%m@%10.10i%u«%a"
     fi
 
     # jam time-since in front of branch
-    hook_com[branch]="$since:${hook_com[branch]}"
+    hook_com[vcs]=$since
 }
 
 # hg: Show marker when the working directory is not on a branch head.

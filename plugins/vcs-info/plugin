@@ -1,6 +1,19 @@
+### zeesh! / vcs-info
+
 # this plugin enables vcs_info for zsh
+
 autoload -Uz add-zsh-hook vcs_info
-source $plugin_dir/style.zsh
+
+export VCS_INFO_UNSTAGED_FMT='+'
+export VCS_INFO_STRAGED_FMT='^'
+export VCS_INFO_BRANCH_FMT='%b'
+export VCS_INFO_HGREV_FMT='%r'
+export VCS_INFO_HGBOOKMARK_FMT=''
+export VCS_INFO_TIMESINCE_FMT=':$s'
+export VCS_INFO_HG_FMT='%b%m@%i%u'
+export VCS_INFO_HGACTION_FMT='%b%m@%i%u'
+export VCS_INFO_GIT_FMT='%b%m@%10.10i%u'
+export VCS_INFO_GITACTION_FMT='%b%m@%10.10i%u'
 
 # Call vcs_info as precmd before every prompt.
 _vcspromptprecmd() {
@@ -13,3 +26,5 @@ _vcspromptchpwd() {
     FORCE_RUN_VCS_INFO=1
 }
 add-zsh-hook chpwd _vcspromptchpwd
+
+source $plugin_dir/style.zsh
