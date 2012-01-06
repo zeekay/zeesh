@@ -6,11 +6,11 @@ if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_BRANCH_FMT='%b'
     VCS_INFO_HGREV_FMT='%r'
     VCS_INFO_HGBOOKMARK_FMT=''
-    VCS_INFO_TIMESINCE_FMT=':$s'
-    VCS_INFO_HG_FMT='%s:%b%m:%i%u'
-    VCS_INFO_HGACTION_FMT='%s:%b%m:%i%u:%a'
-    VCS_INFO_GIT_FMT='%s:%b%m:%10.10i%u'
-    VCS_INFO_GITACTION_FMT='%s:%b%m:%10.10i%u:%a'
+    VCS_INFO_TIMESINCE_FMT='$s'
+    VCS_INFO_HG_FMT='%K{black}%b%m%k %i%u'
+    VCS_INFO_HGACTION_FMT='%b%m %i%u:%a'
+    VCS_INFO_GIT_FMT='%b%m %10.10i%u'
+    VCS_INFO_GITACTION_FMT='%b%m %10.10i%u %a'
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
