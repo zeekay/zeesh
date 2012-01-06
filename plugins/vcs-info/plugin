@@ -26,3 +26,6 @@ _vcspromptchpwd() {
     FORCE_RUN_VCS_INFO=1
 }
 add-zsh-hook chpwd _vcspromptchpwd
+
+# Default to displaying on the right
+RPROMPT='${vcs_info_msg_0_}'

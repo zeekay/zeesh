@@ -1,4 +1,5 @@
 VIRTUAL_ENV_DISABLE_PROMPT=true
+FIRST_PROMPT=true
 
 if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_UNSTAGED_FMT='+'
@@ -27,7 +28,13 @@ _prompt() {
         s="$s $vcs_info_msg_0_"
     fi
 
-    echo -e $s
+    # display newline after prompt
+    if [ $FIRST_PROMPT ]; then
+        unset FIRST_PROMPT
+        echo -e "$s"
+    else
+        echo -e "\n$f"
+    fi
 }
 
 _rprompt() {
