@@ -22,5 +22,5 @@ _rprompt() {
     echo -e $s
 }
 
-PROMPT='%B%F{magenta}%n%b%f%F{magenta}@%f%B%F{magenta}%m%b%f %F{blue}%B${PWD/$HOME/~}%b%F{magenta} %#%f '
+PROMPT='%B%F{magenta}%n%b%f%F{magenta}@%f%B%F{magenta}%m%b%f %F{blue}%B${PWD/$HOME/~}%b%F{magenta} >%f '
 RPROMPT='$(_rprompt)'
