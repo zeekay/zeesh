@@ -4,13 +4,13 @@ zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 
 zstyle ':vcs_info:*:*' unstagedstr $VCS_INFO_UNSTAGED_FMT
-zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
 zstyle ':vcs_info:*:*' branchformat $VCS_INFO_BRANCH_FMT
-zstyle ':vcs_info:hg*:*' hgrevformat $VCS_INFO_HGREV_FMT
-zstyle ':vcs_info:hg*' formats $VCS_INFO_HG_FMT
-zstyle ':vcs_info:hg*' actionformats $VCS_INFO_HGACTION_FMT
+zstyle ':vcs_info:*:*' hgrevformat $VCS_INFO_HGREV_FMT
+zstyle ':vcs_info:*' formats $VCS_INFO_HG_FMT
+zstyle ':vcs_info:*' actionformats $VCS_INFO_HGACTION_FMT
 zstyle ':vcs_info:git*' formats $VCS_INFO_GIT_FMT
 zstyle ':vcs_info:git*' actionformats $VCS_INFO_GITACTION_FMT
+zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
 
 # use-simple reduces hg overhead but doesn't show dirty or local rev numbers
 # zstyle ':vcs_info:hg*:*' use-simple true
