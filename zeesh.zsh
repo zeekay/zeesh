@@ -40,7 +40,6 @@ export RSYNC_RSH=ssh
 
 # default aliases
 alias less=vimpager
-alias vim='vim -p'
 alias vi=vim
 alias vm=vim
 alias l=ls
