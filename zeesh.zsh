@@ -42,6 +42,7 @@ export RSYNC_RSH=ssh
 alias less=vimpager
 alias vi=vim
 alias vm=vim
+alias vim-bundle-update="vim -c ':BundleInstall' -c ':q'"
 alias l=ls
 alias d='dirs -lv'
 alias cd/='cd /'
