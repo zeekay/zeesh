@@ -15,6 +15,10 @@ bindkey -M vicmd "^m" accept-line
 bindkey -M vicmd "u" undo
 bindkey -M vicmd "^R" redo
 bindkey -M vicmd "ga" what-cursor-position
+bindkey -M viins '^k' history-search-backward
+bindkey -M vicmd '^k' history-search-backward
+bindkey -M viins '^j' history-search-forward
+bindkey -M vicmd '^j' history-search-forward
 bindkey -M viins '^n' history-search-backward
 bindkey -M vicmd '^n' history-search-backward
 bindkey -M viins '^p' history-search-forward
