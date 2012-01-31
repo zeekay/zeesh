@@ -8,7 +8,7 @@ export _GUNICORN_PID=/tmp/gunicorn.pid
 ## aliases
 alias manage='./manage.py'
 alias dj='./manage.py'
-alias rs='./manage.py runserver'
+alias rs='./manage.py runserver 0.0.0.0:8000'
 alias djproj=django-startproj
 alias djapp='./manage.py startapp'
 alias djsync'./manage.py syncdb'
