@@ -9,7 +9,7 @@ else
 fi
 
 # remove previous configuration and link to destination if not cloned directly there
-if [ "$basedir" != "$home/.zsh" ]; then
+if [ "$basedir" != "$HOME/.zsh" ]; then
     echo "...removing previous configuration"
     rm -rf ~/.zsh
 
