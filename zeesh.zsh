@@ -77,9 +77,6 @@ alias dfp='df-push'
 alias dfs='df-status'
 alias ack="ack --color-filename='bold blue' --color-lineno='magenta' --color-match='bold red' -i -a"
 alias nc='rlwrap nc'
-alias csi='rlwrap csi'
-alias racket='rlwrap racket'
-alias clj='rlwrap clj'
 alias vcs='zeesh-plugin-enable vcs-info'
 
 # keybindings

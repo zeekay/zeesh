@@ -1,0 +1,13 @@
+### clojure / zeesh! plugin
+
+### Clojure plugin for zeesh
+
+## exports
+export CLASSPATH=/usr/share/clojure/clojure.jar:$CLASSPATH
+
+## aliases
+alias clj=rlwrap clj
+
+## functions
+
+# vim: ft=zsh
