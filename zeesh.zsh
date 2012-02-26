@@ -39,10 +39,12 @@ export PAGER=vimpager
 export RSYNC_RSH=ssh
 
 # default aliases
-alias less=vimpager
+alias v=vim
 alias vi=vim
 alias vm=vim
 alias vim-bundle-update="vim -c ':BundleInstall' -c ':q'"
+alias vp=vimpager
+alias less=$PAGER
 alias l=ls
 alias d='dirs -lv'
 alias cd/='cd /'
@@ -80,8 +82,6 @@ alias nc='rlwrap nc'
 alias vcs='zeesh-plugin-enable vcs-info'
 
 # keybindings
-# force emacs mode
-# bindkey -e
 zle -N rationalize-dot
 bindkey . rationalize-dot
 bindkey "^J" self-insert
@@ -106,7 +106,7 @@ bindkey '^[[B' history-search-forward
 bindkey ' ' magic-space
 bindkey '^[[Z' reverse-menu-complete
 bindkey '^R' history-incremental-search-backward
-bindkey -s '^L' '|less\n'
+bindkey -s '^L' "|$PAGER"
 bindkey '^Q' quote-line
 bindkey -s '^N' '> /dev/null 2>&1\n'
 

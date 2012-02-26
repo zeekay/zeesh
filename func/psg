@@ -4,7 +4,7 @@ function psg() {
         search=$args[-1]
         args[-1]=()
         ps $args | head -n 1
-        ps $args | grep -i --color=always "$search" | grep -v grep
+        ps $args | grep -i --color=auto "$search" | grep -v grep
         else
     fi
 }
