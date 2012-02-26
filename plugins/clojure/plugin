@@ -6,7 +6,7 @@
 export CLASSPATH=/usr/share/clojure/clojure.jar:$CLASSPATH
 
 ## aliases
-alias clj=rlwrap clj
+alias clj='rlwrap clj'
 
 ## functions
 
