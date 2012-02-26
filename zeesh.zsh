@@ -42,6 +42,7 @@ export RSYNC_RSH=ssh
 alias v=vim
 alias vi=vim
 alias vm=vim
+alias gv=gvim
 alias vim-bundle-update="vim -c ':BundleInstall' -c ':q'"
 alias vp=vimpager
 alias less=$PAGER
