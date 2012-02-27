@@ -42,8 +42,13 @@ export RSYNC_RSH=ssh
 alias v=vim
 alias vi=vim
 alias vm=vim
-alias gv=gvim
-alias vim-bundle-update="vim -c ':BundleInstall' -c ':q'"
+function gv(){
+    local servername="`vim --serverlist | head -n 1`"
+    if [ "$servername" = "" ]; then
+        servername="VIM"
+    fi
+    gvim --servername "$servername" --remote-silent $@
+}
 alias vp=vimpager
 alias less=$PAGER
 alias l=ls
