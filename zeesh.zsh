@@ -49,6 +49,17 @@ function gv(){
     fi
     gvim --servername "$servername" --remote-silent $@
 }
+function m(){
+    if [ $1 ]; then
+        local servername="`vim --serverlist | head -n 1`"
+        if [ "$servername" = "" ]; then
+            servername="VIM"
+        fi
+        mvim --servername "$servername" --remote-silent $@
+    else
+        mvim
+    fi
+}
 alias vp=vimpager
 alias less=$PAGER
 alias l=ls
