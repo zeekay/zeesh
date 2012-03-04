@@ -4,7 +4,9 @@ fpath=( $plugin_dir/func $plugin_dir/comp $fpath )
 autoload -U $plugin_dir/func/*(:t) $plugin_dir/comp/*(:t)
 
 ## exports
-export PYTHONSTARTUP=~/.pythonrc
+if [ -e ~/.pythonrc ]; then
+    export PYTHONSTARTUP=~/.pythonrc
+fi
 
 ## aliases
 alias py=python
