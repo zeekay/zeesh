@@ -11,7 +11,7 @@ compctl -K list-sysctls sysctl
 ## exports
 export GEM_HOME=/usr/local
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
-export PATH=/usr/local/share/ruby:/usr/local/share/python:~/.zsh/plugins/osx/lib:$PATH:/Developer/usr/bin
+export PATH=/usr/local/share/ruby:/usr/local/share/python:~/.zsh/plugins/osx/lib:/usr/sbin:$PATH:/Developer/usr/bin
 
 ## aliases
 alias l='/bin/ls'
