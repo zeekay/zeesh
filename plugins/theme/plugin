@@ -1,8 +1,5 @@
 ### theme / zeesh! plugin
 
-fpath=( $plugin_dir/func $fpath )
-autoload -U $plugin_dir/func/*(:t)
-
 autoload colors; colors;
 
 theme() {
