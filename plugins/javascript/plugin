@@ -1,0 +1,35 @@
+### javascript / zeesh! plugin
+
+
+### Javascript/Node.js helpers
+
+## exports
+
+## aliases
+
+## functions
+
+# npm command completion
+
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
+
+_npm_completion() {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       npm completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+}
+compctl -K _npm_completion npm
+
+# vim: ft=zsh
