@@ -41,8 +41,8 @@ zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
     local now=`date +%s`
     local last=$now
 
-    if [ -f "$hook_com[base]/undo.dirstate" ]; then
-        last=`last-modified $hook_com[base]/undo.dirstate`
+    if [ -f "$hook_com[base]/.hg/undo.dirstate" ]; then
+        local last=`last-modified $hook_com[base]/.hg/undo.dirstate`
     fi
 
     local since=$(( $now - $last ))
@@ -62,6 +62,7 @@ zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
 +vi-git-time-since() {
     local now=`date +%s`
     local last=`git log --pretty=format:'%at' -1`
+
     local since=$(( $now - $last ))
     if [[ $since -lt 3600 ]]; then
         since=$(( $since / 60 ))m
