@@ -113,10 +113,10 @@ zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
     fi
 }
 
-zstyle ':vcs_info:hg+gen-hg-bookmark-string:*' hooks hg-bookmarks
-zstyle ':vcs_info:hg+set-hgrev-format:*' hooks hg-storerev
-zstyle ':vcs_info:hg+set-message:*' hooks hg-branchhead hg-time-since
-zstyle ':vcs_info:git+set-message:*' hooks git-time-since
+zstyle ':vcs_info:hg*+gen-hg-bookmark-string:*' hooks hg-bookmarks
+zstyle ':vcs_info:hg*+set-hgrev-format:*' hooks hg-storerev
+zstyle ':vcs_info:hg*+set-message:*' hooks hg-branchhead hg-time-since
+zstyle ':vcs_info:git*+set-message:*' hooks git-time-since
 
 # Uncomment for verbose debugg info
 # zstyle ':vcs_info:*+*:*' debug true
