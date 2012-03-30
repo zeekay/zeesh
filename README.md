@@ -14,21 +14,14 @@ Customize ~/.zshrc with the plugins you intend to enable:
         # enable autocompletion
         autocomplete
 
-        # os-specific customizations
+        # vim keybindings
+        vi-mode
+        vi-visual-mode
+
+        # platform specific customizations
         osx
 
-        # various languges support
-        clojure
-        django
-        haskell
-        javascript
-        python
-
-        # virtualenv wrapper
-        virtualenv
-
         # vcs support
-        mercurial
         vcs-info
 
         # enable themes
@@ -37,10 +30,7 @@ Customize ~/.zshrc with the plugins you intend to enable:
         # nicer command line life
         history-substring-search
         syntax-highlighting
-        vi-mode
-        vi-visual-mode
     )
-
     source ~/.zsh/zeesh.zsh
 
 Customization

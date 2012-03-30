@@ -38,39 +38,25 @@ if [ "$input" = "y" ]; then
 
     cat > ~/.zshrc << EOF
 zeesh_plugins=(
-    # platform-specific
-    $platform
-
-    # python funcs/aliases
-    # python
-
-    # virtualenv wrapper
-    # virtualenv
-
-    # mercurial func/aliases
-    # mercurial
-
-    # django func/aliases
-    # django
-
-    # wrapper for virtualbox
-    # virtualbox
-
-    # provides command line vcs info
-    # vcs-info
-
-    # cli syntax highlighting
-    # syntax-highlighting
-
-    # search history from substring
-    # history-substring-search
-
-    # themes
-    # theme
-
-    # enables autocompletion
+    # enable autocompletion
     autocomplete
 
+    # vim keybindings
+    vi-mode
+    vi-visual-mode
+
+    # platform specific customizations
+    $platform
+
+    # vcs support
+    vcs-info
+
+    # enable themes
+    theme
+
+    # nicer command line life
+    history-substring-search
+    syntax-highlighting
 )
 source ~/.zsh/zeesh.zsh
 EOF
