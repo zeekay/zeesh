@@ -61,19 +61,21 @@ zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
 # git: Time since last commit
 +vi-git-time-since() {
     local now=`date +%s`
-    local last=`git log --pretty=format:'%at' -1`
+    local last="`echo $(git log --pretty=format:'%at' -1 2>&1)`"
 
-    local since=$(( $now - $last ))
-    if [[ $since -lt 3600 ]]; then
-        since=$(( $since / 60 ))m
-    elif [[ $since -lt 86400 ]]; then
-        since=$(( $since / 3600 ))h
-    else
-        since=$(( $since / 86400 ))d
+    if [[ "$last" =~ "^[0-9]+$" ]]; then
+        local since=$(( $now - $last ))
+        if [[ $since -lt 3600 ]]; then
+            since=$(( $since / 60 ))m
+        elif [[ $since -lt 86400 ]]; then
+            since=$(( $since / 3600 ))h
+        else
+            since=$(( $since / 86400 ))d
+        fi
+
+        # jam time-since in front of branch
+        hook_com[vcs]=$since
     fi
-
-    # jam time-since in front of branch
-    hook_com[vcs]=$since
 }
 
 # hg: Show marker when the working directory is not on a branch head.
