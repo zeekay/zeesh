@@ -37,7 +37,9 @@ alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finde
 alias flushcache='dscacheutil -flushcache'
 
 # functions
-visor-upgrade() {
+iterm-hacks() {
+
+    # Create a copy of iTerm called iTermVisor which will run in background on login, only uses visor.
     local p='/Applications'
     cp -rf $p/iTerm.app $p/iTermVisor.app
     mv $p/iTermVisor.app/Contents/MacOS/iTerm $p/iTermVisor.app/Contents/MacOS/iTermVisor
