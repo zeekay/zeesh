@@ -60,8 +60,6 @@ function m(){
         mvim
     fi
 }
-alias vp=vimpager
-alias less=$PAGER
 alias l=ls
 alias d='dirs -lv'
 alias cd/='cd /'
