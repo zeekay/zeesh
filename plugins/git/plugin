@@ -3,7 +3,6 @@
 fpath=( $plugin_dir/func $fpath )
 autoload -U $plugin_dir/func/*(:t)
 
-alias gb='git branch -a -v'
 alias gc='git commit'
 alias gcl='git clone'
 alias gco='git checkout'
@@ -20,6 +19,14 @@ alias grh='git reset --hard'
 alias grb='git rebase'
 alias ga='git add'
 alias gau='git add --update'
+
+gb(){
+    if [ "$1" ]; then
+        git branch $@
+    else
+        git branch -a -v
+    fi
+}
 
 gbt(){
     # create temp file
