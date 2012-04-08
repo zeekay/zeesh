@@ -1,10 +1,9 @@
 gbt(){
     # create temp file
     echo > /tmp/gbt
-    branch=`git branch | g '*' | cut -d ' ' -f 2`
-
+    branch=`git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'`
     # append local branches
-    IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)\e[m|%(objectname:short)|%(contents:subject)|%(committerdate:relative)|%(authorname)'))
+    IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)\e[m|%(objectname:short)|%(contents:subject)|%(authorname), %(committerdate:relative)'))
 
     for line in $branches; do
         if [ "$(echo $line | grep $branch)" ]; then
@@ -15,7 +14,7 @@ gbt(){
     done
 
     # append remotes
-    IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/remotes/ --format='\e[0;31mremotes/%(refname:short)\e[m|%(objectname:short)|%(contents:subject)|%(committerdate:relative)|%(authorname)'))
+    IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/remotes/ --format='\e[0;31mremotes/%(refname:short)\e[m|%(objectname:short)|%(contents:subject)|%(authorname), %(committerdate:relative)'))
 
     for line in $branches; do
         echo '|  '$line >> /tmp/gbt
