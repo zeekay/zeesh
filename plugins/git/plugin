@@ -9,7 +9,8 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gd='git diff'
 alias gf='git fetch'
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias gl="git log --graph --pretty=format:'%C(yellow)%h%Creset%C(magenta)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias glp="git log --patch"
 alias gp='git pull'
 alias gs='git status -s'
 alias gm='git merge --no-ff'
