@@ -1,0 +1,26 @@
+gbt(){
+    # create temp file
+    echo > /tmp/gbt
+    branch=`git branch | g '*' | cut -d ' ' -f 2`
+
+    # append local branches
+    IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)\e[m|%(objectname:short)|%(contents:subject)|%(committerdate:relative)|%(authorname)'))
+
+    for line in $branches; do
+        if [ "$(echo $line | grep $branch)" ]; then
+            echo '|* '"\e[0;32m$line" >> /tmp/gbt
+        else
+            echo '|  '"\e[0;29m$line" >> /tmp/gbt
+        fi
+    done
+
+    # append remotes
+    IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/remotes/ --format='\e[0;31mremotes/%(refname:short)\e[m|%(objectname:short)|%(contents:subject)|%(committerdate:relative)|%(authorname)'))
+
+    for line in $branches; do
+        echo '|  '$line >> /tmp/gbt
+    done
+
+    # print columinzed output
+    cat /tmp/gbt | column -t -s "|"
+}

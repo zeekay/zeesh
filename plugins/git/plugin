@@ -8,7 +8,6 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gd='git diff'
 alias gf='git fetch'
-alias gl="git log --graph --pretty=format:'%C(yellow)%h%Creset%C(magenta)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias glp="git log --patch"
 alias gp='git pull'
 alias gs='git status -s'
@@ -19,38 +18,3 @@ alias grh='git reset --hard'
 alias grb='git rebase'
 alias ga='git add'
 alias gau='git add --update'
-
-gb(){
-    if [ "$1" ]; then
-        git branch $@
-    else
-        git branch -a -v
-    fi
-}
-
-gbt(){
-    # create temp file
-    echo > /tmp/gbt
-    branch=`git branch | g '*' | cut -d ' ' -f 2`
-
-    # append local branches
-    IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)\e[m|%(objectname:short)|%(contents:subject)|%(committerdate:relative)|%(authorname)'))
-
-    for line in $branches; do
-        if [ "$(echo $line | grep $branch)" ]; then
-            echo '|* '"\e[0;32m$line" >> /tmp/gbt
-        else
-            echo '|  '"\e[0;29m$line" >> /tmp/gbt
-        fi
-    done
-
-    # append remotes
-    IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/remotes/ --format='\e[0;31mremotes/%(refname:short)\e[m|%(objectname:short)|%(contents:subject)|%(committerdate:relative)|%(authorname)'))
-
-    for line in $branches; do
-        echo '|  '$line >> /tmp/gbt
-    done
-
-    # print columinzed output
-    cat /tmp/gbt | column -t -s "|"
-}

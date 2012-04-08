@@ -1,0 +1,7 @@
+gb(){
+    if [ "$1" ]; then
+        git branch $@
+    else
+        git branch -a -v
+    fi
+}
