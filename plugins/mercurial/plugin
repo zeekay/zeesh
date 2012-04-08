@@ -1,6 +1,6 @@
 # autoload comp
-fpath=( $plugin_dir/comp $plugin_dir/func $fpath )
-autoload -U $plugin_dir/func/*(:t) $plugin_dir/comp/*(:t)
+fpath=( $plugin_dir/func $fpath )
+autoload -U $plugin_dir/func/*(:t)
 
 # mercurial zeesh plugin
 alias hgi='hg id -n -b -t'
