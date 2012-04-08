@@ -23,7 +23,6 @@ pipr(){
 }
 alias smtpconsole='python -m smtpd -n -c DebuggingServer localhost:1025'
 alias serve-this='python -m SimpleHTTPServer'
-alias pye='noglob pye'
 
 ## functions
 pjson() {

@@ -42,7 +42,7 @@ export RSYNC_RSH=ssh
 alias v=vim
 alias vi=vim
 alias vm=vim
-function gv(){
+function g(){
     local servername="`vim --serverlist | head -n 1`"
     if [ "$servername" = "" ]; then
         servername="VIM"
