@@ -1,0 +1,11 @@
+### git / zeesh! plugin
+
+fpath=( $plugin_dir/func $fpath )
+autoload -U $plugin_dir/func/*(:t)
+
+alias gci='git ci'
+alias gd='git diff'
+alias gf='git fetch'
+alias gl='git l'
+alias gp='git pull'
+alias gs='git status -s'
