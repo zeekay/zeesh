@@ -1,7 +1,0 @@
-gl() {
-    if [ "$1" ]; then
-        git log $@
-    else
-        git log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white)%an, %ar%Creset'
-    fi
-}
