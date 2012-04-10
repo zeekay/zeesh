@@ -1,4 +1,4 @@
-gbt(){
+git-branch-by-time() {
     # create temp file
     echo > /tmp/gbt
     branch=`git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'`

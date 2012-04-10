@@ -5,8 +5,12 @@ autoload -U $plugin_dir/func/*(:t)
 
 alias ga='git add'
 alias gau='git add --update'
+alias gb=git-branch-wrapper
+alias gbt=git-branch-by-time
 alias gc='git commit'
 alias gcl='git clone'
+alias gco-ours="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --ours"
+alias gco-theirs="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --theirs"
 alias gco='git checkout'
 alias gd='git diff'
 alias gf='git fetch'
@@ -20,6 +24,5 @@ alias gr='git reset'
 alias grb='git rebase'
 alias grh='git reset --hard'
 alias gs='git status -s'
+alias gum=git-unmerged
 alias gv='noglob git vim'
-alias gco-ours="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --ours"
-alias gco-theirs="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --theirs"

@@ -1,4 +1,4 @@
-gb(){
+git-branch-wrapper() {
     if [ "$1" ]; then
         git branch $@
     else

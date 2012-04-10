@@ -1,0 +1,11 @@
+git-unmerged() {
+    local unmerged unmerged_full stat
+    unmerged=${(j:\|:)$(git ls-files --unmerged | cut -f 2 | uniq)}
+
+    IFS=$'\n' unmerged_full=($(git status --short | grep --color=never $unmerged))
+
+    # this is all a bit overly complicated, just to get some nice colors ;_;
+    for f in $unmerged_full; do
+        echo -e "\e[0;31m${f% *}\e[m ${f#* }"
+    done
+}
