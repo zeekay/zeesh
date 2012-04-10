@@ -1,8 +1,6 @@
 ### git / zeesh! plugin
 
-fpath=( $plugin_dir/func $fpath )
-autoload -U $plugin_dir/func/*(:t)
-
+## aliases
 alias ga='git add'
 alias gau='git add --update'
 alias gb=git-branch-wrapper
@@ -26,3 +24,12 @@ alias grh='git reset --hard'
 alias gs='git status -s'
 alias gum=git-unmerged
 alias gv='noglob git vim'
+
+# add custom commands to path so git picks them up
+export PATH=$PATH:$plugin_dir/commands
+
+# completion for custom commands
+zstyle ':completion:*:*:git:*' user-commands \
+    unmerged:'list unmerged files' \
+    branch-wrapper:'wraps branch' \
+    branch-by-time:'list branches ordered by time'

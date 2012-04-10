@@ -1,0 +1,28 @@
+#/usr/local/bin/zsh
+
+# create temp file
+echo > /tmp/gbt
+
+# get current branch name
+branch="$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')"
+
+# append branches
+IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)[0m|%(objectname:short)|%(contents:subject)|%(authorname), %(committerdate:relative)'))
+
+for b in ${branches[*]}; do
+    if [ "$branch" ] && [ "$(echo $b | grep $branch)" ]; then
+        echo '|* '"[32m$b" >> /tmp/gbt
+    else
+        echo '|  '"[29m$b" >> /tmp/gbt
+    fi
+done
+
+# append remotes
+IFS=$'\n' branches=($(git for-each-ref --sort=-committerdate refs/remotes/ --format='[31mremotes/%(refname:short)[0m|%(objectname:short)|%(contents:subject)|%(authorname), %(committerdate:relative)'))
+
+for b in ${branches[*]}; do
+    echo '|  '"$b" >> /tmp/gbt
+done
+
+# output table
+cat /tmp/gbt | column -t -s "|"
