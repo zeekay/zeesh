@@ -35,4 +35,6 @@ export PATH=$PATH:$plugin_dir/commands
 zstyle ':completion:*:*:git:*' user-commands \
     unmerged:'list unmerged files' \
     branch-wrapper:'wraps branch' \
-    branch-by-time:'list branches ordered by time'
+    branch-by-time:'list branches ordered by time' \
+    resolve-theirs:'resolve merge conflicts using their version of conflicted files' \
+    resolve-ours:'resolve merge conflicts using their our version of conflicted files'
