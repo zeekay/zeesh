@@ -11,6 +11,7 @@ alias gco-ours="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --
 alias gco-theirs="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --theirs"
 alias gco='git checkout'
 alias gd='git diff'
+alias gds='git diff --stat'
 alias gf='git fetch'
 alias gl="git log --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white)%an, %ar%Creset'"
 alias glg="gl --graph"
