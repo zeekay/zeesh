@@ -42,22 +42,20 @@ export RSYNC_RSH=ssh
 alias v=vim
 alias vi=vim
 alias vm=vim
-function g(){
+function g() {
     local servername="`vim --serverlist | head -n 1`"
-    if [ "$servername" = "" ]; then
-        servername="VIM"
+    if [ "$servername" ]; then
+        gvim --servername "$servername" --remote-silent $@
+    else
+        gvim $@
     fi
-    gvim --servername "$servername" --remote-silent $@
 }
-function m(){
-    if [ $1 ]; then
-        local servername="`vim --serverlist | head -n 1`"
-        if [ "$servername" = "" ]; then
-            servername="VIM"
-        fi
+function m() {
+    local servername="`vim --serverlist | head -n 1`"
+    if [ "$servername" ]; then
         mvim --servername "$servername" --remote-silent $@
     else
-        mvim
+        mvim $@
     fi
 }
 alias l=ls

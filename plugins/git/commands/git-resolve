@@ -3,6 +3,6 @@
 IFS=$'\n' files=($(git ls-files --unmerged | cut -f2 | uniq))
 
 for file in ${files[*]}; do
-    git checkout --theirs $file
+    git checkout $@ $file
     git add $file
 done
