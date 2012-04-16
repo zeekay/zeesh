@@ -9,10 +9,14 @@ compctl -c which
 # no core dumps
 limit core 0
 
-ps() {
+function ps() {
     if [ $1 ]; then
         /bin/ps $@
     else
         /bin/ps ux
     fi
+}
+
+function last-modified() {
+    stat -f '%m' $1
 }
