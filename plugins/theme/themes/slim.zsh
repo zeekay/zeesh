@@ -23,27 +23,26 @@ _prompt() {
 }
 
 _rprompt() {
-    local s="%F{blue}%B${PWD/$HOME/~}%b%f"
+    local rc=$?
+    local s=""
+
+    # print return code if non-zero
+    if [[ $rc != 0 ]]; then
+        rc="$rc"!
+        s="%F{red}%$(emoticon) $rc%f "
+    fi
+
+    # print virtualenv name if active
+    if [ $VIRTUAL_ENV ]; then
+        s="$s%F{magenta}${${(s:/:)VIRTUAL_ENV}[-1]}%f:"
+    fi
+
+    # print path
+    s="$s%F{blue}%B${PWD/$HOME/~}%b%f"
 
     # display vcs info
     if [ "$vcs_info_msg_0_" ]; then
         s="$s $vcs_info_msg_0_"
-    fi
-
-    # split
-    s="$s\n"
-
-    # print virtualenv name if active
-    if [ $VIRTUAL_ENV ]; then
-        s="$s%F{magenta}${${(s:/:)VIRTUAL_ENV}[-1]}%f"
-    fi
-
-
-    # print return code if non-zero
-    local rc=$?
-
-    if [[ $rc != 0 ]]; then
-        local s="%F{red}%$rc!%f $s"
     fi
 
     echo -e $s
