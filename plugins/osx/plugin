@@ -96,7 +96,7 @@ dynamic-pager-enable() {
 }
 
 dynamic-pager-disable() {
-    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+    sudo launchctl load -wF /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
 }
 
 ps() {
