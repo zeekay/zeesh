@@ -29,7 +29,7 @@ _rprompt() {
     # print return code if non-zero
     if [[ $rc != 0 ]]; then
         rc="$rc"!
-        s="%F{red}% $rc $(emoticon) %f"
+        s="%F{red}% $rc$(emoticon) %f"
     fi
 
     # print virtualenv name if active
