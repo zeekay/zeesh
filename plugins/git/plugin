@@ -23,6 +23,7 @@ alias gmt='git mergetool -y'
 alias gp='git pull'
 alias gr='git reset'
 alias grb='git rebase'
+alias grbc='git rebase --continue'
 alias grh='git reset --hard'
 alias gs='git status -s'
 alias gum=git-unmerged
