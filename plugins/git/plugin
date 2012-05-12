@@ -13,7 +13,7 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gds='git diff --stat'
 alias gf='git fetch'
-alias gl="git log --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white)%an, %ar%Creset'"
+alias gl="git log -n 500 --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white)%an, %ar%Creset'"
 alias glg="gl --graph"
 alias glp="gl --patch"
 alias gls="gl --stat"
