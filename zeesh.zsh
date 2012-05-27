@@ -1,7 +1,5 @@
 # basic options
 setopt  extended_glob       \
-        prompt_subst        \
-        transientrprompt    \
         auto_name_dirs      \
         ignore_eof          \
         always_to_end       \
@@ -94,6 +92,7 @@ alias ack="ack --color-filename='bold blue' --color-lineno='magenta' --color-mat
 alias nc='rlwrap nc'
 alias coffee='rlwrap coffee'
 alias vcs='zeesh-plugin-enable vcs-info'
+alias curl='noglob curl'
 
 # keybindings
 zle -N rationalize-dot
