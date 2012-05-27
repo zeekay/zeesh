@@ -5,8 +5,8 @@ alias ga='git add'
 alias gau='git add --update'
 alias gb=git-branch-wrapper
 alias gbt=git-branch-by-time
-alias gc='git-quick-commit'
-alias gca='git-quick-commit-a'
+alias gc='noglob git-quick-commit'
+alias gca='noglob git-quick-commit-a'
 alias gcl='git clone'
 alias gco-ours="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --ours"
 alias gco-theirs="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --theirs"
@@ -36,6 +36,8 @@ export PATH=$PATH:$plugin_dir/commands
 # completion for custom commands
 zstyle ':completion:*:*:git:*' user-commands \
     unmerged:'list unmerged files' \
+    push-remote:'push local branch to remote' \
+    pull-remote:'create local branch tracking remote branch' \
     quick-commit:'quickly commit' \
     quick-commit-a:'quickly commit -a' \
     branch-wrapper:'wraps branch' \
