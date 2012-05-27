@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [[ $# == 0 ]]; then
+    git commit
+else
+    message=''
+    for i; do
+        message="$message $i"
+    done
+    git commit -m "$message"
+fi
