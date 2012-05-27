@@ -36,6 +36,8 @@ export PATH=$PATH:$plugin_dir/commands
 # completion for custom commands
 zstyle ':completion:*:*:git:*' user-commands \
     unmerged:'list unmerged files' \
+    quick-commit:'quickly commit' \
+    quick-commit-a:'quickly commit -a' \
     branch-wrapper:'wraps branch' \
     branch-by-time:'list branches ordered by time' \
     resolve:'resolve merge conflicts using a specific version of the conflicted files'
