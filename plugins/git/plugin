@@ -7,6 +7,7 @@ alias gb=git-branch-wrapper
 alias gbt=git-branch-by-time
 alias gc='noglob git-quick-commit'
 alias gca='noglob git-quick-commit -a'
+alias gcA='git add -A . ; noglob git-quick-commit'
 alias gcl='git clone'
 alias gco-ours="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --ours"
 alias gco-theirs="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --theirs"
