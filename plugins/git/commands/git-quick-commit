@@ -4,8 +4,12 @@ if [[ $# == 0 ]]; then
     git commit
 else
     message=''
-    for i; do
-        message="$message $i"
+    for i in "$@"; do
+        if [ "$message" ]; then
+            message="$message $i"
+        else
+            message="$i"
+        fi
     done
     git commit -m "$message"
 fi
