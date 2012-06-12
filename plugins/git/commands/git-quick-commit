@@ -1,15 +1,33 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 if [[ $# == 0 ]]; then
     git commit
 else
+    # parse arguments
+    args=()
+    words=()
+    i=1
+    while [ $i -le $# ]; do
+        arg="${@[$i]}"
+        case $arg in
+        -*)
+            args[$i]=$arg
+        ;;
+        *)
+            words[$i]=$arg
+        ;;
+        esac
+        let i++
+    done
+
+    # join message
     message=''
-    for i in "$@"; do
+    for i in ${words[*]}; do
         if [ "$message" ]; then
             message="$message $i"
         else
             message="$i"
         fi
     done
-    git commit -m "$message"
+    git commit ${args[*]} -m "$message"
 fi
