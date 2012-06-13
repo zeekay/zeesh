@@ -20,3 +20,7 @@ alias pk='cyg-pkill'
 alias uptime='cyg-uptime'
 alias open='cygstart'
 alias o='cygstart'
+
+last-modified(){
+    stat -c '%Y' $1
+}
