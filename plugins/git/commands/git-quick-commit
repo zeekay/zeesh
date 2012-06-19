@@ -1,33 +1,34 @@
 #!/usr/bin/env zsh
 
-if [[ $# == 0 ]]; then
-    git commit
-else
-    # parse arguments
-    args=()
-    words=()
-    i=1
-    while [ $i -le $# ]; do
-        arg="${@[$i]}"
-        case $arg in
-        -*)
-            args[$i]=$arg
-        ;;
-        *)
-            words[$i]=$arg
-        ;;
-        esac
-        let i++
-    done
+# parse arguments
+args=()
+words=()
+i=1
+while [ $i -le $# ]; do
+    arg="${@[$i]}"
+    case $arg in
+    -*)
+        args[$i]=$arg
+    ;;
+    *)
+        words[$i]=$arg
+    ;;
+    esac
+    let i++
+done
 
-    # join message
-    message=''
-    for i in ${words[*]}; do
-        if [ "$message" ]; then
-            message="$message $i"
-        else
-            message="$i"
-        fi
-    done
+# join message
+message=''
+for i in ${words[*]}; do
+    if [ "$message" ]; then
+        message="$message $i"
+    else
+        message="$i"
+    fi
+done
+
+if [ "$message" ]; then
     git commit ${args[*]} -m "$message"
+else
+    git commit ${args[*]}
 fi
