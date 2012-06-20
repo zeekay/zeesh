@@ -90,7 +90,6 @@ alias dfp='df-push'
 alias dfs='df-status'
 alias ack="ack --color-filename='bold blue' --color-lineno='magenta' --color-match='bold red' -i -a"
 alias nc='rlwrap nc'
-alias coffee='rlwrap coffee'
 alias vcs='zeesh-plugin-enable vcs-info'
 alias curl='noglob curl'
 
