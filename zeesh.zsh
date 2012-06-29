@@ -63,6 +63,9 @@ alias .='cd ~-'
 alias r='pushd +1'
 alias pd='pushd'
 alias po='popd'
+function md(){
+    mkdir -p "$@" @@ cd "$@"
+}
 alias md='mkdir -p'
 alias rd='rmdir -p'
 alias cp='nocorrect cp'

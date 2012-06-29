@@ -37,8 +37,7 @@ export PATH=$PATH:$plugin_dir/commands
 # completion for custom commands
 zstyle ':completion:*:*:git:*' user-commands \
     unmerged:'list unmerged files' \
-    push-remote:'push local branch to remote' \
-    pull-remote:'create local branch tracking remote branch' \
+    promote:'promotes a local topic branch to a remote tracking branch of the same name' \
     quick-commit:'quickly commit' \
     quick-commit-a:'quickly commit -a' \
     branch-wrapper:'wraps branch' \
