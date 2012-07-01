@@ -1,10 +1,10 @@
 zeesh!
 =======
-My ZSH config, not for the faint of the heart. More of a framework, really. "Zeesh! Why would you want to do that?!" Usable stand-alone or part of my [dotfiles](https://github.com/zeekay/dotfiles) framework.
+My zsh config. More of a framework, really. Usable stand-alone or with [ellipsis](https://github.com/zeekay/ellipsis).
 
 Install
 -------
-Clone and run `setup.sh` or install as part of [dotfiles](https://github.com/zeekay/dotfiles). One-liner for the lazy:
+Clone and run `setup.sh` or install as part of [ellipsis](https://github.com/zeekay/ellipsis). One-liner for the lazy:
 
     git clone https://github.com/zeekay/dot-zsh ~/.zsh && ~/.zsh/setup.sh
 
@@ -25,4 +25,4 @@ Customize ~/.zshrc with the plugins you intend to enable:
 
 Customization
 -------------
-You can enable/disable various features using plugins. Do `ls ~/.zsh/plugins` for a list of plugins.
+You can enable/disable various features using plugins. `ls ~/.zsh/plugins` for a list of plugins.
