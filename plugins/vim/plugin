@@ -1,5 +1,7 @@
 ### vim / zeesh! plugin
 
+[ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+
 fpath=( ~/.zsh/plugins/vim/func $fpath )
 autoload -U ~/.zsh/plugins/vim/func/*(:t)
 

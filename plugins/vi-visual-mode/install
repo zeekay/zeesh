@@ -1,0 +1,11 @@
+url='http://bazaar.launchpad.net/~raybuntu/+junk/ZSH_stuff/download/head:/zle_vi_visual.zsh-20100104022202-vqm1bck1o1we2pho-2/zle_vi_visual.zsh'
+
+echo -n "I need to download zle_vi_visual.zsh before you can use $plugin. Is that ok? (y/N) "
+read ans
+if [[ "$ans" == "y" ]]; then
+    hash curl 2>/dev/null || { echo >&2 "I require curl but it's not installed.  Aborting."; exit 1; }
+    mkdir -p $plugin_dir/lib
+    curl -O $url
+    curl $url -o $plugin_dir/lib/zle_vi_visual.zsh
+    echo "...installed $plugin"
+fi
