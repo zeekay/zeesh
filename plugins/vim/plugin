@@ -6,6 +6,7 @@ fpath=( ~/.zsh/plugins/vim/func $fpath )
 autoload -U ~/.zsh/plugins/vim/func/*(:t)
 
 ## exports
+export PATH=$PATH:$plugin_dir/lib
 export EDITOR=vim
 export PAGER=vimpager
 

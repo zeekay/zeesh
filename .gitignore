@@ -1,4 +1,3 @@
 local/
-plugins/history-substring-search/lib
-plugins/syntax-highlighting/lib
+plugins/*/lib
 cache/

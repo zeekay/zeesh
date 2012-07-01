@@ -1,6 +1,6 @@
-repo="git://github.com/zsh-users/zsh-syntax-highlighting.git"
+repo="https://github.com/rkitover/vimpager.git"
 
-echo -n "I can't find $plugin would you like me to install it for you? (y/N) "
+echo -n "I can't find vimpager would you like me to install it for you? (y/N) "
 read ans
 if [[ "$ans" == "y" ]]; then
     git clone $repo $plugin_dir/lib
