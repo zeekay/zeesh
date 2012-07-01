@@ -1,0 +1,9 @@
+fancy-ctrl-z() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    echo ''
+    bg
+    zle redisplay
+  else
+    zle push-input
+  fi
+}

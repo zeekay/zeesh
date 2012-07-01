@@ -1,0 +1,13 @@
+### vim / zeesh! plugin
+
+fpath=( ~/.zsh/plugins/vim/func $fpath )
+autoload -U ~/.zsh/plugins/vim/func/*(:t)
+
+## exports
+export EDITOR=vim
+export PAGER=vimpager
+
+## aliases
+alias v=vim
+alias vi=vim
+alias vm=vim

@@ -1,0 +1,8 @@
+mvim-wrapper() {
+    local servername="`vim --serverlist | head -n 1`"
+    if [ "$servername" ]; then
+        mvim --servername "$servername" --remote-silent $@
+    else
+        mvim $@
+    fi
+}

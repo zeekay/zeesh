@@ -1,0 +1,8 @@
+gvim-wrapper() {
+    local servername="`vim --serverlist | head -n 1`"
+    if [ "$servername" ]; then
+        gvim --servername "$servername" --remote-silent $@
+    else
+        gvim $@
+    fi
+}
