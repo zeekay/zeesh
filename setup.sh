@@ -41,7 +41,10 @@ zeesh_plugins=(
     # enable autocompletion
     autocomplete
 
-    # vim keybindings
+    # vim exports/aliases
+    vim
+
+    # vim keybindings for zsh
     vi-mode
     vi-visual-mode
 
