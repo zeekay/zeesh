@@ -63,9 +63,6 @@ alias .='cd ~-'
 alias r='pushd +1'
 alias pd='pushd'
 alias po='popd'
-function md(){
-    mkdir -p "$@" @@ cd "$@"
-}
 alias md='mkdir -p'
 alias rd='rmdir -p'
 alias cp='nocorrect cp'
@@ -95,10 +92,13 @@ alias ack="ack --color-filename='bold blue' --color-lineno='magenta' --color-mat
 alias nc='rlwrap nc'
 alias vcs='zeesh-plugin-enable vcs-info'
 alias curl='noglob curl'
+alias diff='git diff --no-index'
+
+function md(){
+    mkdir -p "$@" @@ cd "$@"
+}
 
 # keybindings
-zle -N rationalize-dot
-bindkey . rationalize-dot
 bindkey "^J" self-insert
 bindkey "\e[3~" delete-char
 bindkey '\e[1~' beginning-of-line
