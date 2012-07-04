@@ -21,9 +21,9 @@ set -e
 
     function show_rev() {
         rev=$1
-        git log -1 $rev --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        git --no-pager log -1 $rev --graph --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(white)%an, %ar%Creset'
         echo
-        git di $rev^..$rev | diffstat
+        git --no-pager diff --stat $rev^..$rev
         echo
     }
 
@@ -42,19 +42,16 @@ set -e
     ensure_valid_ref $REMOTE
 
     echo "changes from local ${LOCAL} to remote ${REMOTE}:"
-    echo
 
-    echo incoming:
     echo
+    echo incoming:
     for rev in `git rev-list $LOCAL..$REMOTE`; do
         show_rev $rev
     done
-    
+
     echo
     echo outgoing:
-    echo
     for rev in `git rev-list $REMOTE..$LOCAL`; do
         show_rev $rev
     done
-) | less -r
-
+)

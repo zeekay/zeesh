@@ -36,6 +36,9 @@ export PATH=$PATH:$plugin_dir/commands
 
 # completion for custom commands
 zstyle ':completion:*:*:git:*' user-commands \
+    divergence:'show differences between incoming and outgoing branches' \
+    changes:'show file and line changes' \
+    churn:'show files with most commits' \
     unmerged:'list unmerged files' \
     promote:'promotes a local topic branch to a remote tracking branch of the same name' \
     quick-commit:'quickly commit' \
