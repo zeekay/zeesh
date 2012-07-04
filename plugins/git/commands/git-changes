@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Save diff-stat log
+git log --all --stat "$@" > /tmp/git-churn.txt
+
+# Sum file/insertion/deletion changes.
+files=`perl -n -e '/(\d+) file/ && print $1."\n"' /tmp/git-churn.txt | awk '{sum+=$1}END{print sum}'`
+insertions=`perl -n -e '/(\d+) insertion/ && print $1."\n"' /tmp/git-churn.txt | awk '{sum+=$1}END{print sum}'`
+deletions=`perl -n -e '/(\d+) deletion/ && print $1."\n"' /tmp/git-churn.txt | awk '{sum+=$1}END{print sum}'`
+
+echo "$files files changed, $insertions insertions(+), $deletions deletions(-)"
