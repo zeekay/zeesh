@@ -46,13 +46,17 @@ export PATH=$PATH:$plugin_dir/commands
 
 # completion for custom commands
 zstyle ':completion:*:*:git:*' user-commands \
-    divergence:'show differences between incoming and outgoing branches' \
+    pull-request:'open a pull request on GitHub' \
+    fork:'fork remote repository on GitHub and add as remote' \
+    create:'create this repository on GitHub and add GitHub as origin' \
+    browse:'open a GitHub page in the default browser' \
+    compare:'open a compare page on GitHub' \
+    branch-by-time:'list branches ordered by time' \
+    branch-wrapper:'wraps branch' \
     changes:'show file and line changes' \
     churn:'show files with most commits' \
-    unmerged:'list unmerged files' \
+    divergence:'show differences between incoming and outgoing branches' \
     promote:'promotes a local topic branch to a remote tracking branch of the same name' \
     quick-commit:'quickly commit' \
-    quick-commit-a:'quickly commit -a' \
-    branch-wrapper:'wraps branch' \
-    branch-by-time:'list branches ordered by time' \
     resolve:'resolve merge conflicts using a specific version of the conflicted files'
+    unmerged:'list unmerged files' \
