@@ -1,6 +1,16 @@
 ### git / zeesh! plugin
 
+hash hub >/dev/null 2>&1 || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+
+## exports
+export PATH=$PATH:$plugin_dir/lib
+
 ## aliases
+alias git=hub
+if type compdef >/dev/null; then
+    compdef hub=git
+fi
+
 alias ga='git add'
 alias gau='git add --update'
 alias gb=git-branch-wrapper

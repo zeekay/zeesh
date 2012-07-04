@@ -1,6 +1,6 @@
 ### vim / zeesh! plugin
 
-[ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+hash vimpager >/dev/null 2>&1 || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
 fpath=( ~/.zsh/plugins/vim/func $fpath )
 autoload -U ~/.zsh/plugins/vim/func/*(:t)
