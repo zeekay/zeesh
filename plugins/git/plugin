@@ -1,6 +1,6 @@
 ### git / zeesh! plugin
 
-hash hub >/dev/null 2>&1 || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+hash hub 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
 ## exports
 export PATH=$PATH:$plugin_dir/lib
