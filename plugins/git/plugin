@@ -45,7 +45,7 @@ alias gv='noglob git vim'
 export PATH=$PATH:$plugin_dir/commands
 
 # completion for custom commands
-zstyle ':completion:*:*:git:*' user-commands \
+zstyle ':completion:*:*:hub:*' user-commands \
     pull-request:'open a pull request on GitHub' \
     fork:'fork remote repository on GitHub and add as remote' \
     create:'create this repository on GitHub and add GitHub as origin' \
