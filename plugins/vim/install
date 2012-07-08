@@ -1,8 +1,7 @@
-repo="https://github.com/rkitover/vimpager.git"
-
 echo -n "I can't find vimpager would you like me to install it for you? (y/N) "
+
 read ans
 if [[ "$ans" == "y" ]]; then
-    git clone $repo $plugin_dir/lib
-    echo "...installed $plugin"
+    git clone https://github.com/rkitover/vimpager $plugin_dir/lib
+    echo "...installed vimpager, $plugin enabled"
 fi

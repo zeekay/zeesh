@@ -1,9 +1,6 @@
-repo="git://github.com/rupa/z.git"
+echo -n "I can't find z.sh would you like me to install it for you? (y/N) " && read ans
 
-echo -n "I can't find z.sh would you like me to install it for you? (y/n) "
-read ans
 if [[ "$ans" == "y" ]]; then
-    git clone $repo $plugin_dir/lib
+    git clone git://github.com/rupa/z $plugin_dir/lib
     echo "...installed $plugin"
 fi
-unset ans repo

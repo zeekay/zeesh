@@ -1,4 +1,5 @@
 echo -n "I can't find hub would you like me to install it for you? (y/N) "
+
 read ans
 if [[ "$ans" == "y" ]]; then
     curl http://defunkt.io/hub/standalone -sLo $plugin_dir/lib

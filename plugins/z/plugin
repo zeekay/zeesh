@@ -1,11 +1,23 @@
 ### z / zeesh! plugin
 
-[ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+if [ -d "$plugin_dir/lib" ]; then
+    export _Z_NO_RESOLVE_SYMLINKS=1
+    export _Z_NO_PROMPT_COMMAND=1
 
-source "$plugin_dir/lib/z.sh"
+    source $plugin_dir/lib/z.sh
 
-# precmd is called just before the prompt is printed
-precmd() {
-    title "%n@%m:%~"
-    z --add "$(pwd -P)"
-}
+    function precmd() {
+        title "%n@%m:%~"
+        _z --add "$(pwd)"
+    }
+
+    # zsh tab completion
+    _z_zsh_tab_completion() {
+        local compl
+        read -l compl
+        reply=(${(f)"$(_z --complete "$compl")"})
+    }
+    compctl -U -K _z_zsh_tab_completion _z
+else
+    source "$plugin_dir/install"
+fi
