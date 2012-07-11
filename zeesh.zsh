@@ -58,7 +58,7 @@ alias ssh_proxy='ssh -C2qTnN -D 9999'
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 alias nc='rlwrap nc'
 alias curl='noglob curl'
-alias diff='git diff --no-index'
+alias diff='git diff --color=never --no-index'
 
 # zeesh aliases
 alias help='zeesh help'
