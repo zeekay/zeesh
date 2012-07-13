@@ -1,0 +1,5 @@
+#!/bin/sh
+
+git clone $1 `basename $2`
+cd `basename $2`
+git filter-branch --prune-empty --subdirectory-filter $2 master
