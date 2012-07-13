@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 if [ ! `hash hub 2>/dev/null` ]; then
     echo git-pull-request-auto requires hub.
