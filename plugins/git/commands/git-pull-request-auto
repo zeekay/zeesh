@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Make sure we've pushed back to origin
+# Make sure origin is up to date before we do a pull-request.
 git push origin
 
 remote_url=`git config remote.upstream.url | cut -d '/' -f 4`
-remote_brach=`git branch --color=never | cut -c3-`
+remote_branch=`git branch --color=never | cut -c3-`
 hub pull-request -b $remote_url:$remote_branch
