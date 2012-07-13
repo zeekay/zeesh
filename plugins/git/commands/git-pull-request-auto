@@ -1,15 +1,20 @@
 #!/bin/sh
 
+if [ ! `hash hub 2>/dev/null` ]; then
+    echo git-pull-request-auto requires hub.
+    exit 1
+fi
+
 # Make sure origin is up to date before we do a pull-request.
 git push origin
 
 remote_url=`git config remote.upstream.url | cut -d '/' -f 4`
 
 if [ ! "$remote_url" ]; then
-    echo You need to add an upstream remote
-    echo git remote add upstream <url>
+    echo 'You need to add an upstream remote'
+    echo 'git remote add upstream <url>'
     exit 1
-endif
+fi
 
 remote_branch=`git branch --color=never | cut -c3-`
 hub pull-request -b $remote_url:$remote_branch
