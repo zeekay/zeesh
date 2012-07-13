@@ -5,7 +5,8 @@ if [ $1 ]; then
     git fetch origin
 
     repo=`git config remote.origin.url | cut -d '/' -f4-`
-    url=https://github.com/$repo/pull/$1
+    url="https://github.com/$repo/pull/$1"
+    hub merge $url
 else
     echo Specify pull request number
 fi
