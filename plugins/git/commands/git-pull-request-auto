@@ -1,1 +1,8 @@
 #!/bin/sh
+
+# Make sure we've pushed back to origin
+git push origin
+
+remote_url=`git config remote.upstream.url | cut -d '/' -f 4`
+remote_brach=`git branch --color=never | cut -c3-`
+git pull-request -b $remote_url:$remote_branch

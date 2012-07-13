@@ -1,1 +1,11 @@
 #!/bin/sh
+
+if [ $1 ]; then
+    # Make sure we've pulled from origin first
+    git fetch origin
+
+    repo=`git config remote.origin.url | cut -d '/' -f4-`
+    url=https://github.com/$repo/pull/$1
+else
+    echo Specify pull request number
+fi
