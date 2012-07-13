@@ -1,5 +1,7 @@
 #!/bin/sh
 
+hash hub 2>/dev/null || echo You need hub installed && exit 1
+
 if [ $1 ]; then
     # Make sure we've pulled from origin first
     git fetch origin
