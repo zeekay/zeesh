@@ -55,6 +55,7 @@ iterm-hacks() {
 lion-hacks() {
     # i like to repeat my self
     defaults write -g ApplePressAndHoldEnabled -bool NO
+    defaults write NSGlobalDomain KeyRepeat -int 1
     # jesus no
     defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool NO
     defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool NO
