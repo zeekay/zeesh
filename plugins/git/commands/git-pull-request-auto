@@ -4,5 +4,12 @@
 git push origin
 
 remote_url=`git config remote.upstream.url | cut -d '/' -f 4`
+
+if [ ! "$remote_url" ]; then
+    echo You need to add an upstream remote
+    echo git remote add upstream <url>
+    exit 1
+endif
+
 remote_branch=`git branch --color=never | cut -c3-`
 hub pull-request -b $remote_url:$remote_branch
