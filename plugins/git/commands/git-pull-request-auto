@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Make sure we've pushed back to origin
+# Make sure origin is up to date before we do a pull-request.
 git push origin
 
 remote_url=`git config remote.upstream.url | cut -d '/' -f 4`
