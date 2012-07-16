@@ -39,7 +39,6 @@ alias lockscreen='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/R
 
 # functions
 iterm-hacks() {
-
     # Create a copy of iTerm called iTermVisor which will run in background on login, only uses visor.
     local p='/Applications'
     cp -rf $p/iTerm.app $p/iTermVisor.app
@@ -53,23 +52,22 @@ iterm-hacks() {
 }
 
 lion-hacks() {
-    # i like to repeat my self
-    defaults write -g ApplePressAndHoldEnabled -bool NO
+    # Give me back key repeating
+    defaults write -g ApplePressAndHoldEnabled -bool false
+    # Increase key repeat speed
     defaults write NSGlobalDomain KeyRepeat -int 1
-    # jesus no
-    defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool NO
-    defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool NO
-    defaults write com.apple.Safari ApplePersistenceIgnoreState -bool YES
-    # animoot
-    defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
-    defaults write com.apple.Preview NSQuitAlwaysKeepsWindows 0
-    # use new list-style, cmd+/- to change icon size
-    defaults write com.apple.dock use-new-list-stack -bool YES
-    # new dock
-    defaults write com.apple.dock no-glass -bool YES
-    # speed up sheets slide-in animation
+    # Disable window restore
+    defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
+    defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
+    defaults write com.apple.Safari ApplePersistenceIgnoreState -bool true
+    # Disable lame animation when window opens
+    defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+    # Use new list-style, cmd+/- to change icon size
+    defaults write com.apple.dock use-new-list-stack -bool true
+    # 2d dock plz
+    defaults write com.apple.dock no-glass -bool true
+    # Speed up sheets slide-in animation
     defaults write -g NSWindowResizeTime -float 0.01
-    defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
     killall Dock
 }
 
