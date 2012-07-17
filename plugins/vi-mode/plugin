@@ -1,5 +1,8 @@
 ### vi-mode / zeesh! plugin
 
+autoload -U edit-command-line
+zle -N edit-command-line
+
 # switch vi mode mappings
 bindkey -v
 
@@ -37,3 +40,5 @@ bindkey '^[[6~' vi-forward-blank-word
 bindkey -M viins '' backward-delete-char
 bindkey -M vicmd '' backward-delete-char
 bindkey -M vicmd '^[[3~' delete-char
+bindkey -M vicmd 'v' edit-command-line
+bindkey -M viins '^v' edit-command-line
