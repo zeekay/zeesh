@@ -38,8 +38,9 @@ _rprompt() {
     local rc=$?
 
     if [[ $rc != 0 ]]; then
-        local s="%F{red}%$rc!%f"
+        local s="%F{red}% $rc!%f"
     fi
+
     echo -e $s
 }
 

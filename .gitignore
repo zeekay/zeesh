@@ -2,3 +2,4 @@ local/
 plugins/*/lib
 cache/
 *.zwc
+*.zwc.old
