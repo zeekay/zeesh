@@ -69,6 +69,7 @@ lion-hacks() {
     # Speed up sheets slide-in animation
     defaults write -g NSWindowResizeTime -float 0.01
     killall Dock
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 }
 
 edit-keymapping() {
