@@ -1,16 +1,9 @@
 ### javascript / zeesh! plugin
 
-
-### Javascript/Node.js helpers
-
 ## exports
-
-## aliases
-
-## functions
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 
 # npm command completion
-
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
 export COMP_WORDBREAKS
