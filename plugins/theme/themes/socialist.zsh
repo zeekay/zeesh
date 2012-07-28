@@ -30,7 +30,7 @@ _prompt() {
         s="$s%F{magenta}${${(s:/:)VIRTUAL_ENV}[-1]}%f"
     fi
 
-    echo -e "$s%F{magenta}›%f "
+    echo -e "$s%F{magenta}%(!.☭.⚘)%f "
 }
 
 _rprompt() {
