@@ -31,7 +31,7 @@ SAVEHIST=10000
 # exports
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export PATH=~/.bin:~/.dotfiles/scripts:$PATH
+export PATH=~/.bin:~/.ellipsis/scripts:$PATH
 export RSYNC_RSH=ssh
 
 # aliases

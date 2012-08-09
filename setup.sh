@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "zeesh! installation script"
 
 # if setup is run from dot-files/setup.sh use basedir provided

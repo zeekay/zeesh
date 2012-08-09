@@ -3,6 +3,11 @@
 # add zeesh comps to $fpath
 fpath=( ~/.zsh/comp $fpath )
 
+_force_rehash()
+{
+    (( CURRENT == 1 )) && rehash
+    return 1
+}
 autoload -U compinit; compinit -C
 
 zstyle ':completion:*' completer _force_rehash _complete _ignored _match _correct _approximate _prefix
