@@ -70,6 +70,8 @@ lion-hacks() {
     defaults write -g NSWindowResizeTime -float 0.01
     killall Dock
     defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+    # AirDrop over Ethernet
+    defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 }
 
 edit-keymapping() {

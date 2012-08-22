@@ -15,7 +15,7 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # hide shit
-zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' '_*'
+zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' '_*' 'broadcasthost'
 zstyle ':completion:*:*:open:*' matcher 'm:{a-z}={A-Z} r: ||[^ ]=**'
 
 # case-insensitive (all), partial-word and then substring completion
