@@ -14,8 +14,6 @@ zstyle ':completion:*' completer _force_rehash _complete _ignored _match _correc
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
-# hide shit
-zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' '_*' 'broadcasthost'
 zstyle ':completion:*:*:open:*' matcher 'm:{a-z}={A-Z} r: ||[^ ]=**'
 
 # case-insensitive (all), partial-word and then substring completion
@@ -24,8 +22,8 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
-# ignore useless files
-zstyle ':completion:*:functions' ignored-patterns '_*' '*?.pyc'
-
 # zshfu plugin list autocomplete
 compctl -K zeesh-plugin-list zeesh-plugin
+
+# hide shit
+zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.pyc'
