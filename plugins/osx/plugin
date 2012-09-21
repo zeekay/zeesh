@@ -38,7 +38,7 @@ alias flushcache='dscacheutil -flushcache'
 alias lockscreen='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
 # functions
-iterm-hacks() {
+update-visor() {
     # Create a copy of iTerm called iTermVisor which will run in background on login, only uses visor.
     local p='/Applications'
     cp -rf $p/iTerm.app $p/iTermVisor.app
@@ -51,7 +51,7 @@ iterm-hacks() {
     mv $p/iTermVisor.app ~$p
 }
 
-lion-hacks() {
+osx-hacks() {
     # Give me back key repeating
     defaults write -g ApplePressAndHoldEnabled -bool false
     # Increase key repeat speed
@@ -72,6 +72,10 @@ lion-hacks() {
     defaults write com.apple.desktopservices DSDontWriteNetworkStores true
     # AirDrop over Ethernet
     defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+}
+
+hide-spotlight() {
+    sudo mv /System/Library/CoreServices/Search.bundle /System/Library/CoreServices/Search.bundle.bak
 }
 
 edit-keymapping() {
