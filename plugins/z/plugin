@@ -1,15 +1,11 @@
 ### z / zeesh! plugin
 
 if [ -d "$plugin_dir/lib" ]; then
+    # set opts
     export _Z_NO_RESOLVE_SYMLINKS=1
     export _Z_NO_PROMPT_COMMAND=1
 
     source $plugin_dir/lib/z.sh
-
-    function precmd() {
-        title "%n@%m:%~"
-        _z --add "$(pwd)"
-    }
 
     # zsh tab completion
     _z_zsh_tab_completion() {
