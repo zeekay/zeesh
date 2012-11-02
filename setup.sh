@@ -38,28 +38,16 @@ if [ "$input" = "y" ]; then
 
     cat > ~/.zshrc << EOF
 zeesh_plugins=(
-    # enable autocompletion
     autocomplete
-
-    # vim exports/aliases
+    $platform
+    git
+    vcs-info
+    syntax-highlighting
+    theme
     vim
-
-    # vim keybindings for zsh
     vi-mode
     vi-visual-mode
-
-    # platform specific customizations
-    $platform
-
-    # vcs support
-    vcs-info
-
-    # enable themes
-    theme
-
-    # nicer command line life
     history-substring-search
-    syntax-highlighting
 )
 source ~/.zsh/zeesh.zsh
 EOF
