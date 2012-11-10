@@ -47,7 +47,6 @@ alias cp='nocorrect cp'
 alias mv='nocorrect mv'
 alias rm='nocorrect rm'
 alias rmf='rm -rf'
-alias ack="ack --color-filename='bold blue' --color-lineno='magenta' --color-match='bold red' -a --smart-case --ignore-dir=node_modules"
 alias grep='grep -i --color=auto'
 alias g=grep
 alias frp=find-replace-recursive
