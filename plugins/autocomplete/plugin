@@ -1,5 +1,10 @@
 # zeesh zsh autocomplete plugin
 
+# symlink _brew if on osx
+if [ -f "/usr/local/Library/Contributions/brew_zsh_completion.zsh" ] && [ ! -f "$plugin_dir/comp/_brew" ]; then
+    ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh $plugin_dir/comp/_brew
+fi
+
 # add zeesh comps to $fpath
 fpath=( $plugin_dir/comp $fpath )
 
