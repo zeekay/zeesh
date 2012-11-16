@@ -2,10 +2,10 @@ autoload -U zrecompile
 
 zrecompile -p \
     -R ~/.zshrc -- \
-    -M ~/.zcompdump -- \
+    -M ~/.zsh/cache/zcompdump -- \
     -R ~/.zsh/zeesh.zsh --
 
-zrecompile -p ~/.zsh/comp.zwc ~/.zsh/comp/_*
+zrecompile -p ~/.zsh/plugins/autocomplete/comp.zwc ~/.zsh/plugins/autocomplete/comp/_*
 zrecompile -p ~/.zsh/func.zwc ~/.zsh/func/*
 
 for a in ~/.zsh/plugins/*/plugin; do

@@ -8,13 +8,14 @@ fi
 # add zeesh comps to $fpath
 fpath=( $plugin_dir/comp $fpath )
 
+autoload -U compinit
+compinit -d ~/.zsh/cache/zcompdump
+
 _force_rehash()
 {
     (( CURRENT == 1 )) && rehash
     return 1
 }
-autoload -U compinit
-compinit
 
 zstyle ':completion:*' completer _force_rehash _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' use-cache on
