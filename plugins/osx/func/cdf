@@ -1,3 +1,3 @@
-function cdf(){
-    cd "$(posd)"
+function cdf {
+    pushd "`pwdf $@`"; 
 }
