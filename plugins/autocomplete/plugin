@@ -9,7 +9,7 @@ fi
 fpath=( $plugin_dir/comp $fpath )
 
 autoload -U compinit
-compinit -d ~/.zsh/cache/zcompdump
+compinit -u -d ~/.zsh/cache/zcompdump
 
 _force_rehash()
 {
