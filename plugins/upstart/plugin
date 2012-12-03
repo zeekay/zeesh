@@ -5,8 +5,17 @@
 # helper for completion functions
 export _UPSTART_INIT_DIR=$plugin_dir/init
 _list_upstart_apps() {
-    apps=`ls $_UPSTART_INIT_DIR`
-    echo ${(s:/:)apps}
+    installed=(/usr/local/Cellar/*(:t))
+    supported=($_UPSTART_INIT_DIR/*(:t))
+    regex=${(j:|:)installed}
+
+    available=()
+    for (( i=1; i <= $#supported; i++)); do
+        if [ -n "`echo $supported[$i] | grep -E --color=never $regex`" ]; then
+            available[$i]=$supported[$i]
+        fi
+    done
+    echo $available
 }
 
 fpath=( $plugin_dir/func $plugin_dir/comp $fpath )
