@@ -5,7 +5,8 @@
 # helper for completion functions
 export _UPSTART_INIT_DIR=$plugin_dir/init
 _list_upstart_apps() {
-    ls $_UPSTART_INIT_DIR
+    apps=`ls $_UPSTART_INIT_DIR`
+    echo ${(s:/:)apps}
 }
 
 fpath=( $plugin_dir/func $plugin_dir/comp $fpath )
