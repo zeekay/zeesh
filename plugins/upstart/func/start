@@ -1,0 +1,3 @@
+start() {
+    eval "$1-start"
+}

@@ -1,0 +1,7 @@
+function mysql-start() {
+    mysql.server start
+}
+
+function mysql-stop() {
+    mysql.server stop
+}

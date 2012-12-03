@@ -1,0 +1,2 @@
+#compdef stop
+_arguments "1: :(`_list_upstart_apps`)"

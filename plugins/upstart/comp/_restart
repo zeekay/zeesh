@@ -1,0 +1,2 @@
+#compdef restart
+_arguments "1: :(`_list_upstart_apps`)"

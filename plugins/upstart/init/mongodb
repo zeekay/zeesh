@@ -1,0 +1,3 @@
+function mongodb-start() {
+    mongod --fork --logpath /usr/local/var/log/mongodb/mongod.log
+}

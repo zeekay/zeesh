@@ -1,0 +1,8 @@
+function redis-start() {
+    if [ -z "`ps uax | grep -v grep | grep redis-server`" ]; then
+        echo starting redis
+        redis-server /usr/local/etc/redis.conf
+    else
+        echo redis already running
+    fi
+}

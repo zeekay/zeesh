@@ -1,0 +1,4 @@
+restart() {
+    eval "$1-stop"
+    eval "$1-start"
+}
