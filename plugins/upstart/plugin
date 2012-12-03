@@ -3,14 +3,10 @@
 # upstart-like helpers for homebrew mac systems
 
 # helper for completion functions
-export UPSTART_INIT_DIR=$plugin_dir/init
+export _UPSTART_INIT_DIR=$plugin_dir/init
 _list_upstart_apps() {
-    ls $UPSTART_INIT_DIR
+    ls $_UPSTART_INIT_DIR
 }
 
 fpath=( $plugin_dir/func $plugin_dir/comp $fpath )
 autoload -U $plugin_dir/func/*(:t) $plugin_dir/comp/*(:t)
-
-for f in `ls $plugin_dir/init`; do
-    source $plugin_dir/init/$f
-done

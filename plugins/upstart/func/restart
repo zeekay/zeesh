@@ -1,4 +1,9 @@
 restart() {
-    eval "$1-stop"
-    eval "$1-start"
+    if [ ! -f $_UPSTART_INIT_DIR/$1/start ]; then
+        echo 'unsupported app'
+        return 1
+    fi
+
+    stop $1
+    start $1
 }

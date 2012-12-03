@@ -1,3 +1,8 @@
 start() {
-    eval "$1-start"
+    if [ ! -f $_UPSTART_INIT_DIR/$1/start ]; then
+        echo 'unsupported app'
+        exit 1
+    fi
+
+    source $_UPSTART_INIT_DIR/$1/start
 }
