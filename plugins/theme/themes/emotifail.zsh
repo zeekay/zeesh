@@ -30,7 +30,7 @@ _prompt() {
         s="$s%F{magenta}${${(s:/:)VIRTUAL_ENV}[-1]}%f"
     fi
 
-    echo -e "$s%F{magenta}%(!.☭.⚘)%f "
+    echo -e "$s%F{magenta}›%f "
 }
 
 _rprompt() {
@@ -38,7 +38,7 @@ _rprompt() {
     local rc=$?
 
     if [[ $rc != 0 ]]; then
-        local s="%F{red}% $rc!%f"
+        local s="%F{red}% $(emoticon) $rc!%f"
     fi
 
     echo -e $s
