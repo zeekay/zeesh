@@ -53,7 +53,7 @@ alias frp=find-replace-recursive
 alias zip='zip -r -9'
 alias scp='scp -C'
 alias rscp='rsync --partial --progress --rsh=ssh'
-alias ssh_proxy='ssh -C2qTnN -D 9999'
+alias ssh-proxy='ssh -C2qTnN -D 9999'
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 alias nc='rlwrap nc'
 alias curl='noglob curl'
