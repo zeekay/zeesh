@@ -1,0 +1,24 @@
+#compdef cake
+
+# cake, version 1.0.0(coffeescript)
+
+local curcontext="$curcontext" state line expl ret=1
+typeset -A opt_args
+
+# -f FILE, --file=FILE read tasks from FILE [pavement.py]
+_arguments -C -s -S \
+  '*:target:->target' && ret=0
+
+case "$state" in
+  target)
+    local -a targets
+    if [ -f "Cakefile" ]; then
+        targets=( ${${(f)"$(_call_program targets $words[1] 2>/dev/null | sed 's/ *#.*//g; s/cake //g')"}})
+        _wanted targets expl 'cake target' compadd -a targets && return 0
+    else
+        _message -e target 'cake target'
+    fi
+  ;;
+esac
+
+return ret
