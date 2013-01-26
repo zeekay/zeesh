@@ -118,3 +118,11 @@ ps() {
 last-modified() {
     stat -f '%m' $1
 }
+
+function vnc-enable() {
+    sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -clientopts -setvnclegacy -vnclegacy yes -clientopts -setvncpw -vncpw mypasswd -restart -agent -privs -all
+}
+
+function vnc-disable() {
+    sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -configure -access -off
+}
