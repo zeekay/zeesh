@@ -2,8 +2,8 @@
 
 hash vimpager 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
-fpath=( ~/.zsh/plugins/vim/func $fpath )
-autoload -U ~/.zsh/plugins/vim/func/*(:t)
+fpath=( ~/.zsh/plugins/vi-mode/func $fpath )
+autoload -U ~/.zsh/plugins/vi-mode/func/*(:t)
 
 ## exports
 export PATH=$PATH:$plugin_dir/lib
@@ -114,25 +114,6 @@ zle-vicmd-ciw() {
 }
 zle -N zle-vicmd-ciw
 bindkey -M vicmd 'ciw' zle-vicmd-ciw
-
-if [ -n $ZEESH_VI_VISUAL_MODE_ENABLED ]; then
-    bindkey -rpM vivis ''
-    bindkey -rpM vivis '^['
-    bindkey -M vivis '' zle-esc-in-place
-    bindkey -M vivis '^[' zle-esc-in-place
-fi
-
-if [ -n $ZEESH_HISTORY_SUBSTRING_SEARCH_ENABLED ]; then
-    bindkey -r viins "^R"
-    bindkey -M viins '^k' history-substring-search-down
-    bindkey -M vicmd '^k' history-substring-search-down
-    bindkey -M viins '^j' history-substring-search-up
-    bindkey -M vicmd '^j' history-substring-search-up
-    bindkey -M viins '^n' history-substring-search-up
-    bindkey -M vicmd '^n' history-substring-search-up
-    bindkey -M viins '^p' history-substring-search-down
-    bindkey -M vicmd '^p' history-substring-search-down
-fi
 
 # zle-ctrl-c-remap() {
 #     # zle kill-buffer

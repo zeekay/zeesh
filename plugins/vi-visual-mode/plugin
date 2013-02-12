@@ -4,4 +4,7 @@
 
 source "$plugin_dir/lib/zle_vi_visual.zsh" >/dev/null 2>&1
 
-export ZEESH_VI_VISUAL_MODE_ENABLED=1
+if [ "$EDITOR" = "vim" ]; then
+    bindkey -M vivis '' zle-esc-in-place
+    bindkey -M vivis '^[' zle-esc-in-place
+fi
