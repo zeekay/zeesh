@@ -1,5 +1,25 @@
 ### vi-mode / zeesh! plugin
 
+hash vimpager 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+
+fpath=( ~/.zsh/plugins/vim/func $fpath )
+autoload -U ~/.zsh/plugins/vim/func/*(:t)
+
+## exports
+export PATH=$PATH:$plugin_dir/lib
+export EDITOR=vim
+export PAGER=vimpager
+
+## aliases
+alias v=vim
+alias vi=vim
+alias vm=vim
+
+if [ `uname` = 'Darwin' ]; then
+    alias m=mvim-wrapper
+else
+    alias g=gvim-wrapper
+fi
 autoload -U edit-command-line
 zle -N edit-command-line
 
