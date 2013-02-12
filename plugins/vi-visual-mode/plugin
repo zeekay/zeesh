@@ -5,6 +5,9 @@
 source "$plugin_dir/lib/zle_vi_visual.zsh" >/dev/null 2>&1
 
 if [ "$EDITOR" = "vim" ]; then
+    bindkey -rpM vivis '^['
+    bindkey -rpM vivis ''
     bindkey -M vivis '' zle-esc-in-place
     bindkey -M vivis '^[' zle-esc-in-place
+    bindkey -M vivis 'i' vi-insert
 fi

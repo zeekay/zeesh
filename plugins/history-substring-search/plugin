@@ -6,10 +6,10 @@ source "$plugin_dir/lib/zsh-$plugin.zsh"
 
 if [ "$EDITOR" = "vim" ]; then
     # the arrow key bindings delay escape, so i disable them when using vi-mode keybinding
-    bindkey -r "^[[0A" history-substring-search-up
-    bindkey -r "^[[0B" history-substring-search-down
-    bindkey -r "^[[A" history-substring-search-up
-    bindkey -r "^[[B" history-substring-search-down
+    bindkey -r "^[[0A"
+    bindkey -r "^[[0B"
+    bindkey -r "^[[A"
+    bindkey -r "^[[B"
 
     # disable normal history search
     bindkey -r "^R"

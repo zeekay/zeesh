@@ -14,7 +14,27 @@ if [ $zeesh_plugins[vcs-info] ]; then
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
+export ZEESH_THEME_NORMAL_CHAR=
+export ZEESH_THEME_VISUAL_CHAR=
+export ZEESH_THEME_INSERT_CHAR=
+# export ZEESH_THEME_NORMAL_CHAR_R=‹normal›
+# export ZEESH_THEME_VISUAL_CHAR_R=‹visual›
+# export ZEESH_THEME_INSERT_CHAR_R=‹insert›
+export ZEESH_THEME_PROMPT_CHAR=›
+
 _prompt() {
+    local mode=
+    case $KEYMAP in
+        vicmd)
+            mode=$ZEESH_THEME_NORMAL_CHAR
+        ;;
+        vivis)
+            mode=$ZEESH_THEME_VISUAL_CHAR
+        ;;
+        *)
+            mode=$ZEESH_THEME_INSERT_CHAR
+        ;;
+    esac
     local s="%F{magenta}%B%n%b%f%F{magenta}@%f%F{magenta}%B%m%f%b %F{blue}%B${PWD/$HOME/~}%b%f"
 
     # display vcs info
@@ -22,27 +42,12 @@ _prompt() {
         s="$s $vcs_info_msg_0_"
     fi
 
-    # split
-    s="$s\n"
-
     # print virtualenv name if active
     if [ $VIRTUAL_ENV ]; then
         s="$s%F{magenta}${${(s:/:)VIRTUAL_ENV}[-1]}%f"
     fi
 
-    local mode='i'
-    case $KEYMAP in
-        vicmd)
-            mode='n'
-        ;;
-        vivis)
-            mode='v'
-        ;;
-        *)
-            mode='i'
-        ;;
-    esac
-    echo -e "$s%F{magenta}$mode›%f "
+    echo -e "$s%F{magenta} $mode$ZEESH_THEME_PROMPT_CHAR%f "
 }
 
 _rprompt() {
@@ -50,7 +55,7 @@ _rprompt() {
     local rc=$?
 
     if [[ $rc != 0 ]]; then
-        local s="%F{red}% $rc!%f"
+        local s="%F{red}% $(emoticon) $rc!%f"
     fi
 
     echo -e $s
