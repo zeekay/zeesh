@@ -28,6 +28,9 @@ HISTFILE=~/.zsh/local/history
 HISTSIZE=10000
 SAVEHIST=10000
 
+# zsh defaults to waiting 400ms to detect key combinations, i.e. ciw in vi mode
+KEYTIMEOUT=100
+
 # exports
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
