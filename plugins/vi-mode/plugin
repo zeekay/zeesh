@@ -6,12 +6,11 @@ zle -N edit-command-line
 # switch vi mode mappings
 bindkey -v
 
-# This prevents the prompt from being reset (which is very slow)
-# as well as preventing the cursor from moving backwards
-vi-cmd-mode() {
-    zle -K vicmd
-}
-zle -N vi-cmd-mode
+# unbind escape key combinations
+bindkey -rpM viins '^['
+bindkey -rpM vicmd '^['
+bindkey -rpM viins ''
+bindkey -rpM vicmd ''
 
 # bind keys
 bindkey -M vicmd '^m' accept-line
@@ -38,28 +37,29 @@ bindkey -M viins '^p' history-search-forward
 bindkey -M vicmd '^p' history-search-forward
 bindkey -M viins '^U' vi-change-whole-line
 bindkey -M vicmd '^U' vi-change-whole-line
-bindkey -M vicmd '^?' vi-delete-char
-bindkey -M vicmd '\e[H'  vi-beginning-of-line
-bindkey -M vicmd '\e[F'  vi-end-of-line
-bindkey -M vicmd '^[[1~' vi-beginning-of-line
-bindkey -M vicmd '^[[4~' vi-end-of-line
-bindkey '^[[2~' beep
-bindkey '^[[3~' delete-char
-bindkey '^[[5~' vi-backward-blank-word
-bindkey '^[[6~' vi-forward-blank-word
+# bindkey -M vicmd '\e[H'  vi-beginning-of-line
+# bindkey -M vicmd '\e[F'  vi-end-of-line
+# bindkey -M vicmd '^[[1~' vi-beginning-of-line
+# bindkey -M vicmd '^[[4~' vi-end-of-line
+# bindkey '^[[2~' beep
+# bindkey '^[[3~' delete-char
+# bindkey '^[[5~' vi-backward-blank-word
+# bindkey '^[[6~' vi-forward-blank-word
 bindkey -M viins '' backward-delete-char
 bindkey -M vicmd '' backward-delete-char
-bindkey -M vicmd '^[[3~' delete-char
+# bindkey -M vicmd '^[[3~' delete-char
 bindkey -M vicmd '^e' edit-command-line
 bindkey -M viins '^e' edit-command-line
 
 # zle widget to enter normal mode without moving cursor back
 zle-esc-in-place() {
     zle -K vicmd
-    zle reset-prompt
 }
 zle -N zle-esc-in-place
 bindkey -M viins '' zle-esc-in-place
+bindkey -M vicmd '' zle-esc-in-place
+bindkey -M viins '^[' zle-esc-in-place
+bindkey -M vicmd '^[' zle-esc-in-place
 
 # delete from cursor position to end of word and stay in normal mode
 zle-vicmd-dw() {
@@ -94,3 +94,31 @@ zle-vicmd-ciw() {
 }
 zle -N zle-vicmd-ciw
 bindkey -M vicmd 'ciw' zle-vicmd-ciw
+
+if [ -n $ZEESH_VI_VISUAL_MODE_ENABLED ]; then
+    bindkey -rpM vivis ''
+    bindkey -rpM vivis '^['
+    bindkey -M vivis '' zle-esc-in-place
+    bindkey -M vivis '^[' zle-esc-in-place
+fi
+
+if [ -n $ZEESH_HISTORY_SUBSTRING_SEARCH_ENABLED ]; then
+    bindkey -r viins "^R"
+    bindkey -M viins '^k' history-substring-search-down
+    bindkey -M vicmd '^k' history-substring-search-down
+    bindkey -M viins '^j' history-substring-search-up
+    bindkey -M vicmd '^j' history-substring-search-up
+    bindkey -M viins '^n' history-substring-search-up
+    bindkey -M vicmd '^n' history-substring-search-up
+    bindkey -M viins '^p' history-substring-search-down
+    bindkey -M vicmd '^p' history-substring-search-down
+fi
+
+# zle-ctrl-c-remap() {
+#     # zle kill-buffer
+#     # zle -K viins
+#     zle reset-prompt
+#     zle send-break
+# }
+# zle -N zle-ctrl-c-remap
+# trap 'zle && [[ -z $curcontext ]] && zle kill-buffer && zle reset-prompt' INT
