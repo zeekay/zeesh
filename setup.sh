@@ -43,11 +43,10 @@ zeesh_plugins=(
     git
     vcs-info
     syntax-highlighting
+    history-substring-search
     theme
-    vim
     vi-mode
     vi-visual-mode
-    history-substring-search
 )
 source ~/.zsh/zeesh.zsh
 EOF
