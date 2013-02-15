@@ -14,6 +14,7 @@ export PAGER=vimpager
 alias v=vim
 alias vi=vim
 alias vm=vim
+alias less=vimpager
 
 if [ `uname` = 'Darwin' ]; then
     alias m=mvim-wrapper
