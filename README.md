@@ -6,31 +6,43 @@
      / /_/ __/ __/_\ \  / / /__
     /___/___/___/____/_/ /_/__/
 
-...is a cross-platform zsh framework. It's similar to, but incompatible with,
-[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh). It has a modular plugin
-architecture, and it's easy to extend. It has a rich set of defaults, but is
-designed to be as lightweight as possible.
+Zeesh is a cross-platform [Zsh][zsh] framework. It's similar to, but incompatible
+with, [oh-my-zsh][oh-my-zsh]. It has a modular plugin architecture making it
+easy to extend. It has a rich set of defaults, but is designed to be as
+lightweight as possible.
 
 ## Installation
-Clone into ~/.zsh and source ~/.zsh/zeesh, or use the install script:
+Clone to `~/.zsh` or use the install script:
 
-    curl https://raw.github.com/zeekay/zeesh/master/install.sh | sh
+```sh
+curl https://raw.github.com/zeekay/zeesh/master/install.sh | sh
+```
 
 ## Configuration
-You can enable/disable various features using
-plugins. `ls ~/.zsh/plugins` for a list of plugins. A basic configuration looks
-something like:
+Specify the plugins you want to use in the `zeesh_plugins` array and source
+`~/.zsh/zeesh.zsh`:
 
-    zeesh_plugins=(
-        autocomplete
-        osx
-        git
-        vcs-info
-        syntax-highlighting
-        history-substring-search
-        theme
-        vi-mode
-        vi-visual-mode
-    )
+```sh
+zeesh_plugins=(
+    autocomplete
+    osx
+    git
+    vcs-info
+    syntax-highlighting
+    history-substring-search
+    theme
+    vi-mode
+    vi-visual-mode
+)
 
-    source ~/.zsh/zeesh.zsh
+source ~/.zsh/zeesh.zsh
+```
+
+You can enable various features using the available plugins. For a list of available plugins:
+
+```sh
+ls ~/.zsh/plugins
+```
+
+[oh-my-zsh]: https://github.com/robbyrussell/oh-my-zsh
+[zsh]: http://www.zsh.org
