@@ -1,25 +1,36 @@
-#!/bin/bash
-for f in zsh zshrc; do
-    if [ -e "$HOME/.$f" ]; then
-        echo "...backing up ~/.$f"
+#!/bin/sh
 
-        if [ -e "$HOME/.$f.bak" ]; then
-            # append number to end of backups
-            n = 1
-            while [ -e "$HOME/.$f.bak.$n" ]; do
+backup() {
+    original="$1"
+    backup="$original.bak"
+    name="`basename $original`"
+
+    if [ -e "$original" ]; then
+        echo "Backing up $name"
+
+        if [ -e "$backup" ]; then
+            n=1
+            while [ -e "$backup.$n" ]; do
                 (( n ++ ))
             done
-            mv "$HOME/.$f" "$HOME/.$f.bak.$n"
-        else
-            mv "$HOME/.$f" "$HOME/.$f.bak"
+            backup="$backup.$n"
         fi
+        mv "$original" "$backup"
     fi
-done
+}
 
+# backup ~/.zsh if necessary
+backup "$HOME/.zsh"
+
+# clone zeesh to ~/.zsh
 git clone https://github.com/zeekay/zeesh $HOME/.zsh
-echo -n "install skeleton ~/.zshrc? (y/n) "
-read input
+
+echo "Install skeleton ~/.zshrc? (y/n) \c"
+read input </dev/tty
+
 if [ "$input" = "y" ]; then
+    backup "$HOME/.zshrc"
+
     platform=`uname | tr [A-Z] [a-z]`
     case $platform in
         darwin)
