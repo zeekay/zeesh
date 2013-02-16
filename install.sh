@@ -25,7 +25,7 @@ backup "$HOME/.zsh"
 # clone zeesh to ~/.zsh
 git clone https://github.com/zeekay/zeesh $HOME/.zsh
 
-echo "Install skeleton ~/.zshrc? (y/n) \c"
+echo "Install example zshrc? (y/n) \c"
 read input </dev/tty
 
 if [ "$input" = "y" ]; then
