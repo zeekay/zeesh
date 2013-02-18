@@ -1,12 +1,40 @@
 #!/bin/sh
 
+# get first character of string, lowercase
+first_char() {
+    echo $1 | cut -c 1 | tr '[A-Z]' '[a-z]'
+}
+
+# read user input
+ask() {
+    question="$1"
+    default="$2"
+
+    echo "$question (yes/no default: $default) \c"
+
+    read answer </dev/tty
+
+    # get first char of answer or default
+    if [ "$answer" = "" ]; then
+        answer=`first_char $default`
+    else
+        answer=`first_char $answer`
+    fi
+
+    if [ $answer = y ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 backup() {
     original="$1"
     backup="$original.bak"
     name="`basename $original`"
 
     if [ -e "$original" ]; then
-        echo "Backing up $name"
+        echo "Backing up ~/$name"
 
         if [ -e "$backup" ]; then
             n=1
@@ -19,17 +47,8 @@ backup() {
     fi
 }
 
-# backup ~/.zsh if necessary
-backup "$HOME/.zsh"
-
-# clone zeesh to ~/.zsh
-git clone https://github.com/zeekay/zeesh $HOME/.zsh
-
-echo "Install example zshrc? (y/n) \c"
-read input </dev/tty
-
-if [ "$input" = "y" ]; then
-    backup "$HOME/.zshrc"
+install_zshrc() {
+    backup $HOME/.zshrc
 
     platform=`uname | tr [A-Z] [a-z]`
     case $platform in
@@ -47,7 +66,7 @@ if [ "$input" = "y" ]; then
         ;;
     esac
 
-    cat > ~/.zshrc << EOF
+    cat > $HOME/.zshrc << EOF
 zeesh_plugins=(
     autocomplete
     $platform
@@ -61,7 +80,18 @@ zeesh_plugins=(
 )
 source ~/.zsh/zeesh.zsh
 EOF
+}
 
+git_clone() {
+    git clone --depth 1 "$1" "$2" 2>&1 | grep 'Cloning into'
+}
+
+if [ -z "$ELLIPSIS_INSTALL" ]; then
+    backup $HOME/.zsh
+    git_clone https://github.com/zeekay/zeesh $HOME/.zsh
+    ask "Create default zshrc?" "no" && install_zshrc
+else
+    git_clone https://github.com/zeekay/zeesh $HOME/.ellipsis/zsh
 fi
 
 cat << EOF
