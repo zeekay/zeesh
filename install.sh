@@ -86,12 +86,11 @@ git_clone() {
     git clone --depth 1 "$1" "$2" 2>&1 | grep 'Cloning into'
 }
 
+backup $HOME/.zsh
+git_clone https://github.com/zeekay/zeesh $HOME/.zsh
+
 if [ -z "$ELLIPSIS_INSTALL" ]; then
-    backup $HOME/.zsh
-    git_clone https://github.com/zeekay/zeesh $HOME/.zsh
     ask "Create default zshrc?" "no" && install_zshrc
-else
-    git_clone https://github.com/zeekay/zeesh $HOME/.ellipsis/zsh
 fi
 
 cat << EOF
