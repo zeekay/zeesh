@@ -29,6 +29,8 @@ alias gl="git log -n 500 --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(whit
 alias glg="gl --graph"
 alias glp="gl --patch"
 alias gls="gl --stat"
+alias gld="gl --diff"
+alias glds="gl --stat"
 alias gm='git merge --no-ff'
 alias gmf='git merge --ff-only'
 alias gmprq='git merge-pull-request'
