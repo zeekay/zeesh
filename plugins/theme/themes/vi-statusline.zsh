@@ -35,6 +35,7 @@ _prompt() {
             mode=$ZEESH_THEME_INSERT_CHAR
         ;;
     esac
+
     local s="%F{magenta}%B%n%b%f%F{magenta}@%f%F{magenta}%B%m%f%b %F{blue}%B${PWD/$HOME/~}%b%f"
 
     # display vcs info
@@ -44,7 +45,7 @@ _prompt() {
 
     # print virtualenv name if active
     if [ $VIRTUAL_ENV ]; then
-        s="$s%F{magenta}${${(s:/:)VIRTUAL_ENV}[-1]}%f"
+        s="$s %F{magenta}‹${${(s:/:)VIRTUAL_ENV}[-1]}›%f "
     fi
 
     echo -e "$s%F{magenta} $mode$ZEESH_THEME_PROMPT_CHAR%f "
