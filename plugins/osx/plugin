@@ -9,9 +9,9 @@ limit core 0
 compctl -K list-sysctls sysctl
 
 ## exports
-export GEM_HOME=/usr/local
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
-export PATH=/usr/local/share/ruby:/usr/local/share/python:~/.zsh/plugins/osx/lib:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+export PATH=/usr/local/share/python:~/.zsh/plugins/osx/lib:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+export GEM_HOME=/usr/local
 
 ## aliases
 alias l='/bin/ls'
