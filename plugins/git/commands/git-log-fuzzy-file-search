@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
-prefix=$(echo `pwd` | sed "s:`git root`/::"`)
+prefix=$(echo `pwd` | sed "s:`git root`/::")
 
-git log -n 500 --pretty=format: --name-only . | uniq -u | grep Smooth_Gestures_Settings | sed "s:$prefix::' | xargs git log --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white)%an, %ar%Creset' --stat --
+if [ "$1" = "" ]; then
+    echo Filter required
+else
+    git log -n 500 --pretty=format: --name-only . | sed "s:$prefix/::" | sort -u | grep "$1" | xargs git log --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white)%an, %ar%Creset' --stat --
+fi
