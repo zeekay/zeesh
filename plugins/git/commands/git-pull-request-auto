@@ -5,16 +5,32 @@ if [ `hash hub 2>/dev/null` ]; then
     exit 1
 fi
 
-# Make sure origin is up to date before we do a pull-request.
-git push origin
+branch=`git rev-parse --abbrev-ref HEAD`
+origin_user=`git config remote.origin.url | cut -d '/' -f 4`
+upstream_user=`git config remote.upstream.url | cut -d '/' -f 4`
 
-remote_url=`git config remote.upstream.url | cut -d '/' -f 4`
-
-if [ ! "$remote_url" ]; then
+# owner of repo to open pull request to
+if [ ! "$upstream_user" ]; then
     echo 'You need to add an upstream remote'
     echo 'git remote add upstream <url>'
     exit 1
 fi
 
-remote_branch=`git branch --color=never | cut -c3-`
-hub pull-request -b $remote_url:$remote_branch
+# branch to open pull request against
+base_branch=`git config pull-request-auto.$branch` # try branch-specific setting
+if [ ! "$base_branch" ]; then
+    base_branch=`git config pull-request-auto.base` # try global settings
+fi
+
+if [ ! "$base_branch" ]; then
+    base_branch=master # fallback to master if unspecified
+fi
+
+# make this branch track origin branch of same name
+git branch -u origin/$branch > /dev/null 2>&1
+
+# Make sure origin is up to date before we do a pull-request.
+git push origin
+
+# do pull request
+hub pull-request -b $upstream_user:$base_branch -h $origin_user:$branch

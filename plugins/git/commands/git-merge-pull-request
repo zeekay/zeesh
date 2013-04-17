@@ -5,13 +5,10 @@ if [ `hash hub 2>/dev/null` ]; then
     exit 1
 fi
 
-if [ $1 ]; then
-    # Make sure we've pulled from origin first
-    git fetch origin
-
-    repo=`git config remote.origin.url | cut -d '/' -f4-`
-    url="https://github.com/$repo/pull/$1"
-    hub merge $url
-else
-    echo Specify pull request number
+if [ ! "$1" ]; then
+    echo 'Specify pull request to merge'
+    exit 1
 fi
+
+origin_repo=`git config remote.origin.url | cut -d '/' -f 4,5`
+hub merge https://github.com/$origin_repo/pull/$1

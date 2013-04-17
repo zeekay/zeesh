@@ -36,7 +36,7 @@ alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/C
 alias xc='open *xcodeproj'
 alias fs-usage='fs_usage -w -f filesys'
 alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &'
-alias flushcache='dscacheutil -flushcache'
+alias flushcache='sudo killall -HUP mDNSResponder'
 alias lockscreen='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
 # functions
