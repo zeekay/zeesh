@@ -26,11 +26,8 @@ if [ ! "$base_branch" ]; then
     base_branch=master # fallback to master if unspecified
 fi
 
-# make this branch track origin branch of same name
-git branch -u origin/$branch > /dev/null 2>&1
-
-# Make sure origin is up to date before we do a pull-request.
-git push origin
+# make this branch track origin branch of same name and push it
+git push --set-upstream origin $branch
 
 # do pull request
 hub pull-request -b $upstream_user:$base_branch -h $origin_user:$branch
