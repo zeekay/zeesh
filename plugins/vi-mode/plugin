@@ -48,6 +48,7 @@ bindkey -M vicmd 'yy' vi-yank-whole-line
 bindkey -M vicmd 'Y' vi-yank-eol
 bindkey -M vicmd 'y.' vi-yank-whole-line
 bindkey -M vicmd 'c.' vi-change-whole-line
+
 bindkey -M viins '^k' history-search-backward
 bindkey -M vicmd '^k' history-search-backward
 bindkey -M viins '^j' history-search-forward
@@ -56,21 +57,49 @@ bindkey -M viins '^n' history-search-backward
 bindkey -M vicmd '^n' history-search-backward
 bindkey -M viins '^p' history-search-forward
 bindkey -M vicmd '^p' history-search-forward
+
 bindkey -M viins '^U' vi-change-whole-line
 bindkey -M vicmd '^U' vi-change-whole-line
-# bindkey -M vicmd '\e[H'  vi-beginning-of-line
-# bindkey -M vicmd '\e[F'  vi-end-of-line
-# bindkey -M vicmd '^[[1~' vi-beginning-of-line
-# bindkey -M vicmd '^[[4~' vi-end-of-line
-# bindkey '^[[2~' beep
-# bindkey '^[[3~' delete-char
-# bindkey '^[[5~' vi-backward-blank-word
-# bindkey '^[[6~' vi-forward-blank-word
+
 bindkey -M viins '' backward-delete-char
 bindkey -M vicmd '' backward-delete-char
-# bindkey -M vicmd '^[[3~' delete-char
-bindkey -M vicmd '^e' edit-command-line
-bindkey -M viins '^e' edit-command-line
+
+bindkey -M vicmd '^v' edit-command-line
+bindkey -M viins '^v' edit-command-line
+
+bindkey -M viins "^[[0C" forward-char
+bindkey -M viins "^[[0D" backward-char
+bindkey -M viins "^[[C"  forward-char
+bindkey -M viins "^[[D"  backward-char
+bindkey -M viins "OC"  forward-char
+bindkey -M viins "OD"  backward-char
+
+bindkey -M vicmd "^[[0C" forward-char
+bindkey -M vicmd "^[[0D" backward-char
+bindkey -M vicmd "^[[C"  forward-char
+bindkey -M vicmd "^[[D"  backward-char
+bindkey -M vicmd "OC"  forward-char
+bindkey -M vicmd "OD"  backward-char
+
+bindkey -M vicmd ""  vi-beginning-of-line
+bindkey -M vicmd ""  vi-end-of-line
+bindkey -M vicmd "^A"  vi-beginning-of-line
+bindkey -M vicmd "^E"  vi-end-of-line
+
+bindkey -M viins ""  vi-beginning-of-line
+bindkey -M viins ""  vi-end-of-line
+bindkey -M viins "^A"  vi-beginning-of-line
+bindkey -M viins "^E"  vi-end-of-line
+
+bindkey -M vicmd "^[[H"  vi-beginning-of-line
+bindkey -M vicmd "^[[F"  vi-end-of-line
+bindkey -M vicmd "OH"  vi-beginning-of-line
+bindkey -M vicmd "OF"  vi-end-of-line
+
+bindkey -M viins "^[[H"  vi-beginning-of-line
+bindkey -M viins "^[[F"  vi-end-of-line
+bindkey -M viins "OH"  vi-beginning-of-line
+bindkey -M viins "OF"  vi-end-of-line
 
 # zle widget to enter normal mode without moving cursor back
 zle-esc-in-place() {
