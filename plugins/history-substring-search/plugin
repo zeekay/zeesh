@@ -15,7 +15,10 @@ if [ "$EDITOR" = "vim" ]; then
     bindkey -r "^R"
 
     # search up/down history with ^n/p
-    bindkey -M viins '^n' history-substring-search-up
+    bindkey -M viins '^j' history-substring-search-up
+    bindkey -M viins '^k' history-substring-search-up
+
+    bindkey -M viins '^p' history-substring-search-down
     bindkey -M viins '^p' history-substring-search-down
 
     bindkey -M vicmd '^n' history-substring-search-up
