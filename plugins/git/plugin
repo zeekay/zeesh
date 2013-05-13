@@ -43,6 +43,8 @@ alias gco-theirs="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout 
 alias gco='git checkout'
 alias gd='git diff --color=never'
 alias gds='git diff --color=never --stat'
+alias gda='git diff HEAD --color=never'
+alias gdas='git diff HEAD --color=never --stat'
 alias gdc='git diff --color=never --cached'
 alias gdcs='git diff --color=never --cached --stat'
 alias gds='git diff --color=never --staged'
