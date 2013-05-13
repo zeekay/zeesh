@@ -14,6 +14,7 @@ fi
 alias ga='git add'
 alias gau='git add --update'
 alias gb=git-branch-wrapper
+alias gbd='git branch -D'
 alias gbt=git-branch-by-time
 alias gc='noglob git-quick-commit'
 alias gcA='git add -A . ; noglob git-quick-commit'
