@@ -66,15 +66,9 @@ alias diff='git diff --color=never --no-index'
 alias help='zeesh help'
 alias plugin=zeesh-plugin
 alias prefs=zeesh-prefs
-alias reload='zeesh reload'
 alias tips='zeesh tips'
 alias upgrade=zeesh-upgrade
 alias vcs='zeesh-plugin-enable vcs-info'
-
-# https://github.com/zeekay/dotfiles aliases
-alias dfu='df-up'
-alias dfp='df-push'
-alias dfs='df-status'
 
 ## keybindings
 bindkey "^J" self-insert
