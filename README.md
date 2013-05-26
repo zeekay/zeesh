@@ -15,7 +15,7 @@ lightweight as possible.
 Clone to `~/.zsh` or use the install script:
 
 ```sh
-curl https://raw.github.com/zeekay/zeesh/master/install.sh | sh
+curl https://raw.github.com/zeekay/zeesh/master/scripts/install.sh | sh
 ```
 
 ## Configuration
