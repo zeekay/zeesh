@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# Change the default branch behavior to be a bit more verbose
-if [ "$1" ]; then
-    git branch $@
-else
-    git branch -a -v
-fi
