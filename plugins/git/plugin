@@ -13,7 +13,8 @@ fi
 
 alias ga='git add'
 alias gau='git add --update'
-alias gb=git-branch-wrapper
+alias gb='git branch -v -v'
+alias gba='git branch -v -v -a'
 alias gbd='git branch -D'
 alias gbt=git-branch-by-time
 alias gc='noglob git-quick-commit'
@@ -82,7 +83,6 @@ zstyle ':completion:*:*:hub:*' user-commands \
     browse:'open a GitHub page in the default browser' \
     compare:'open a compare page on GitHub' \
     branch-by-time:'list branches ordered by time' \
-    branch-wrapper:'wraps branch' \
     changes:'show file and line changes' \
     churn:'show files with most commits' \
     divergence:'show differences between incoming and outgoing branches' \
