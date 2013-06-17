@@ -53,7 +53,17 @@ update-visor() {
     mv $p/iTermVisor.app ~$p
 }
 
-osx-hacks() {
+mavericks-hacks() {
+    # disable prss and hhhhhold
+    defaults write -g ApplePressAndHoldEnabled -bool false
+    # do not write .DS_Store files on network drives
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+    # use new-style lists in dock
+    defaults write com.apple.dock use-new-list-stack -bool true
+    killall Dock
+}
+
+lion-hacks() {
     # Give me back key repeating
     defaults write -g ApplePressAndHoldEnabled -bool false
     # Increase key repeat speed
