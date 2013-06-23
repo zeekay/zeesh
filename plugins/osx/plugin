@@ -3,15 +3,11 @@
 fpath=( ~/.zsh/plugins/osx/func $fpath )
 autoload -U ~/.zsh/plugins/osx/func/*(:t)
 
-# no core dumps
-limit core 0
-
 compctl -K list-sysctls sysctl
 
 ## exports
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
-export PATH=/usr/local/share/python:~/.zsh/plugins/osx/lib:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
-export GEM_HOME=/usr/local
+export PATH=~/.zsh/plugins/osx/lib:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
 ## aliases
 alias l='/bin/ls'
@@ -60,6 +56,8 @@ mavericks-hacks() {
     defaults write com.apple.desktopservices DSDontWriteNetworkStores true
     # use new-style lists in dock
     defaults write com.apple.dock use-new-list-stack -bool true
+    # allow airdrop to work over ethernet
+    defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
     killall Dock
 }
 
