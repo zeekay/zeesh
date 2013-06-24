@@ -1,16 +1,17 @@
+zstyle ':vcs_info:*' disable cdv cvs darcs fossil mtn p4 svk tla
 zstyle ':vcs_info:*' enable hg git svn
 zstyle ':vcs_info:hg*:*' get-bookmarks true
 zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 
 zstyle ':vcs_info:*:*' unstagedstr $VCS_INFO_UNSTAGED_FMT
+zstyle ':vcs_info:*:*' stagedstr $VCS_INFO_STAGED_FMT
 zstyle ':vcs_info:*:*' branchformat $VCS_INFO_BRANCH_FMT
-zstyle ':vcs_info:*:*' hgrevformat $VCS_INFO_HGREV_FMT
-zstyle ':vcs_info:*' formats $VCS_INFO_HG_FMT
-zstyle ':vcs_info:*' actionformats $VCS_INFO_HGACTION_FMT
+zstyle ':vcs_info:hg*' hgrevformat $VCS_INFO_HG_REV_FMT
+zstyle ':vcs_info:hg*' formats $VCS_INFO_HG_FMT
+zstyle ':vcs_info:hg*' actionformats $VCS_INFO_HG_ACTION_FMT
 zstyle ':vcs_info:git*' formats $VCS_INFO_GIT_FMT
-zstyle ':vcs_info:git*' actionformats $VCS_INFO_GITACTION_FMT
-zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
+zstyle ':vcs_info:git*' actionformats $VCS_INFO_GIT_ACTION_FMT
 
 # use-simple reduces hg overhead but doesn't show dirty or local rev numbers
 # zstyle ':vcs_info:hg*:*' use-simple true
@@ -113,6 +114,20 @@ zstyle ':vcs_info:git*:*' stagedstr $VCS_INFO_STAGED_FMT
             hook_com[revision]="!${hook_com[revision]}"
         fi
     fi
+}
+
++vi-git-aheadbehind() {
+    local ahead behind
+    local -a gitstatus
+
+    ahead=$(command git rev-list ${hook_com[branch]}@{upstream}..HEAD --count 2>/dev/null)
+    behind=$(command git rev-list HEAD..${hook_com[branch]}@{upstream} --count 2>/dev/null)
+
+    (( $ahead )) && gitstatus+=( "⇡$ahead" )
+    (( $behind )) && gitstatus+=( "⇣$behind" )
+    (( $ahead || $behind )) && gitstatus+=' '
+
+    hook_com[misc]+=${(j::)gitstatus}
 }
 
 zstyle ':vcs_info:hg*+gen-hg-bookmark-string:*' hooks hg-bookmarks
