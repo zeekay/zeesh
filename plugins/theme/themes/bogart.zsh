@@ -8,6 +8,7 @@ if [ $zeesh_plugins[vcs-info] ]; then
 
     VCS_INFO_HG_ACTION_FMT='%F{magenta}‹%b%c%u %i %a %m%s›%f'
     VCS_INFO_HG_FMT='%F{magenta}‹%b%c%u %i %m%s›%f'
+
     VCS_INFO_HG_BOOKMARK_FMT=''
     VCS_INFO_HG_REV_FMT='%r'
 

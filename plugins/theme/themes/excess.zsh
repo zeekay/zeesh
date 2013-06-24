@@ -1,16 +1,21 @@
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
 if [ $zeesh_plugins[vcs-info] ]; then
-    VCS_INFO_UNSTAGED_FMT='+'
-    VCS_INFO_STRAGED_FMT='^'
     VCS_INFO_BRANCH_FMT='%b'
-    VCS_INFO_HGREV_FMT='%r'
-    VCS_INFO_HGBOOKMARK_FMT=''
+
+    VCS_INFO_GIT_ACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%0.10i%c%u %a%f'
+    VCS_INFO_GIT_FMT='on %F{magenta}%b%m%f at %F{magenta}%0.10i%c%u%f'
+
+    VCS_INFO_HG_ACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%i%c%u %a%f'
+    VCS_INFO_HG_FMT='on %F{magenta}%b%m%f at %F{magenta}%i%c%u%f'
+
+    VCS_INFO_HG_REV_FMT='%r'
+    VCS_INFO_HG_BOOKMARK_FMT=''
+
+    VCS_INFO_STAGED_FMT='+'
+    VCS_INFO_UNSTAGED_FMT='!'
     VCS_INFO_TIMESINCE_FMT=' $s'
-    VCS_INFO_HG_FMT='on %F{magenta}%b%m%f at %F{magenta}%i%u%f'
-    VCS_INFO_GIT_FMT='on %F{magenta}%b%m%f at %F{magenta}%10.10i%u%f'
-    VCS_INFO_HGACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%i%u %a%f'
-    VCS_INFO_GITACTION_FMT='%F{magenta}%a%f on %F{magenta}%b%m%f at %F{magenta}%10.10i%u %a%f'
+
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
