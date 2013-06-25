@@ -59,26 +59,6 @@ zstyle ':vcs_info:git*' actionformats $VCS_INFO_GIT_ACTION_FMT
     hook_com[vcs]=$since
 }
 
-# git: Time since last commit
-+vi-git-time-since() {
-    local now=`date +%s`
-    local last="`echo $(git log --pretty=format:'%at' -1 2>&1)`"
-
-    if [[ "$last" =~ "^[0-9]+$" ]]; then
-        local since=$(( $now - $last ))
-        if [[ $since -lt 3600 ]]; then
-            since=$(( $since / 60 ))m
-        elif [[ $since -lt 86400 ]]; then
-            since=$(( $since / 3600 ))h
-        else
-            since=$(( $since / 86400 ))d
-        fi
-
-        # jam time-since in front of branch
-        hook_com[vcs]=$since
-    fi
-}
-
 # hg: Show marker when the working directory is not on a branch head.
 # The cache/branchheads file is not updated with every Mercurial
 # operation, so it will sometimes give false positives. An example of a case
@@ -125,15 +105,48 @@ zstyle ':vcs_info:git*' actionformats $VCS_INFO_GIT_ACTION_FMT
 
     (( $ahead )) && gitstatus+=( "⇡$ahead" )
     (( $behind )) && gitstatus+=( "⇣$behind" )
-    (( $ahead || $behind )) && gitstatus+=' '
+    (( $ahead )) || (( $behind )) && gitstatus=" $gitstatus"
 
     hook_com[misc]+=${(j::)gitstatus}
+}
+
+# git: Time since last commit
++vi-git-time-since() {
+    local now=`date +%s`
+    local last="`echo $(command git log --pretty=format:'%at' -1 2>&1)`"
+
+    if [[ "$last" =~ "^[0-9]+$" ]]; then
+        local since=$(( $now - $last ))
+        if [[ $since -lt 3600 ]]; then
+            since=$(( $since / 60 ))m
+        elif [[ $since -lt 86400 ]]; then
+            since=$(( $since / 3600 ))h
+        else
+            since=$(( $since / 86400 ))d
+        fi
+
+        # replace vcs with since
+        hook_com[vcs]=" $since"
+    else
+        hook_com[vcs]=''
+    fi
+
+}
+
++vi-git-pretty-revision() {
+    local rev=$hook_com[revision]
+
+    if [[ "$rev" =~ "^[a-z0-9]+$" ]]; then
+        hook_com[revision]=" $rev"
+    else
+        hook_com[revision]=''
+    fi
 }
 
 zstyle ':vcs_info:hg*+gen-hg-bookmark-string:*' hooks hg-bookmarks
 zstyle ':vcs_info:hg*+set-hgrev-format:*' hooks hg-storerev
 zstyle ':vcs_info:hg*+set-message:*' hooks hg-branchhead hg-time-since
-zstyle ':vcs_info:git*+set-message:*' hooks git-time-since
+zstyle ':vcs_info:git*+set-message:*' hooks git-pretty-revision git-aheadbehind git-time-since
 
 # Uncomment for verbose debugg info
 # zstyle ':vcs_info:*+*:*' debug true
