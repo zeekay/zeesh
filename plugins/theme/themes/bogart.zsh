@@ -3,8 +3,8 @@ VIRTUAL_ENV_DISABLE_PROMPT=true
 if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_BRANCH_FMT='%b'
 
-    VCS_INFO_GIT_ACTION_FMT='%F{magenta}‹%b%c%u %0.10i %a %m%s›%f'
-    VCS_INFO_GIT_FMT='%F{magenta}‹%b%c%u %0.10i %m%s›%f'
+    VCS_INFO_GIT_ACTION_FMT='%F{magenta}‹%b%c%u%0.10i %a%m%s›%f'
+    VCS_INFO_GIT_FMT='%F{magenta}‹%b%c%u%0.10i%m%s›%f'
 
     VCS_INFO_HG_ACTION_FMT='%F{magenta}‹%b%c%u %i %a %m%s›%f'
     VCS_INFO_HG_FMT='%F{magenta}‹%b%c%u %i %m%s›%f'
@@ -17,7 +17,6 @@ if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_TIMESINCE_FMT='$s'
 
     source ~/.zsh/plugins/vcs-info/style.zsh
-    zstyle ':vcs_info:git*+set-message:*' hooks git-aheadbehind git-time-since
 fi
 
 _prompt() {
