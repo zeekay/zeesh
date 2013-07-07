@@ -9,6 +9,9 @@ compctl -K list-sysctls sysctl
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
 export PATH=~/.zsh/plugins/osx/lib:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
+export JAVA_HOME="$(/usr/libexec/java_home)"
+export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
+
 ## aliases
 alias l='/bin/ls'
 alias ls='ls -GF'
