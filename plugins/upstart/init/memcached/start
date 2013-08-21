@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+if [ -z "`ps uax | grep -v grep | grep memcached`" ]; then
+    echo starting memcached
+    /usr/local/opt/memcached/bin/memcached
+else
+    echo memcached already running
+fi
