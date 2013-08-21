@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+tail -n 20 -f /usr/local/var/log/redis.log
