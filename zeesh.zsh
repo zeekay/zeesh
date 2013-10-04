@@ -61,7 +61,7 @@ alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlay
 alias nc='rlwrap nc'
 alias curl='noglob curl'
 alias diff='git diff --color=never --no-index'
-alias ag="ag -a -S --color-match='30;31' --color-line-number='31;35' --color-path='31;34'"
+alias ag="ag -S --color-match='30;31' --color-line-number='31;35' --color-path='31;34'"
 
 # zeesh aliases
 alias help='zeesh help'
