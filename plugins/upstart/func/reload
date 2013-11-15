@@ -1,8 +1,7 @@
 reload() {
     if [ ! -f $_UPSTART_INIT_DIR/$1/reload ]; then
         echo 'unsupported app'
-        exit 1
+    else
+        source $_UPSTART_INIT_DIR/$1/reload
     fi
-
-    source $_UPSTART_INIT_DIR/$1/reload
 }
