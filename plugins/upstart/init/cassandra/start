@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+if [ -f /usr/local/opt/cassandra/bin/cassandra ]; then
+    /usr/local/opt/cassandra/bin/cassandra
+else
+    echo unable to find cassandra, try 'brew install cassandra'
+fi

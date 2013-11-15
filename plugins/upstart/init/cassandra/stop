@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+if [ -f /usr/local/opt/nginx/sbin/nginx ]; then
+    version=`/usr/local/opt/nginx/sbin/nginx -v 2>&1 | cut -d '/' -f 2`
+    launchctl unload -w /usr/local/Cellar/nginx/$version/homebrew.mxcl.nginx.plist
+else
+    echo unable to find nginx binary
+fi
