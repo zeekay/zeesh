@@ -1,27 +1,27 @@
 # zsh options
-setopt  extended_glob       \
-        auto_name_dirs      \
-        ignore_eof          \
-        always_to_end       \
-        auto_param_slash    \
-        no_single_line_zle  \
-        multios             \
-        cdablevarS          \
-        noflowcontrol       \
-        auto_cd             \
-        pushd_ignore_dups   \
-        pushd_silent        \
-        pushd_to_home       \
-        complete_in_word    \
-        correct             \
-        hist_ignore_dups    \
-        hist_ignore_alldups \
-        hist_ignore_space   \
-        hist_reduce_blanks  \
-        hist_no_store       \
-        extended_history    \
-        inc_append_history  \
-        hist_beep
+setopt extended_glob       \
+       auto_name_dirs      \
+       ignore_eof          \
+       always_to_end       \
+       auto_param_slash    \
+       no_single_line_zle  \
+       multios             \
+       cdablevarS          \
+       noflowcontrol       \
+       auto_cd             \
+       pushd_ignore_dups   \
+       pushd_silent        \
+       pushd_to_home       \
+       complete_in_word    \
+       correct             \
+       hist_ignore_dups    \
+       hist_ignore_alldups \
+       hist_ignore_space   \
+       hist_reduce_blanks  \
+       hist_no_store       \
+       extended_history    \
+       inc_append_history  \
+       hist_beep
 
 # history
 HISTFILE=~/.zsh/local/history
