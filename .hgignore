@@ -1,9 +1,0 @@
-syntax: glob
-local/
-cache/
-*.pyc
-*.zwc
-*.orig
-*.old
-.git/*
-plugins/*/lib
