@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+if [ -z "`ps uax | grep -v grep | grep redis-server`" ]; then
+    echo redis not running
+else
+    echo stopping redis
+    kill `pgrep redis-server`
+fi
