@@ -1,3 +1,7 @@
 #!/usr/bin/env zsh
 
-pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+if [ -z "`pgrep redis-server`" ]; then
+    pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+else
+    echo postgres already running
+fi
