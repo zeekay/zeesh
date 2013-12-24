@@ -96,9 +96,14 @@ bindkey '^Z' fancy-ctrl-z
 # default prompt
 PS1='%n@%m:${PWD/$HOME/~}%# '
 
+
 # load funcs
 fpath=( ~/.zsh/func $fpath )
 autoload -U ~/.zsh/func/*(:t)
+
+# can't live without
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
 
 # enable plugins
 zeesh-plugin-enable
