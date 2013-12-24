@@ -2,8 +2,8 @@
 
 hash vimpager 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
-fpath=( ~/.zsh/plugins/vi-mode/func $fpath )
-autoload -U ~/.zsh/plugins/vi-mode/func/*(:t)
+fpath=( $plugin_dir/func $fpath )
+autoload -U $plugin_dir/func/*(:t)
 
 ## exports
 export PATH=$PATH:$plugin_dir/lib
@@ -114,16 +114,14 @@ bindkey -M vicmd '^[' zle-esc-in-place
 # delete from cursor position to end of word and stay in normal mode
 zle-vicmd-dw() {
     zle kill-word
-    zle -K vicmd
 }
 zle -N zle-vicmd-dw
 bindkey -M vicmd 'dw' zle-vicmd-dw
 
 # delete current word and stay in normal mode
 zle-vicmd-diw() {
-    zle backward-word
+    zle vi-backward-word
     zle kill-word
-    zle -K vicmd
 }
 zle -N zle-vicmd-diw
 bindkey -M vicmd 'diw' zle-vicmd-diw
@@ -138,18 +136,9 @@ bindkey -M vicmd 'cw' zle-vicmd-cw
 
 # delete current word and change to insert mode
 zle-vicmd-ciw() {
-    zle backward-word
+    zle vi-backward-word
     zle kill-word
     zle -K viins
 }
 zle -N zle-vicmd-ciw
 bindkey -M vicmd 'ciw' zle-vicmd-ciw
-
-# zle-ctrl-c-remap() {
-#     # zle kill-buffer
-#     # zle -K viins
-#     zle reset-prompt
-#     zle send-break
-# }
-# zle -N zle-ctrl-c-remap
-# trap 'zle && [[ -z $curcontext ]] && zle kill-buffer && zle reset-prompt' INT
