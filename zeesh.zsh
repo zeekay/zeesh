@@ -29,7 +29,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # 100ms timeout for key sequences (defaults to 400ms)
-KEYTIMEOUT=10
+KEYTIMEOUT=50
 
 # exports
 export LANG=en_US.UTF-8
