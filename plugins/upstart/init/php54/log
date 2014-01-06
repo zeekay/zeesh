@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+tail -n 20 -f /usr/local/Cellar/php54/5.4.23/var/log/php-fpm.log
