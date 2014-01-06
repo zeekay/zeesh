@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+launchctl unload -w /usr/local/opt/php54/homebrew-php.josegonzalez.php54.plist
