@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+launchctl load -w /usr/local/opt/dnsmasq/*.plist
