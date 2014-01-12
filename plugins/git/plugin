@@ -2,14 +2,14 @@
 
 hash hub 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 
+fpath=( $plugin_dir/comp $fpath )
+autoload -U $plugin_dir/comp/*(:t)
+
 ## exports
 export PATH=$PATH:$plugin_dir/lib
 
 ## aliases
 alias git=hub
-if type compdef >/dev/null; then
-    compdef hub=git
-fi
 
 alias ga='git add'
 alias gau='git add --update'
