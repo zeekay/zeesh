@@ -10,6 +10,7 @@ export LSCOLORS=ExfxcxdxbxegedabagAcEx
 export PATH=~/.zsh/plugins/osx/lib:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:/usr/local/opt/ccache/libexec:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 export NODE_PATH=/usr/local/lib/node_modules
 export GIT=/usr/local/bin/git
+export HOMEBREW_NO_EMOJI=1
 
 ## aliases
 alias l='ls -GF'
