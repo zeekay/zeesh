@@ -2,6 +2,6 @@ echo -n "I can't find vimpager would you like me to install it for you? (y/N) "
 
 read ans
 if [[ "$ans" == "y" ]]; then
-    git clone https://github.com/rkitover/vimpager $plugin_dir/lib
+    git clone --depth 1 https://github.com/zeekay/vimpager $plugin_dir/lib
     echo "...installed vimpager, $plugin enabled"
 fi
