@@ -1,6 +1,6 @@
 echo -n "I can't find z.sh would you like me to install it for you? (y/N) " && read ans
 
 if [[ "$ans" == "y" ]]; then
-    git clone git://github.com/rupa/z $plugin_dir/lib
+    git clone --depth 1 git://github.com/rupa/z $plugin_dir/lib
     echo "...installed $plugin"
 fi

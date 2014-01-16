@@ -3,6 +3,6 @@ repo="git://github.com/zsh-users/zsh-history-substring-search.git"
 echo -n "I can't find zsh-$plugin would you like me to install it for you? (y/N) "
 read ans
 if [[ "$ans" == "y" ]]; then
-    git clone $repo $plugin_dir/lib
+    git clone --depth 1 $repo $plugin_dir/lib
     echo "...installed $plugin"
 fi
