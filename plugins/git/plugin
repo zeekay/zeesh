@@ -5,6 +5,8 @@ hash hub 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
 fpath=( $plugin_dir/comp $fpath )
 autoload -U $plugin_dir/comp/*(:t)
 
+zstyle ':vcs_info:git:*:-all-' command `which git`
+
 ## exports
 export PATH=$PATH:$plugin_dir/lib
 
