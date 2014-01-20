@@ -1,6 +1,8 @@
-# freebsd zshfu plugin
+# freebsd / zeesh! plugin
 
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
+export PATH=~/.bin:~/.bin/ellipsis:/usr/local/bin:/usr/local/sbin:/usr/bin/:/usr/sbin:/bin:/sbin
+
 alias ls='ls -AGF'
 compctl -K list_sysctls sysctl
 compctl -c man
