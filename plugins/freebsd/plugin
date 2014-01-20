@@ -1,9 +1,16 @@
-# freebsd / zeesh! plugin
+### freebsd / zeesh! plugin
 
+fpath=( ~/.zsh/plugins/osx/func $fpath )
+autoload -U ~/.zsh/plugins/osx/func/*(:t)
+
+## exports
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
-export PATH=~/.bin:~/.bin/ellipsis:/usr/local/bin:/usr/local/sbin:/usr/bin/:/usr/sbin:/bin:/sbin
+export PATH=~/.bin:~/.ellipsis/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
+## alias
 alias ls='ls -AGF'
+
+## comp
 compctl -K list_sysctls sysctl
 compctl -c man
 compctl -c info
