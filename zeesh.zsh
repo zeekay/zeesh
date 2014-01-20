@@ -34,7 +34,6 @@ KEYTIMEOUT=50
 # exports
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export PATH=~/.bin:~/.ellipsis/bin:$PATH
 export RSYNC_RSH=ssh
 
 # aliases
