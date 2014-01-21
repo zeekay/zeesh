@@ -59,10 +59,9 @@ alias gld="gl --diff"
 alias glds="gl --stat"
 alias gm='git merge --no-ff'
 alias gmf='git merge --ff-only'
-alias gmprq='git merge-pull-request'
 alias gmt='git mergetool -y'
 alias gpl='git pull'
-alias gprq='git pull-request-auto'
+alias gprq='hub pull-request'
 alias gps='git push'
 alias gr='git reset'
 alias grb='git rebase'
@@ -78,8 +77,6 @@ export PATH=$PATH:$plugin_dir/commands
 # completion for custom commands
 zstyle ':completion:*:*:hub:*' user-commands \
     pull-request:'open a pull request on GitHub' \
-    pull-request-auto:'open a pull request on GitHub, determine upstream automatically' \
-    merge-pull-request:'merge pull request on GitHub' \
     fork:'fork remote repository on GitHub and add as remote' \
     create:'create this repository on GitHub and add GitHub as origin' \
     browse:'open a GitHub page in the default browser' \
