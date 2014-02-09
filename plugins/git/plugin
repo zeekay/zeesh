@@ -1,19 +1,15 @@
 ### git / zeesh! plugin
 
-if hash ruby 2>/dev/null; then
-    hash hub 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
-fi
-
 fpath=( $plugin_dir/comp $fpath )
 autoload -U $plugin_dir/comp/*(:t)
 
-zstyle ':vcs_info:git:*:-all-' command `which git`
-
-## exports
-export PATH=$PATH:$plugin_dir/lib
-
-## aliases
-alias git=hub
+# use hub if we have ruby
+if hash ruby 2>/dev/null; then
+    hash hub 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+    export PATH=$PATH:$plugin_dir/lib
+    alias git=hub
+    zstyle ':vcs_info:git:*:-all-' command `which git`
+fi
 
 alias ga='git add'
 alias gau='git add --update'
