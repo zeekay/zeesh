@@ -1,6 +1,8 @@
 ### git / zeesh! plugin
 
-hash ruby 2>/dev/null && hash hub 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+if hash ruby 2>/dev/null; then
+    hash hub 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
+fi
 
 fpath=( $plugin_dir/comp $fpath )
 autoload -U $plugin_dir/comp/*(:t)
