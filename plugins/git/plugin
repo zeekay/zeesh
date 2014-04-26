@@ -9,7 +9,7 @@ zstyle ':vcs_info:git:*:-all-' command `which git`
 # Use hub if we have ruby and it's available.
 if ! hash hub 2>/dev/null && hash ruby 2>/dev/null; then
     [ -d "$plugin_dir/hub" ] || source "$plugin_dir/install"
-    export PATH=$PATH:$plugin_dir/hub/bin
+    export PATH=$PATH:$plugin_dir/lib/bin
     alias git=hub
 fi
 
