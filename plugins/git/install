@@ -2,8 +2,6 @@ echo -n "I can't find hub would you like me to install it for you? (y/N) "
 
 read ans
 if [[ "$ans" == "y" ]]; then
-    mkdir -p $plugin_dir/lib
-    curl -sL https://raw.githubusercontent.com/zeekay/hub/master/bin/hub -o $plugin_dir/lib/hub
-    chmod +x $plugin_dir/lib/hub
+    git clone https://github.com/zeekay/hub $plugin_dir/lib
     echo "...installed hub, $plugin enabled."
 fi
