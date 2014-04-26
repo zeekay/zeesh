@@ -1,5 +1,6 @@
 local/
 plugins/*/lib
+plugins/git/hub
 cache/
 *.zwc
 *.zwc.old
