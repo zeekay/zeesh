@@ -5,8 +5,8 @@ if [ -f "/usr/local/Library/Contributions/brew_zsh_completion.zsh" ] && [ ! -f "
     ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh $plugin_dir/comp/_brew
 fi
 
-# add zeesh comps to $fpath
-fpath=( $plugin_dir/comp $fpath )
+# add ellipsis, zeesh comps to $fpath
+fpath=( $HOME/.ellipsis/comp $plugin_dir/comp $fpath )
 
 autoload -U compinit
 compinit -u -d ~/.zsh/cache/zcompdump
