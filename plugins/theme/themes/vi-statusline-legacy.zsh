@@ -1,27 +1,32 @@
+# Legacy version of vi-statusline with proper
+# vcs info formatting on zsh <5.0.
+
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
 if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_BRANCH_FMT='%b'
-
-    VCS_INFO_GIT_ACTION_FMT='%F{magenta}‹%b%c%u%0.10i %a%m%s›%f'
-    VCS_INFO_GIT_FMT='%F{magenta}‹%b%c%u%0.10i%m%s›%f'
-
-    VCS_INFO_HG_ACTION_FMT='%F{magenta}‹%b%c%u %i %a %m%s›%f'
-    VCS_INFO_HG_FMT='%F{magenta}‹%b%c%u %i %m%s›%f'
-
-    VCS_INFO_HG_BOOKMARK_FMT=''
-    VCS_INFO_HG_REV_FMT='%r'
-
     VCS_INFO_STAGED_FMT='+'
     VCS_INFO_UNSTAGED_FMT='!'
     VCS_INFO_TIMESINCE_FMT='$s'
 
-    source $plugin_dir/../vcs-info/style.zsh
+    VCS_INFO_GIT_ACTION_FMT='%F{magenta}‹%s %b%m %0.10i%c%u %a›%f'
+    VCS_INFO_GIT_FMT='%F{magenta}‹%s %b%m %0.10i%c%u›%f'
+
+    VCS_INFO_HG_ACTION_FMT='%F{magenta}‹%s %b%m %i%c%u %a›%f'
+    VCS_INFO_HG_FMT='%F{magenta}‹%s %b%m %i%c%u›%f'
+
+    VCS_INFO_HG_BOOKMARK_FMT=''
+    VCS_INFO_HG_REV_FMT='%r'
+
+    source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
-export ZEESH_THEME_NORMAL_CHAR='\n⊙'
-export ZEESH_THEME_VISUAL_CHAR='\n⊡'
-export ZEESH_THEME_INSERT_CHAR='\n›'
+export ZEESH_THEME_NORMAL_CHAR=
+export ZEESH_THEME_VISUAL_CHAR=
+export ZEESH_THEME_INSERT_CHAR=
+# export ZEESH_THEME_NORMAL_CHAR_R=‹normal›
+# export ZEESH_THEME_VISUAL_CHAR_R=‹visual›
+# export ZEESH_THEME_INSERT_CHAR_R=‹insert›
 export ZEESH_THEME_PROMPT_CHAR=›
 
 _prompt() {
