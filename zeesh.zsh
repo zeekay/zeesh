@@ -38,12 +38,6 @@ export RSYNC_RSH=ssh
 
 # aliases
 alias l=ls
-alias d='dirs -lv'
-alias cd/='cd /'
-alias .='cd ~-'
-alias r='pushd +1'
-alias pd='pushd'
-alias po='popd'
 alias md=take
 alias cp='nocorrect cp'
 alias mv='nocorrect mv'
@@ -51,7 +45,6 @@ alias rm='nocorrect rm'
 alias rmf='rm -rf'
 alias grep='grep -i --color=auto'
 alias g=grep
-alias frp=find-replace-recursive
 alias zip='zip -r -9'
 alias scp='scp -C'
 alias rscp='rsync --partial --progress --rsh=ssh'
