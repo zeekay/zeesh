@@ -10,10 +10,10 @@ vbox-snapshots() {
     local vboxmanage=$prefs[vboxmanage]
 
     _names() {
-        $vboxmanage showvminfo --machinereadable $vm | /usr/bin/grep -o 'SnapshotName.*' | cut -d '=' -f2 | tr -d '"'
+        $vboxmanage showvminfo --machinereadable $vm | grep -o 'SnapshotName.*' | cut -d '=' -f2 | tr -d '"'
     }
     _uuids() {
-        $vboxmanage showvminfo --machinereadable $vm | /usr/bin/grep -o 'SnapshotUUID.*' | cut -d '=' -f2 | tr -d '"'
+        $vboxmanage showvminfo --machinereadable $vm | grep -o 'SnapshotUUID.*' | cut -d '=' -f2 | tr -d '"'
     }
     _current() {
         $vboxmanage showvminfo $vm | /usr/bin/grep '*' | tr -s ' ' | cut -d ' ' -f 3- | tr -d '*'

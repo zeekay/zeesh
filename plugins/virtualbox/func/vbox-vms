@@ -6,7 +6,7 @@ vbox-vms() {
     zeesh-prefs virtualbox get
     local vboxmanage=$prefs[vboxmanage]
 
-    vms=$($vboxmanage list vms | /usr/bin/grep -o '^".*"' | cut -d '"' -f2)
+    vms=$($vboxmanage list vms | grep -o '^".*"' | cut -d '"' -f2)
     if [ -n "$vm" ]; then
         if [ -n "$vms[(fr)$vm]" ]; then
             return 0
