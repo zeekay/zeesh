@@ -3,23 +3,16 @@
 fpath=( $plugin_dir/comp $fpath )
 autoload -U $plugin_dir/comp/*(:t)
 
-# Ensure vcs info uses git, not hub
-zstyle ':vcs_info:git:*:-all-' command `which git`
+export PATH=$PATH:$plugin_dir/commands:$plugin_dir/lib/bin
 
 # Use hub if we have ruby and it's available.
 if ! hash hub 2>/dev/null && hash ruby 2>/dev/null; then
     [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
-    export PATH=$PATH:$plugin_dir/lib/bin
-    alias git=hub
 fi
 
-alias ga='git add'
-alias gau='git add --update'
-alias gb='git branch -v -v'
-alias gba='git branch -v -v -a'
-alias gbd='git branch -D'
-alias gbt=git-branch-by-time
-alias gc='noglob git-quick-commit'
+if hash hub 2>/dev/null; then
+    alias git=hub
+fi
 
 function gca() {
     # check for unmerged files
@@ -40,6 +33,13 @@ function gcA() {
     fi
 }
 
+alias ga='git add'
+alias gau='git add --update'
+alias gb='git branch -v -v'
+alias gba='git branch -v -v -a'
+alias gbd='git branch -D'
+alias gbt=git-branch-by-time
+alias gc='noglob git-quick-commit'
 alias gcl='git clone'
 alias gco-ours="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --ours"
 alias gco-theirs="git ls-files --unmerged | cut -f2 | uniq | xargs git checkout --theirs"
@@ -71,9 +71,6 @@ alias gs='git status -s'
 alias gum=git-unmerged
 alias gv='noglob git vim'
 
-# add custom commands to path so git picks them up
-export PATH=$PATH:$plugin_dir/commands
-
 # completion for custom commands
 zstyle ':completion:*:*:hub:*' user-commands \
     pull-request:'open a pull request on GitHub' \
@@ -89,3 +86,6 @@ zstyle ':completion:*:*:hub:*' user-commands \
     quick-commit:'quickly commit' \
     resolve:'resolve merge conflicts using a specific version of the conflicted files' \
     unmerged:'list unmerged files'
+
+# Ensure vcs info uses git, not hub
+zstyle ':vcs_info:git:*:-all-' command `which git`

@@ -1,23 +1,19 @@
 # zeesh zsh autocomplete plugin
 
+HOMEBREW_ZSH_COMPLETION=${HOMEBREW_ZSH_COMPLETION:-/usr/local/Library/Contributions/brew_zsh_completion.zsh}
+
 # symlink _brew if on osx
-if [ -f "/usr/local/Library/Contributions/brew_zsh_completion.zsh" ] && [ ! -f "$plugin_dir/comp/_brew" ]; then
-    ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh $plugin_dir/comp/_brew
+if [ ! -f "$plugin_dir/comp/_brew" ] && [ -f $HOMEBREW_ZSH_COMPLETION ]; then
+    ln -s $HOMEBREW_ZSH_COMPLETION $plugin_dir/comp/_brew
 fi
 
 # add ellipsis, zeesh comps to $fpath
-fpath=( $HOME/.ellipsis/comp $plugin_dir/comp $fpath )
+fpath=( $plugin_dir/comp $HOME/.ellipsis/comp $fpath )
 
 autoload -U compinit
 compinit -u -d ~/.zsh/cache/zcompdump
 
-_force_rehash()
-{
-    (( CURRENT == 1 )) && rehash
-    return 1
-}
-
-zstyle ':completion:*' completer _force_rehash _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completer _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
@@ -33,4 +29,26 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 compctl -K zeesh-plugin-list zeesh-plugin
 
 # hide shit
-zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.pyc'
+zstyle ':completion:*:(all-|)files' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.pyc' '_*'
+
+# zsh plugin
+# COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+# COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+# export COMP_WORDBREAKS
+
+# _npm_completion () {
+#     local cword line point words si
+#     read -Ac words
+#     read -cn cword
+#     let cword-=1
+#     read -l line
+#     read -ln point
+#     si="$IFS"
+#     IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+#                        COMP_LINE="$line" \
+#                        COMP_POINT="$point" \
+#                        npm completion -- "${words[@]}" \
+#                        2>/dev/null)) || return $?
+#     IFS="$si"
+# }
+# compctl -K _npm_completion npm

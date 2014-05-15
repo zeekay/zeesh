@@ -1,7 +1,9 @@
 ### theme / zeesh! plugin
 
-autoload colors; colors;
+autoload colors; colors
 setopt prompt_subst transientrprompt
+
+export PATH=$PATH:$plugin_dir/bin
 
 theme() {
     if [ $1 ]; then
