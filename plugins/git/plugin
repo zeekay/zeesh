@@ -3,6 +3,9 @@
 fpath=( $plugin_dir/comp $fpath )
 autoload -U $plugin_dir/comp/*(:t)
 
+# Ensure vcs info uses git, not hub
+zstyle ':vcs_info:git:*:-all-' command `which git`
+
 export PATH=$PATH:$plugin_dir/commands:$plugin_dir/lib/bin
 
 # Use hub if we have ruby and it's available.
@@ -86,6 +89,3 @@ zstyle ':completion:*:*:hub:*' user-commands \
     quick-commit:'quickly commit' \
     resolve:'resolve merge conflicts using a specific version of the conflicted files' \
     unmerged:'list unmerged files'
-
-# Ensure vcs info uses git, not hub
-zstyle ':vcs_info:git:*:-all-' command `which git`
