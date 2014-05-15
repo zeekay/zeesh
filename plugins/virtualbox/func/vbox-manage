@@ -37,7 +37,7 @@ vbox-manage(){
                 vms=( ${(f)"$( vbox-vms )"} )
 
                 for i in {1..${#vms}}; do
-                    echo "$( _bold $vms[$i] ): $( $vboxmanage showvminfo $vms[$i] | /usr/bin/grep 'State:' | tr -s ' ' | cut -d ' ' -f 2 ) / $(vbox-snapshots $vms[$i] current )"
+                    echo "$( _bold $vms[$i] ): $( $vboxmanage showvminfo $vms[$i] | grep 'State:' | tr -s ' ' | cut -d ' ' -f 2 ) / $(vbox-snapshots $vms[$i] current )"
                 done
                 unset vms
             ;;
@@ -101,7 +101,7 @@ vbox-manage(){
             $vboxmanage showvminfo $vm --details
         ;;
         state)
-            echo "$( _bold state ): $( $vboxmanage showvminfo $vm | /usr/bin/grep 'State:' | tr -s ' ' | cut -d ' ' -f 2- )"
+            echo "$( _bold state ): $( $vboxmanage showvminfo $vm | grep 'State:' | tr -s ' ' | cut -d ' ' -f 2- )"
             echo "$( _bold snapshot ): $(vbox-snapshots $vm current )"
         ;;
         modify)
