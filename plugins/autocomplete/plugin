@@ -10,12 +10,14 @@ fi
 # add ellipsis, zeesh comps to $fpath
 fpath=( $plugin_dir/comp $HOME/.ellipsis/comp $fpath )
 
-autoload -U compinit
-compinit -u -d ~/.zsh/cache/zcompdump
+autoload -Uz compinit && compinit -i -u -d ~/.zsh/cache/zcompdump
+
+# speed up completion
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' use-cache on
 
 zstyle ':completion:*' completer _complete _ignored _match _correct _approximate _prefix
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
 
 zstyle ':completion:*:*:open:*' matcher 'm:{a-z}={A-Z} r: ||[^ ]=**'
 
@@ -29,26 +31,27 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 compctl -K zeesh-plugin-list zeesh-plugin
 
 # hide shit
-zstyle ':completion:*:(all-|)files' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.pyc' '_*'
+zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.pyc'
 
-# zsh plugin
-# COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
-# COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
-# export COMP_WORDBREAKS
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
 
-# _npm_completion () {
-#     local cword line point words si
-#     read -Ac words
-#     read -cn cword
-#     let cword-=1
-#     read -l line
-#     read -ln point
-#     si="$IFS"
-#     IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-#                        COMP_LINE="$line" \
-#                        COMP_POINT="$point" \
-#                        npm completion -- "${words[@]}" \
-#                        2>/dev/null)) || return $?
-#     IFS="$si"
-# }
-# compctl -K _npm_completion npm
+_npm_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       npm completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+}
+compctl -K _npm_completion npm
+
+# vim: ft=zsh
