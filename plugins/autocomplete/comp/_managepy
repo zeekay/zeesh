@@ -1,0 +1,27 @@
+#compdef managepy
+
+typeset -A opt_args
+
+_arguments -C \
+    '1:cmds:->cmds' \
+    '2:subcmds:->subcmds' \
+    '*:: :->args' \
+&& ret=0
+
+case $state in
+    cmds)
+        local commands
+        commands=(${(f)"$(python manage.py complete)"})
+        _describe -t commands 'command' commands && ret=0
+    ;;
+    subcmds)
+        local subcommands
+        subcommands=(${(f)"$(python manage.py complete $words[2])"})
+        _describe -t subcommands 'subcommand' subcommands && ret=0
+    ;;
+    args)
+        _files
+    ;;
+esac
+
+return 1
