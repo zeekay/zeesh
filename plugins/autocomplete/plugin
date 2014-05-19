@@ -10,6 +10,12 @@ fi
 # add ellipsis, zeesh comps to $fpath
 fpath=( $plugin_dir/comp $HOME/.ellipsis/comp $fpath )
 
+# python argcomplete
+if hash register-python-argcomplete 2>/dev/null; then
+    autoload bashcompinit; bashcompinit
+fi
+
+# enable autocompletions and cache in ~/.zsh/cache
 autoload -Uz compinit && compinit -i -u -d ~/.zsh/cache/zcompdump
 
 # speed up completion
@@ -53,5 +59,8 @@ _npm_completion () {
     IFS="$si"
 }
 compctl -K _npm_completion npm
+
+# Add my manage.py completion hack.
+compdef _managepy manage.py
 
 # vim: ft=zsh
