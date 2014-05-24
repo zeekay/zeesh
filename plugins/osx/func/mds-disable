@@ -1,3 +1,5 @@
 mds-disable() {
     sudo mdutil -a -i off
 }
+
+# vim: ft=zsh

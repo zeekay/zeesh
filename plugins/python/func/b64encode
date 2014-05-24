@@ -1,1 +1,5 @@
-b64_encode(){ python -c "import base64, sys; print base64.encodestring(''.join(sys.argv[1:]))" $@ }
+b64_encode() {
+    python -c "import base64, sys; print base64.encodestring(''.join(sys.argv[1:]))" $@
+}
+
+# vim: ft=zsh

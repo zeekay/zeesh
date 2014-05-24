@@ -11,3 +11,5 @@ cdsp() {
         cd $spdir
     fi
 }
+
+# vim: ft=zsh

@@ -6,3 +6,5 @@ screen-kill() {
         screen -X -S $screen kill
     done
 }
+
+# vim: ft=zsh

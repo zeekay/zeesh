@@ -24,3 +24,4 @@ color-switch() {
     fi
 }
 
+# vim: ft=zsh

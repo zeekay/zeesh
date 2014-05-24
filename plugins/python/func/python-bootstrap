@@ -1,5 +1,5 @@
 # setup basic python environment
-python-bootstrap () {
+python-bootstrap() {
     version=$(python -c 'import sys; print sys.version' | grep --color=never -o '^[0-9].[0-9]')
     case $version in
         2.6)
@@ -55,3 +55,5 @@ python-bootstrap () {
         ;;
     esac
 }
+
+# vim: ft=zsh

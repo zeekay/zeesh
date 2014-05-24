@@ -6,3 +6,5 @@ gvim-wrapper() {
         gvim $@ > /dev/null 2>&1
     fi
 }
+
+# vim: ft=zsh

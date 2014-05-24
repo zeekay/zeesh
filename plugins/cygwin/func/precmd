@@ -1,4 +1,6 @@
 # precmd is called just before the prompt is printed
-function precmd() {
+precmd() {
     print -Pn "\e]0;%n@%m:%~\a"
 }
+
+# vim: ft=zsh

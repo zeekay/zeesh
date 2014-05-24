@@ -9,3 +9,5 @@ do script with command "cd \"$PWD\"; $*" in window 1
 end tell
 EOF
 }
+
+# vim: ft=zsh

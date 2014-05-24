@@ -26,3 +26,5 @@ share() {
         echo "Please configure ~/.zsh/plugins/share/local.conf first! Please refer to local.conf.example."
     fi
 }
+
+# vim: ft=zsh

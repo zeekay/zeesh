@@ -6,3 +6,5 @@ start() {
 
     source $_UPSTART_INIT_DIR/$1/start
 }
+
+# vim: ft=zsh

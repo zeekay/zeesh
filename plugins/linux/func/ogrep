@@ -7,3 +7,5 @@ ogrep() {
         done
     fi
 }
+
+# vim: ft=zsh

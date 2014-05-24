@@ -6,3 +6,5 @@ show-all-files() {
     fi
     killall Finder
 }
+
+# vim: ft=zsh

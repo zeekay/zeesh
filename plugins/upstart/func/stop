@@ -11,3 +11,5 @@ stop() {
 
     source $_UPSTART_INIT_DIR/$1/stop
 }
+
+# vim: ft=zsh

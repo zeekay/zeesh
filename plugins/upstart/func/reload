@@ -5,3 +5,5 @@ reload() {
         source $_UPSTART_INIT_DIR/$1/reload
     fi
 }
+
+# vim: ft=zsh

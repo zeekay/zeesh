@@ -7,3 +7,5 @@ restart() {
     stop $1
     start $1
 }
+
+# vim: ft=zsh

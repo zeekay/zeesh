@@ -44,3 +44,5 @@ pianobar-wrapper() {
         fi
     fi
 }
+
+# vim: ft=zsh

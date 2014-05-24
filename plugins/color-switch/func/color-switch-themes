@@ -1,3 +1,5 @@
 color-switch-themes() {
     set -A reply $(ls ~/.zsh/plugins/color-switch/themes | cut -d . -f1 ${*} 2>/dev/null)
 }
+
+# vim: ft=zsh

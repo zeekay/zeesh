@@ -17,3 +17,5 @@ vbox-running() {
         echo $running
     fi
 }
+
+# vim: ft=zsh

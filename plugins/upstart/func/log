@@ -6,3 +6,5 @@ log() {
 
     source $_UPSTART_INIT_DIR/$1/log
 }
+
+# vim: ft=zsh

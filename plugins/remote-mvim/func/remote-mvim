@@ -31,3 +31,5 @@ remote-mvim() {
         fi
     fi
 }
+
+# vim: ft=zsh

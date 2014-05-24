@@ -19,3 +19,5 @@ cdv() {
         echo "No virtualenv activated"
     fi
 }
+
+# vim: ft=zsh
