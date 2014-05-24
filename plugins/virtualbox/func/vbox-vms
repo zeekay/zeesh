@@ -17,3 +17,5 @@ vbox-vms() {
         echo $vms
     fi
 }
+
+# vim: ft=zsh

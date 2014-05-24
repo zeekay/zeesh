@@ -15,3 +15,5 @@ hide-in-dock() {
         echo "Please specify a valid application"
     fi
 }
+
+# vim: ft=zsh

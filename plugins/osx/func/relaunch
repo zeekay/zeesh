@@ -6,3 +6,4 @@ relaunch () {
     done
 }
 
+# vim: ft=zsh

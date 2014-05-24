@@ -6,3 +6,5 @@ screen-clean() {
         screen -X -S $screen kill
     done
 }
+
+# vim: ft=zsh

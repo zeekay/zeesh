@@ -15,3 +15,5 @@ cyg-pkill() {
         unset pids
     fi
 }
+
+# vim: ft=zsh

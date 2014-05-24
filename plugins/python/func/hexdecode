@@ -1,3 +1,5 @@
-hexdecode(){
+hexdecode() {
     python -c "import sys; print ''.join(chr(int(''.join(i), 16)) for i in zip(*[iter(''.join(sys.argv[1:]))]*2))" $@
 }
+
+# vim: ft=zsh

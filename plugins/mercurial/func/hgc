@@ -9,3 +9,5 @@ hgc() {
         hg ci -m "$message"
     fi
 }
+
+# vim: ft=zsh

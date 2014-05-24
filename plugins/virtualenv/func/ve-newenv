@@ -11,3 +11,5 @@ ve-newenv() {
         echo "What would you have me call your virtualenv then?"
     fi
 }
+
+# vim: ft=zsh

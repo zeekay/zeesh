@@ -1,1 +1,5 @@
-list-sysctls () { set -A reply $(sysctl -AN ${1%.*} 2>/dev/null) }
+list-sysctls () {
+    set -A reply $(sysctl -AN ${1%.*} 2>/dev/null)
+}
+
+# vim: ft=zsh

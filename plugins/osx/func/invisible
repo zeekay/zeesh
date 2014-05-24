@@ -5,3 +5,5 @@ invisible() {
         setFile -a V $1
     fi
 }
+
+# vim: ft=zsh

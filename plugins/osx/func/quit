@@ -1,6 +1,8 @@
 # Quit an OS X application from the command line
-quit () {
+quit() {
     for app in $*; do
         osascript -e 'quit app "'$app'"'
     done
 }
+
+# vim: ft=zsh

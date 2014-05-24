@@ -1,3 +1,5 @@
 ve-list() {
     set -A reply $(/bin/ls $VIRTUALENVS_DIR ${*} 2>/dev/null)
 }
+
+# vim: ft=zsh

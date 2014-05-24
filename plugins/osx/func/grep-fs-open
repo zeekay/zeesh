@@ -3,3 +3,5 @@ grep-fs-open(){
         sudo fs_usage -w -f filesys $1 | egrep "open"
     fi
 }
+
+# vim: ft=zsh

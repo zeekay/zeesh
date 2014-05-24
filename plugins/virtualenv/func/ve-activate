@@ -22,3 +22,5 @@ ve-activate() {
         fi
     fi
 }
+
+# vim: ft=zsh

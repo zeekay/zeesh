@@ -45,3 +45,5 @@ vbox-snapshots() {
         ;;
     esac
 }
+
+# vim: ft=zsh

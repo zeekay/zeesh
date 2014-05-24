@@ -1,5 +1,5 @@
 # change directory to directory shown in top-most Finder window
-cdf () {
+cdf() {
    currFolderPath=$( /usr/bin/osascript <<"         EOT"
        tell application "Finder"
            try
@@ -14,3 +14,5 @@ cdf () {
    echo "cd to \"$currFolderPath\""
    cd "$currFolderPath"
 }
+
+# vim: ft=zsh

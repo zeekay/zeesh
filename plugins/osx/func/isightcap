@@ -1,5 +1,7 @@
-func isightcap() {
+isightcap() {
     date=$(date +%y%m%d_%H_%M_%S).jpg;
     isightcapture -w 640 -h 480 -n 3 -d -t jpg ~/.isightcapture/$date > /dev/null
     unset date
 }
+
+# vim: ft=zsh
