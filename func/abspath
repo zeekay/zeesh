@@ -1,5 +1,5 @@
-abspath() { 
-    case "${1}" in 
+abspath() {
+    case "${1}" in
         [./]*)
             local ABSPATH="$(cd ${1%/*}; pwd)/${1##*/}"
             echo "${ABSPATH/\/\///}"
@@ -9,3 +9,5 @@ abspath() {
         ;;
     esac
 }
+
+# vim: ft=zsh

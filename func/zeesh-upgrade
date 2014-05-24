@@ -1,5 +1,5 @@
 # upgrades zeesh to latest version on repo
-function zeesh-upgrade() {
+zeesh-upgrade() {
     echo "Checking for upgrade..."
 
     local zeesh_current=$(hg id -r tip ~/.zsh | cut -d ' ' -f1)
@@ -20,3 +20,5 @@ function zeesh-upgrade() {
         hg log -r tip
     fi
 }
+
+# vim: ft=zsh

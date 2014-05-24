@@ -1,5 +1,5 @@
 # switch to src dir
-function cdsrc() {
+cdsrc() {
     if [ $VIRTUAL_ENV ]; then
         srcdir=$VIRTUAL_ENV/src
     else
@@ -11,3 +11,5 @@ function cdsrc() {
         cd $srcdir/$1
     fi
 }
+
+# vim: ft=zsh

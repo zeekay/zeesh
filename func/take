@@ -1,3 +1,5 @@
-function take() {
+take() {
     mkdir -p "$@" && cd "$@"
 }
+
+# vim: ft=zsh

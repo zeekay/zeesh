@@ -1,6 +1,7 @@
 # You cannot kill zombies, as they are already dead. But if you have too many
 # zombies then kill parent process or restart service.
-
-function kill-zombies() {
+kill-zombies() {
     kill -HUP `ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]' | awk '{print $2}'`
 }
+
+# vim: ft=zsh

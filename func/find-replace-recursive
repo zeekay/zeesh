@@ -4,3 +4,5 @@ find-replace-recursive() {
     b="g' {} \;"
     echo $a/$1/$2/$b | sh
 }
+
+# vim: ft=zsh

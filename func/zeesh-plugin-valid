@@ -5,3 +5,5 @@ zeesh-plugin-valid() {
         echo 'false'
     fi
 }
+
+# vim: ft=zsh

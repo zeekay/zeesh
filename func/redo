@@ -1,3 +1,5 @@
 redo() {
     sudo $(fc -l -n -1)
 }
+
+# vim: ft=zsh

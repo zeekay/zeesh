@@ -1,5 +1,5 @@
 # various functions for zeesh
-function zeesh() {
+zeesh() {
     if [ $1 ]; then
         case $1 in
             all|a)
@@ -118,3 +118,5 @@ function zeesh() {
         echo ""
     fi
 }
+
+# vim: ft=zsh

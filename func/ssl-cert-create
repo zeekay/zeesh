@@ -3,3 +3,5 @@ ssl-cert-create() {
     openssl req -new -key ssl.key -out ssl.csr
     openssl x509 -req -days 9999 -in ssl.csr -signkey ssl.key -out ssl.crt
 }
+
+# vim: ft=zsh

@@ -1,4 +1,4 @@
-zeesh-plugin-desc(){
+zeesh-plugin-desc() {
     if [[ -f ~/.zsh/plugins/$1/plugin.zsh ]]; then
         cat ~/.zsh/plugins/$1/plugin.zsh | awk 'BEGIN {x=0} {
             if ($0~"##desc"){x=1}
@@ -7,3 +7,5 @@ zeesh-plugin-desc(){
         }' | egrep -v 'desc|csed'
     fi
 }
+
+# vim: ft=zsh
