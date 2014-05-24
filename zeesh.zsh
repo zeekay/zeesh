@@ -99,5 +99,3 @@ zle -N self-insert url-quote-magic
 
 # enable plugins
 zeesh-plugin-enable
-
-# vim: ft=zsh
