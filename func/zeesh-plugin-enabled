@@ -1,0 +1,8 @@
+zeesh-plugin-enabled() {
+    if [ ${zeesh_plugins[(r)$1]} ]; then
+        return 0
+    fi
+    return 1
+}
+
+# vim: ft=zsh

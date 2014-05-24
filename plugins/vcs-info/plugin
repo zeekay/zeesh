@@ -3,21 +3,19 @@
 # this plugin enables vcs_info for zsh
 autoload -Uz add-zsh-hook vcs_info
 
-export VCS_INFO_BRANCH_FMT='%b'
+export VCS_INFO_BRANCH_FMT=${VCS_INFO_BRANCH_FMT:-'%b'}
 
-export VCS_INFO_GIT_ACTION_FMT='%s:%b%m@%0.10i%c%u:%a'
-export VCS_INFO_GIT_FMT='%s:%b%m@%0.10i%c%u'
+export VCS_INFO_GIT_ACTION_FMT=${VCS_INFO_GIT_ACTION_FMT:-'%s:%b%m@%0.10i%c%u:%a'}
+export VCS_INFO_GIT_FMT=${VCS_INFO_GIT_FMT:-'%s:%b%m@%0.10i%c%u'}
 
-export VCS_INFO_HG_ACTION_FMT='%s:%b%m@%i%c%u:%a'
-export VCS_INFO_HG_FMT='%s:%b%m@%i%c%u'
-export VCS_INFO_HG_BOOKMARK_FMT=''
-export VCS_INFO_HG_REV_FMT='%r'
+export VCS_INFO_HG_ACTION_FMT=${VCS_INFO_HG_ACTION_FMT:-'%s:%b%m@%i%c%u:%a'}
+export VCS_INFO_HG_FMT=${VCS_INFO_HG_FMT:-'%s:%b%m@%i%c%u'}
+export VCS_INFO_HG_BOOKMARK_FMT=${VCS_INFO_HG_BOOKMARK_FMT:-}
+export VCS_INFO_HG_REV_FMT=${VCS_INFO_HG_REV_FMT:-'%r'}
 
-export VCS_INFO_STAGED_FMT='+'
-export VCS_INFO_UNSTAGED_FMT='!'
-export VCS_INFO_TIMESINCE_FMT='$s'
-
-source $plugin_dir/style.zsh
+export VCS_INFO_STAGED_FMT=${VCS_INFO_STAGED_FMT:-'+'}
+export VCS_INFO_UNSTAGED_FMT=${VCS_INFO_UNSTAGED_FMT:-'!'}
+export VCS_INFO_TIMESINCE_FMT=${VCS_INFO_TIMESINCE_FMT:-'$s'}
 
 # Call vcs_info as precmd before every prompt.
 _vcspromptprecmd() {
@@ -31,5 +29,10 @@ _vcspromptchpwd() {
 }
 add-zsh-hook chpwd _vcspromptchpwd
 
-# Default to displaying on the right
-RPROMPT='${vcs_info_msg_0_}'
+# Display info on right if no theme enabled.
+if ! zeesh-plugin-enabled theme; then
+    source ~/.zsh/plugins/vcs-info/style.zsh
+    export RPROMPT='${vcs_info_msg_0_}'
+fi
+
+# vim: ft=zsh

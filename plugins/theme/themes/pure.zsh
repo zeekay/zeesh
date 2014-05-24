@@ -1,6 +1,6 @@
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
-if [ $zeesh_plugins[vcs-info] ]; then
+if zeesh-plugin-enabled vcs-info; then
     VCS_INFO_BRANCH_FMT='%b'
 
     VCS_INFO_GIT_ACTION_FMT='%F{magenta}‹%b%c%u%0.10i %a%m%s›%f'
@@ -16,7 +16,7 @@ if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_UNSTAGED_FMT='!'
     VCS_INFO_TIMESINCE_FMT='$s'
 
-    source $plugin_dir/../vcs-info/style.zsh
+    source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
 export ZEESH_THEME_PROMPT_CHAR=${ZEESH_THEME_PROMPT_CHAR:-❯}

@@ -1,21 +1,16 @@
-function zeesh-plugin-enable() {
+zeesh-plugin-enable() {
     if [ $1 ]; then
         plugin=$1
         plugin_dir="$HOME/.zsh/plugins/$plugin"
         source "$plugin_dir/plugin"
     else
-        # we convert zeesh_plugins array
-        # to an associative array for easy lookups later
-        # plugin and plugin_dir are global variables made
-        # available for individual plugins
-        local a
-        a=( $zeesh_plugins )
-        typeset -A zeesh_plugins
-        for plugin in $a; do
-            zeesh_plugins[$plugin]=enabled
-            plugin_dir="$HOME/.zsh/plugins/$plugin"
-            source "$plugin_dir/plugin"
+        # Source each plugin in zeesh_plugins
+        for plugin in $zeesh_plugins; do
+            plugin_dir=$HOME/.zsh/plugins/$plugin
+            source $plugin_dir/plugin
         done
     fi
     unset plugin plugin_dir
 }
+
+# vim: ft=zsh
