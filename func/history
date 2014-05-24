@@ -9,3 +9,5 @@ history() {
         fc -l -20
     fi
 }
+
+# vim: ft=zsh

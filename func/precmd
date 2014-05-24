@@ -1,5 +1,6 @@
 # precmd is called just before the prompt is printed
-
-function precmd() {
+precmd() {
     title "%n@%m:%~"
 }
+
+# vim: ft=zsh

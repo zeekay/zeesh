@@ -8,3 +8,5 @@ lsg() {
         unset args search
     fi
 }
+
+# vim: ft=zsh

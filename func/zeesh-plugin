@@ -1,5 +1,5 @@
 # zeesh plugin controller
-function zeesh-plugin() {
+zeesh-plugin() {
     if [ $2 ] && [[ -d ~/.zsh/plugins/$2 ]]; then
         case $1 in
         desc|description)
@@ -32,3 +32,5 @@ function zeesh-plugin() {
         esac
     fi
 }
+
+# vim: ft=zsh

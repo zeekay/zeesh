@@ -1,4 +1,4 @@
-zeesh-prefs(){
+zeesh-prefs() {
     local usage="zeesh-prefs is a zeesh! helper that manages preference files for plugins\n  usage: prefs <plugin> <create|get|list|set>"
     local plugin=$1
     local cmd=$2
@@ -99,3 +99,5 @@ zeesh-prefs(){
     ;;
     esac
 }
+
+# vim: ft=zsh

@@ -1,7 +1,9 @@
-ssh-background(){
+ssh-background() {
     if [ $1 ]; then
         if [ ! "`screen -ls | grep ssh-control-master-$1`" ]; then
             screen -d -m -S ssh-control-master-$1 ssh $1 sleep 365d
         fi
     fi
 }
+
+# vim: ft=zsh

@@ -1,6 +1,9 @@
-function preexec() {
+preexec() {
     emulate -L zsh
     setopt extended_glob
-    local CMD=${1[(wr)^(*=*|sudo|ssh|-*)]} #cmd name only, or if this is sudo or ssh, the next cmd
+    # cmd name only, or if this is sudo or ssh, the next cmd
+    local CMD=${1[(wr)^(*=*|sudo|ssh|-*)]}
     title "%n@%m:%~ [%100>...>$2%<<]"
 }
+
+# vim: ft=zsh

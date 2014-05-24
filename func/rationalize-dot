@@ -5,3 +5,5 @@ rationalize-dot() {
         LBUFFER+=.
     fi
 }
+
+# vim: ft=zsh

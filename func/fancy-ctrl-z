@@ -7,3 +7,5 @@ fancy-ctrl-z() {
     zle push-input
   fi
 }
+
+# vim: ft=zsh
