@@ -38,3 +38,5 @@ if [ "$EDITOR" = "vim" ]; then
     bindkey -M vicmd "OA" history-substring-search-up
     bindkey -M vicmd "OB" history-substring-search-down
 fi
+
+# vim: ft=zsh

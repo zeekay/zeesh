@@ -4,4 +4,6 @@
 
 export PATH=~/.cabal/bin:~/Library/Haskell/bin:$PATH
 
-#alias ghci='ghci 2>&1 | HsColour -tty'
+# alias ghci='ghci 2>&1 | HsColour -tty'
+
+# vim: ft=zsh

@@ -142,3 +142,5 @@ zle-vicmd-ciw() {
 }
 zle -N zle-vicmd-ciw
 bindkey -M vicmd 'ciw' zle-vicmd-ciw
+
+# vim: ft=zsh

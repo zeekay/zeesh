@@ -11,3 +11,5 @@ autoload -U ~/.zsh/plugins/remote-mvim/func/*(:t)
 
 ## aliases
 alias mvim='remote-mvim'
+
+# vim: ft=zsh

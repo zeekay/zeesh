@@ -16,3 +16,5 @@ alias vbox='vbox-manage'
 vbox-create-rawdisk() {
     sudo VBoxManage internalcommands createrawvmdk -filename $1 -rawdisk $2
 }
+
+# vim: ft=zsh

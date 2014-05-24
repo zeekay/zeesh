@@ -6,3 +6,5 @@ autoload -U ~/.zsh/plugins/uwsgi/func/*(:t)
 
 ## aliases
 alias uwsgi=uwsgi-wrapper
+
+# vim: ft=zsh

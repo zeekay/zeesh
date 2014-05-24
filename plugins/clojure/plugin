@@ -10,6 +10,4 @@ export PATH=$PATH:~/.zsh/plugins/clojure/bin
 ## aliases
 alias clj='rlwrap clj'
 
-## functions
-
 # vim: ft=zsh

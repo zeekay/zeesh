@@ -24,7 +24,7 @@
 # 15 - bold white
 
 fpath=( ~/.zsh/plugins/color-switch/func $fpath )
-autoload  color-switch  color-switch-themes
+autoload color-switch color-switch-themes
 
 # theme completion
 compctl -K color-switch color-switch-themes
@@ -35,3 +35,5 @@ if [ -f ~/.zsh/local/color_switch.last ]; then
     source ~/.zsh/plugins/color-switch/themes/$theme.theme  &!
     export COLOR_SWITCH_THEME=$theme
 fi
+
+# vim: ft=zsh

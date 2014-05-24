@@ -44,3 +44,5 @@ py-upgrade() {
 }
 
 pye(){ echo 'exec compile(''"'$@[1,-1]'"'', "<cmdline>", "single")' | python - }
+
+# vim: ft=zsh

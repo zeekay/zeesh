@@ -5,3 +5,5 @@ autoload -U ~/.zsh/plugins/pianobar/func/*(:t)
 
 ## aliases
 alias pianobar=pianobar-wrapper
+
+# vim: ft=zsh

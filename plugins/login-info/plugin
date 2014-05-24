@@ -10,3 +10,5 @@ if [[ -o interactive ]]; then
         echo "\e[1mzsh $ZSH_VERSION :: $versions\e[0m"
     fi
 fi
+
+# vim: ft=zsh

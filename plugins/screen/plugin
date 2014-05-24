@@ -6,3 +6,5 @@ autoload -U  ~/.zsh/plugins/screen/func/*(:t)
 # aliases
 alias screens='screen -ls'
 alias wipe='screen -wipe'
+
+# vim: ft=zsh

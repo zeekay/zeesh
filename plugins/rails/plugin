@@ -8,7 +8,7 @@ alias sc='ruby script/console'
 alias sd='ruby script/server --debugger'
 alias devlog='tail -f log/development.log'
 
-function _cap_does_task_list_need_generating () {
+_cap_does_task_list_need_generating () {
   if [ ! -f .cap_tasks~ ]; then return 0;
   else
 accurate=$(stat -f%m .cap_tasks~)
@@ -17,7 +17,7 @@ accurate=$(stat -f%m .cap_tasks~)
   fi
 }
 
-function _cap () {
+_cap () {
   if [ -f config/deploy.rb ]; then
 if _cap_does_task_list_need_generating; then
 echo "\nGenerating .cap_tasks~..." > /dev/stderr
@@ -30,6 +30,8 @@ compadd `cat .cap_tasks~`
 
 compctl -K _cap cap
 
-function remote_console() {
+remote_console() {
   /usr/bin/env ssh $1 "( cd $2 && ruby script/console production )"
 }
+
+# vim: ft=zsh
