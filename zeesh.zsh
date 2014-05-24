@@ -86,7 +86,7 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 # default prompt
-PS1='%n@%m:${PWD/$HOME/~}%# '
+PS1='%n@%m:%~ '
 
 
 # load funcs
