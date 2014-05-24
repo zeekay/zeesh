@@ -17,3 +17,5 @@ if [ -d "$plugin_dir/lib" ]; then
 else
     source "$plugin_dir/install"
 fi
+
+# vim: ft=zsh

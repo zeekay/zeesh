@@ -11,3 +11,5 @@ if [ "$EDITOR" = "vim" ]; then
     bindkey -M vivis '^[' zle-esc-in-place
     bindkey -M vivis 'i' vi-insert
 fi
+
+# vim: ft=zsh

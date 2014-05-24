@@ -17,3 +17,5 @@ alias hgl='hg log'
 alias hgd='hg diff'
 alias hg-merge-local='hg --config ui.merge=internal:local merge'
 alias hg-merge-other='hg --config ui.merge=internal:other merge'
+
+# vim: ft=zsh

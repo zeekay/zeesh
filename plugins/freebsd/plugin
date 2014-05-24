@@ -18,7 +18,7 @@ compctl -c which
 # no core dumps
 limit core 0
 
-function ps() {
+ps() {
     if [ $1 ]; then
         /bin/ps $@
     else
@@ -26,6 +26,8 @@ function ps() {
     fi
 }
 
-function last-modified() {
+last-modified() {
     stat -f '%m' $1
 }
+
+# vim: ft=zsh

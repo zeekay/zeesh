@@ -4,3 +4,5 @@
 repo=$HOME
 
 ~/.zsh/plugins/upgrade/do_upgrade.zsh $repo &!
+
+# vim: ft=zsh

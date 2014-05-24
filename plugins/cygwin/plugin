@@ -26,3 +26,5 @@ alias o='cygstart'
 last-modified(){
     stat -c '%Y' $1
 }
+
+# vim: ft=zsh

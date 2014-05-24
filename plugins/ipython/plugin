@@ -1,32 +1,30 @@
 ### ipython / zeesh! plugin
-
-##desc
+#
 # wrapper for ipython
-##csed
 
 # fpath=( ~/.zsh/plugins/ipython/func $fpath )
 # autoload -U ~/.zsh/plugins/ipython/func/*(:t)
 export _kernel_home=~/.ipython/profile_default/security
 
-ipython-kernel-launch(){
+ipython-kernel-launch() {
     ipython kernel &!
     local pid=$!
     echo "--existing kernel-$pid.json" | pbcopy
 }
 
-ipython-kernel-list(){
+ipython-kernel-list() {
     for f in `ls $_kernel_home`; do
         echo `basename $f` | sed 's/\(kernel-[0-9]*\).*/\1/'
     done
 }
 
-_ipython-kill-pid(){
+_ipython-kill-pid() {
     kill `echo $1 | sed 's/kernel-\([0-9]*\).*/\1/'`
     rm $_kernel_home/$1.json
     echo "killed $1"
 }
 
-ipython-kill(){
+ipython-kill() {
     if [ $1 ]; then
         if [[ $1 == "all" ]]; then
             for kernel in `ipython-kernel-list`; do
@@ -40,7 +38,7 @@ ipython-kill(){
     fi
 }
 
-ipython-kernel(){
+ipython-kernel() {
     if [ $1 ]; then
         case $1 in
             kill)
@@ -61,3 +59,5 @@ ipython-kernel(){
         ipython-kernel-list
     fi
 }
+
+# vim: ft=zsh

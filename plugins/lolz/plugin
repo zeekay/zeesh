@@ -23,3 +23,5 @@ alias nomnom='killall'
 
 alias cya='reboot'
 alias kthxbai='halt'
+
+# vim: ft=zsh

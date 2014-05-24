@@ -89,3 +89,5 @@ zstyle ':completion:*:*:hub:*' user-commands \
     quick-commit:'quickly commit' \
     resolve:'resolve merge conflicts using a specific version of the conflicted files' \
     unmerged:'list unmerged files'
+
+# vim: ft=zsh

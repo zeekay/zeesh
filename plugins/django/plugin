@@ -10,3 +10,5 @@ alias djapp='./manage.py startapp'
 alias djsync'./manage.py syncdb'
 alias djshell='./manage.py shell'
 alias djload='./manage.py loaddata fixtures/*'
+
+# vim: ft=zsh

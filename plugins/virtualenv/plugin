@@ -12,3 +12,5 @@ alias newenv=ve-newenv
 # virtualenv config
 export VIRTUALENVS_DIR=~/ve
 export VIRTUALENV_OPTS="--unzip-setuptools --distribute"
+
+# vim: ft=zsh
