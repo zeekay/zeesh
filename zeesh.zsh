@@ -88,7 +88,6 @@ bindkey '^Z' fancy-ctrl-z
 # default prompt
 PS1='%n@%m:%~ '
 
-
 # load funcs
 fpath=( ~/.zsh/func $fpath )
 autoload -U ~/.zsh/func/*(:t)
