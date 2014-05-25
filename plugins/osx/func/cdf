@@ -1,5 +1,5 @@
-cdf {
-    pushd "`pwdf $@`";
+cdf() {
+    pushd "`pwdf $@`"
 }
 
 # vim: ft=zsh
