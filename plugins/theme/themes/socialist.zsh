@@ -1,20 +1,20 @@
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
 if zeesh-plugin-enabled vcs-info; then
-    VCS_INFO_BRANCH_FMT='%b'
+    export VCS_INFO_BRANCH_FMT='%b'
 
-    VCS_INFO_GIT_ACTION_FMT='%F{magenta}‹%s %b%m %0.10i%c%u %a›%f'
-    VCS_INFO_GIT_FMT='%F{magenta}‹%s %b%m %0.10i%c%u›%f'
+    export VCS_INFO_GIT_ACTION_FMT='%F{magenta}‹%s %b%m %0.10i%c%u %a›%f'
+    export VCS_INFO_GIT_FMT='%F{magenta}‹%s %b%m %0.10i%c%u›%f'
 
-    VCS_INFO_HG_ACTION_FMT='%F{magenta}‹%s %b%m %i%c%u %a›%f'
-    VCS_INFO_HG_FMT='%F{magenta}‹%s %b%m %i%c%u›%f'
+    export VCS_INFO_HG_ACTION_FMT='%F{magenta}‹%s %b%m %i%c%u %a›%f'
+    export VCS_INFO_HG_FMT='%F{magenta}‹%s %b%m %i%c%u›%f'
 
-    VCS_INFO_HG_BOOKMARK_FMT=''
-    VCS_INFO_HG_REV_FMT='%r'
+    export VCS_INFO_HG_BOOKMARK_FMT=''
+    export VCS_INFO_HG_REV_FMT='%r'
 
-    VCS_INFO_STAGED_FMT='+'
-    VCS_INFO_UNSTAGED_FMT='!'
-    VCS_INFO_TIMESINCE_FMT='$s'
+    export VCS_INFO_STAGED_FMT='+'
+    export VCS_INFO_UNSTAGED_FMT='!'
+    export VCS_INFO_TIMESINCE_FMT='$s'
 
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
