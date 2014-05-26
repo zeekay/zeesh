@@ -16,7 +16,7 @@ if [ $zeesh_plugins[vcs-info] ]; then
     VCS_INFO_UNSTAGED_FMT='!'
     VCS_INFO_TIMESINCE_FMT='$s'
 
-    source $plugin_dir/../vcs-info/style.zsh
+    source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
 export ZEESH_THEME_NORMAL_CHAR='\n⊙'
