@@ -9,7 +9,7 @@ compctl -K list-sysctls sysctl
 export LSCOLORS=ExfxcxdxbxegedabagAcEx
 export PATH=~/.bin:~/.ellipsis/bin:~/.zsh/plugins/osx/lib:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 export NODE_PATH=/usr/local/lib/node_modules
-export GIT=/usr/local/bin/git
+export GIT=`which git`
 export HOMEBREW_NO_EMOJI=1
 
 ## aliases
