@@ -6,15 +6,14 @@ fpath=( $plugin_dir/func $fpath )
 autoload -U $plugin_dir/func/*(:t)
 
 ## exports
-export PATH=$PATH:$plugin_dir/lib
 export EDITOR=vim
-export PAGER=vimpager
+export PAGER=$plugin_dir/lib/vimpager
 
 ## aliases
 alias v=vim
 alias vi=vim
 alias vm=vim
-alias less=vimpager
+alias less=$PAGER
 
 if [ `uname` = 'Darwin' ]; then
     alias m=mvim-wrapper
