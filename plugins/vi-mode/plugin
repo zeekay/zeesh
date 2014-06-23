@@ -39,14 +39,13 @@ bindkey -M vicmd '^R' redo
 bindkey -M vicmd 'ga' what-cursor-position
 bindkey -M vicmd 'gg' vi-beginning-of-line
 bindkey -M vicmd 'G' end-of-line
-bindkey -M vicmd 'db' backward-kill-word
 bindkey -M vicmd 'dd' kill-whole-line
 bindkey -M vicmd 'd$' vi-kill-eol
-bindkey -M vicmd 'd^' vi-kill-line
+# bindkey -M vicmd 'd^' vi-kill-line
 bindkey -M vicmd 'yy' vi-yank-whole-line
 bindkey -M vicmd 'Y' vi-yank-eol
-bindkey -M vicmd 'y.' vi-yank-whole-line
-bindkey -M vicmd 'c.' vi-change-whole-line
+# bindkey -M vicmd 'y.' vi-yank-whole-line
+# bindkey -M vicmd 'c.' vi-change-whole-line
 
 bindkey -M viins '^k' history-search-backward
 bindkey -M vicmd '^k' history-search-backward
@@ -111,11 +110,27 @@ bindkey -M viins '^[' zle-esc-in-place
 bindkey -M vicmd '^[' zle-esc-in-place
 
 # delete from cursor position to end of word and stay in normal mode
+zle-vicmd-de() {
+    zle kill-word
+}
+zle -N zle-vicmd-de
+bindkey -M vicmd 'de' zle-vicmd-de
+
+# delete from cursor position to end of word + surrounding whitespace and stay in normal mode
 zle-vicmd-dw() {
     zle kill-word
+    zle vi-delete-char
 }
 zle -N zle-vicmd-dw
 bindkey -M vicmd 'dw' zle-vicmd-dw
+
+# delete from cursor position to end of word and stay in normal mode
+zle-vicmd-db() {
+    zle vi-backward-kill-word
+    zle vi-backward-delete-char
+}
+zle -N zle-vicmd-db
+bindkey -M vicmd 'db' zle-vicmd-db
 
 # delete current word and stay in normal mode
 zle-vicmd-diw() {
@@ -125,21 +140,28 @@ zle-vicmd-diw() {
 zle -N zle-vicmd-diw
 bindkey -M vicmd 'diw' zle-vicmd-diw
 
-# delete from current positon to end of word and change to insert mode
-zle-vicmd-cw() {
-    zle kill-word
-    zle -K viins
-}
-zle -N zle-vicmd-cw
-bindkey -M vicmd 'cw' zle-vicmd-cw
+# # delete from current positon to end of word and change to insert mode
+# zle-vicmd-cw() {
+#     zle kill-word
+#     zle -K viins
+# }
+# zle -N zle-vicmd-cw
+# bindkey -M vicmd 'cw' zle-vicmd-cw
 
 # delete current word and change to insert mode
 zle-vicmd-ciw() {
-    zle vi-backward-word
     zle kill-word
     zle -K viins
 }
 zle -N zle-vicmd-ciw
 bindkey -M vicmd 'ciw' zle-vicmd-ciw
 
+# delete current word and surrounding whitespace and change to insert mode
+zle-vicmd-caw() {
+    zle kill-word
+    zle vi-delete-char
+    zle -K viins
+}
+zle -N zle-vicmd-caw
+bindkey -M vicmd 'caw' zle-vicmd-caw
 # vim: ft=zsh
