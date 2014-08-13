@@ -45,15 +45,16 @@ alias rm='nocorrect rm'
 alias rmf='rm -rf'
 alias grep='grep -i --color=auto'
 alias g=grep
-alias zip='zip -r -9'
-alias scp='scp -C'
-alias rscp='rsync --partial --progress --rsh=ssh'
-alias ssh-proxy='ssh -C2qTnN -D 9999'
-alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
-alias nc='rlwrap nc'
+alias ag="ag -S --color-match='30;31' --color-line-number='31;35' --color-path='31;34'"
 alias curl='noglob curl'
 alias diff='git diff --color=never --no-index'
-alias ag="ag -S --color-match='30;31' --color-line-number='31;35' --color-path='31;34'"
+alias nc='rlwrap nc'
+alias rscp='rsync --partial --progress --rsh=ssh'
+alias scp='scp -C'
+alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
+alias ssh-proxy='ssh -C2qTnN -D 9999'
+alias tree='tree --dirsfirst -F'
+alias zip='zip -r -9'
 
 # zeesh aliases
 alias help='zeesh help'
