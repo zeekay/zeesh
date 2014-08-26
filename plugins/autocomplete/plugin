@@ -28,11 +28,35 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
-# zshfu plugin list autocomplete
-compctl -K zeesh-plugin-list zeesh-plugin
+zstyle ':completion:*:*:*:users' ignored-patterns \
+        Guest adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
+        dbus distcache dovecot fax ftp games gdm gkrellmd gopher hacluster \
+        haldaemon halt hsqldb ident junkbust ldap lp mail mailman mailnull \
+        mldonkey mysql nagios named netdump news nfsnobody nobody nscd ntp \
+        nut nx openvpn operator pcap postfix postgres privoxy pulse pvm \
+        quagga radvd rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
+
+# ... unless we really want to.
+zstyle '*' single-ignored show
+
+# Ignore multiple entries.
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
+zstyle ':completion:*:rm:*' file-patterns '*:all-files'
+
+# SSH/SCP/RSYNC
+zstyle ':completion:*:(scp|rsync):*' tag-order 'hosts:-host hosts:-domain:domain hosts:-ipaddr:ip\ address *'
+zstyle ':completion:*:(scp|rsync):*' group-order users files all-files hosts-domain hosts-host hosts-ipaddr
+zstyle ':completion:*:ssh:*' tag-order 'hosts:-host hosts:-domain:domain hosts:-ipaddr:ip\ address *'
+zstyle ':completion:*:ssh:*' group-order hosts-domain hosts-host users hosts-ipaddr
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*.*' loopback localhost
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^*.*' '*@*'
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^<->.<->.<->.<->' '127.0.0.<->'
 
 # hide shit
 zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.pyc'
+
+# zshfu plugin list autocomplete
+compctl -K zeesh-plugin-list zeesh-plugin
 
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
