@@ -54,12 +54,12 @@ update-visor() {
     # Create a copy of iTerm called iTermVisor which will run in background on login, only uses visor.
     local p='/Applications'
     cp -rf $p/iTerm.app $p/iTermVisor.app
-    mv $p/iTermVisor.app/Contents/MacOS/iTerm $p/iTermVisor.app/Contents/MacOS/iTermVisor
+    mv $p/iTermVisor.app/Contents/MacOS/iTerm2 $p/iTermVisor.app/Contents/MacOS/iTerm2Visor
     defaults write $p/iTermVisor.app/Contents/Info CFBundleIdentifier com.googlecode.iterm2visor
-    defaults write $p/iTermVisor.app/Contents/Info CFBundleExecutable iTermVisor
-    defaults write $p/iTermVisor.app/Contents/Info CFBundleName iTermVisor
+    defaults write $p/iTermVisor.app/Contents/Info CFBundleExecutable iTerm2Visor
+    defaults write $p/iTermVisor.app/Contents/Info CFBundleName iTerm2Visor
     defaults write $p/iTermVisor.app/Contents/Info LSUIElement 1
-    rm -rf ~$p/iTermVisor.app
+    rm -rf "~$p/iTermVisor.app"
     mv $p/iTermVisor.app ~$p
 }
 
