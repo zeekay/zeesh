@@ -49,18 +49,19 @@ flushcache() {
 
 alias lockscreen='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
-# functions
+# Create a copy of iTerm called iTermVisor which will run in background on login, only uses visor.
 update-visor() {
-    # Create a copy of iTerm called iTermVisor which will run in background on login, only uses visor.
-    local p='/Applications'
-    cp -rf $p/iTerm.app $p/iTermVisor.app
-    mv $p/iTermVisor.app/Contents/MacOS/iTerm2 $p/iTermVisor.app/Contents/MacOS/iTerm2Visor
-    defaults write $p/iTermVisor.app/Contents/Info CFBundleIdentifier com.googlecode.iterm2visor
-    defaults write $p/iTermVisor.app/Contents/Info CFBundleExecutable iTerm2Visor
-    defaults write $p/iTermVisor.app/Contents/Info CFBundleName iTerm2Visor
-    defaults write $p/iTermVisor.app/Contents/Info LSUIElement 1
-    rm -rf "~$p/iTermVisor.app"
-    mv $p/iTermVisor.app ~$p
+    # Delete current version
+    rm -rf ~/Applications/iTermVisor.app
+
+    # Copy current version of iTerm2 as basis
+    cp -rf /Applications/iTerm.app ~/Applications/iTermVisor.app
+    cd ~/Applications/iTermVisor.app/Contents
+    mv MacOS/iTerm MacOS/iTermVisor
+    defaults write `pwd`/Info CFBundleIdentifier com.googlecode.iterm2visor
+    defaults write `pwd`/Info CFBundleExecutable iTermVisor
+    defaults write `pwd`/Info CFBundleName iTermVisor
+    defaults write `pwd`/Info LSUIElement 1
 }
 
 mavericks-hacks() {
