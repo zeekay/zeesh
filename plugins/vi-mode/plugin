@@ -9,6 +9,10 @@ autoload -U $plugin_dir/func/*(:t)
 export EDITOR=vim
 export PAGER=$plugin_dir/lib/vimpager
 
+# You can use KEYTIMEOUT to lower the time it takes us to get into escape mode
+# but it will break a lot of widgets.
+# export KEYTIMEOUT=2
+
 ## aliases
 alias v=vim
 alias vi=vim
@@ -27,23 +31,30 @@ zle -N edit-command-line
 bindkey -v
 
 # unbind escape key combinations
-bindkey -rpM viins '^['
-bindkey -rpM vicmd '^['
-bindkey -rpM viins ''
-bindkey -rpM vicmd ''
+# bindkey -rpM viins '^['
+# bindkey -rpM vicmd '^['
+# bindkey -rpM viins ''
+# bindkey -rpM vicmd ''
+
+# i think we could alternately bind to bell (which is generally silenced), not
+# sure what advantage is yet.
+# bindkey -sM vicmd '^[' '^G'
 
 # bind keys
 bindkey -M vicmd u vi-undo-change
 bindkey -M vicmd '^R' redo
+bindkey -M vicmd '^m' accept-line
+
+bindkey -M vicmd 'ga' what-cursor-position
 bindkey -M vicmd 'g~' vi-oper-swap-case
 
-bindkey -M vicmd '^m' accept-line
-bindkey -M vicmd 'ga' what-cursor-position
 bindkey -M vicmd 'gg' vi-beginning-of-line
 bindkey -M vicmd 'G' end-of-line
+
 bindkey -M vicmd 'dd' kill-whole-line
 bindkey -M vicmd 'd$' vi-kill-eol
 # bindkey -M vicmd 'd^' vi-kill-line
+#
 bindkey -M vicmd 'yy' vi-yank-whole-line
 bindkey -M vicmd 'Y' vi-yank-eol
 # bindkey -M vicmd 'y.' vi-yank-whole-line
