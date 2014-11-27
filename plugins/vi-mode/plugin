@@ -33,9 +33,11 @@ bindkey -rpM viins ''
 bindkey -rpM vicmd ''
 
 # bind keys
-bindkey -M vicmd '^m' accept-line
-bindkey -M vicmd 'u' undo
+bindkey -M vicmd u vi-undo-change
 bindkey -M vicmd '^R' redo
+bindkey -M vicmd 'g~' vi-oper-swap-case
+
+bindkey -M vicmd '^m' accept-line
 bindkey -M vicmd 'ga' what-cursor-position
 bindkey -M vicmd 'gg' vi-beginning-of-line
 bindkey -M vicmd 'G' end-of-line
@@ -61,9 +63,8 @@ bindkey -M vicmd '^U' vi-change-whole-line
 
 bindkey -M viins '' backward-delete-char
 bindkey -M vicmd '' backward-delete-char
-
-bindkey -M vicmd '^v' edit-command-line
-bindkey -M viins '^v' edit-command-line
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
 
 bindkey -M viins "^[[0C" forward-char
 bindkey -M viins "^[[0D" backward-char
