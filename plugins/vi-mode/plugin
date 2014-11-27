@@ -31,10 +31,10 @@ zle -N edit-command-line
 bindkey -v
 
 # unbind escape key combinations
-# bindkey -rpM viins '^['
-# bindkey -rpM vicmd '^['
-# bindkey -rpM viins ''
-# bindkey -rpM vicmd ''
+bindkey -rpM viins '^['
+bindkey -rpM vicmd '^['
+bindkey -rpM viins ''
+bindkey -rpM vicmd ''
 
 # i think we could alternately bind to bell (which is generally silenced), not
 # sure what advantage is yet.
