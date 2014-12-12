@@ -14,8 +14,7 @@ zstyle ':vcs_info:git*' formats $VCS_INFO_GIT_FMT
 zstyle ':vcs_info:git*' actionformats $VCS_INFO_GIT_ACTION_FMT
 
 # use-simple reduces hg overhead but doesn't show dirty or local rev numbers
-# zstyle ':vcs_info:hg*:*' use-simple true
-# zstyle ':vcs_info:hg*:*' hgrevformat "%10.10h"
+zstyle ':vcs_info:hg*:*' use-simple true
 
 ### Hooks
 # hg: Style bookmarks
@@ -143,9 +142,19 @@ zstyle ':vcs_info:git*' actionformats $VCS_INFO_GIT_ACTION_FMT
     fi
 }
 
++vi-hg-pretty-revision() {
+    local rev=${user_data[hash]}
+
+    if [[ "$rev" =~ "^[a-z0-9]+$" ]]; then
+        hook_com[revision]=" $rev"
+    else
+        hook_com[revision]=' '
+    fi
+}
+
 zstyle ':vcs_info:hg*+gen-hg-bookmark-string:*' hooks hg-bookmarks
 zstyle ':vcs_info:hg*+set-hgrev-format:*' hooks hg-storerev
-zstyle ':vcs_info:hg*+set-message:*' hooks hg-branchhead hg-time-since
+zstyle ':vcs_info:hg*+set-message:*' hooks hg-pretty-revision hg-branchhead hg-time-since
 zstyle ':vcs_info:git*+set-message:*' hooks git-pretty-revision git-aheadbehind git-time-since
 
 # Uncomment for verbose debugg info
