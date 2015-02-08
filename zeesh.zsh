@@ -42,7 +42,6 @@ alias clj='lein repl'
 alias cp='nocorrect cp'
 alias curl='noglob curl'
 alias diff='git diff --color=never --no-index'
-alias el=ellipsis
 alias g=grep
 alias grep='grep -i --color=auto'
 alias l=ls
