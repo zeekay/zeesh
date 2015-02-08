@@ -37,23 +37,28 @@ export LC_CTYPE=en_US.UTF-8
 export RSYNC_RSH=ssh
 
 # aliases
-alias l=ls
-alias md=take
-alias cp='nocorrect cp'
-alias mv='nocorrect mv'
-alias rm='nocorrect rm'
-alias rmf='rm -rf'
-alias grep='grep -i --color=auto'
-alias g=grep
 alias ag="ag -S --color-match='30;31' --color-line-number='31;35' --color-path='31;34'"
+alias clj='lein repl'
+alias cp='nocorrect cp'
 alias curl='noglob curl'
 alias diff='git diff --color=never --no-index'
+alias el=ellipsis
+alias g=grep
+alias grep='grep -i --color=auto'
+alias l=ls
+alias md=take
+alias mv='nocorrect mv'
 alias nc='rlwrap nc'
+alias rm='nocorrect rm'
+alias rmf='rm -rf'
 alias rscp='rsync --partial --progress --rsh=ssh'
 alias scp='scp -C'
+alias sl=ls
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 alias ssh-proxy='ssh -C2qTnN -D 9999'
 alias tree='tree --dirsfirst -F'
+alias utc='date -u'
+alias v=vim
 alias zip='zip -r -9'
 
 # zeesh aliases
