@@ -1,0 +1,9 @@
+qmv-defaults(){
+    if [ $# -eq 0 ]; then
+        qmv -fdo
+    else
+        qmv $@
+    fi
+}
+
+# vim: ft=zsh

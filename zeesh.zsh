@@ -48,6 +48,7 @@ alias l=ls
 alias md=take
 alias mv='nocorrect mv'
 alias nc='rlwrap nc'
+alias qmv=qmv-defaults
 alias rm='nocorrect rm'
 alias rmf='rm -rf'
 alias rscp='rsync --partial --progress --rsh=ssh'
