@@ -6,7 +6,7 @@ autoload -U $plugin_dir/comp/*(:t)
 # Ensure vcs info uses git, not hub
 zstyle ':vcs_info:git:*:-all-' command `which git`
 
-export PATH=$PATH:$plugin_dir/commands:$plugin_dir/lib/bin
+export PATH=$PATH:$plugin_dir/commands
 
 if hash hub 2>/dev/null; then
     alias git=hub
