@@ -7,8 +7,9 @@ autoload -U $plugin_dir/func/*(:t)
 
 ## exports
 export EDITOR=vim
-export GIT_EDITOR=vim
 export PAGER=$plugin_dir/lib/vimpager
+export GIT_EDITOR=$EDITOR
+export GIT_PAGER=$PAGER
 
 # You can use KEYTIMEOUT to lower the time it takes us to get into escape mode
 # but it will break a lot of widgets.
