@@ -1,14 +1,13 @@
 ### vi-mode / zeesh! plugin
 
-hash vimpager 2>/dev/null || [ -d "$plugin_dir/lib" ] || source "$plugin_dir/install"
-
 fpath=( $plugin_dir/func $fpath )
 autoload -U $plugin_dir/func/*(:t)
 
 ## exports
 export EDITOR=vim
-export PAGER=$plugin_dir/lib/vimpager
 export GIT_EDITOR=$EDITOR
+
+hash vimpager 2>/dev/null && export PAGER=vimpager
 export GIT_PAGER=$PAGER
 
 # You can use KEYTIMEOUT to lower the time it takes us to get into escape mode
