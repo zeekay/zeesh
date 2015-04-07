@@ -37,8 +37,14 @@ alias fs-usage='fs_usage -w -f filesys'
 alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &'
 
 flushcache() {
-    case `uname -r` in
-    13.*|12.*)
+    case $(uname -r) in
+    14.*)
+        sudo discoveryutil udnsflushcaches
+        ;;
+    13.*)
+        dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+        ;;
+    12.*|11.*)
         sudo killall -HUP mDNSResponder
         ;;
     *)
