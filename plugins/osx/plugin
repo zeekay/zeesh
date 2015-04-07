@@ -39,10 +39,12 @@ alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finde
 flushcache() {
     case $(uname -r) in
     14.*)
+        sudo discoveryutil mdnsflushcache
         sudo discoveryutil udnsflushcaches
         ;;
     13.*)
-        dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+        dscacheutil -flushcache
+        sudo killall -HUP mDNSResponder
         ;;
     12.*|11.*)
         sudo killall -HUP mDNSResponder
