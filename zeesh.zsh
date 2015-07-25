@@ -105,3 +105,6 @@ zle -N self-insert url-quote-magic
 
 # enable plugins
 zeesh-plugin-enable
+
+# source random things
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
