@@ -103,6 +103,9 @@ autoload -U ~/.zsh/func/*(:t)
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
+# enable plugins
+zeesh-plugin-enable
+
 # source travis if it exists
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
@@ -110,6 +113,3 @@ zle -N self-insert url-quote-magic
 if hash ag 2>/dev/null; then
     alias ack=ag
 fi
-
-# enable plugins
-zeesh-plugin-enable
