@@ -1,8 +1,8 @@
 qmv-defaults(){
     if [ $# -eq 0 ]; then
-        qmv -fdo
+        \qmv -fdo
     else
-        qmv $@
+        \qmv $@
     fi
 }
 
