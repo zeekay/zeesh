@@ -1,0 +1,5 @@
+### audio / zeesh! plugin
+
+alias sound-dl=youtube-dl --extract audio
+
+# vim: ft=zsh
