@@ -1,5 +1,9 @@
 autoload -U zrecompile
 
+# clean up existing cache files
+rm -f .*.zwc
+rm -f .zsh/**/*.zwc
+
 zrecompile -p \
     -R ~/.zshrc -- \
     -M ~/.zsh/cache/zcompdump -- \
