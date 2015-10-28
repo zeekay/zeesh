@@ -31,12 +31,6 @@ zle -N edit-command-line
 # switch vi mode mappings
 bindkey -v
 
-# unbind escape key combinations
-bindkey -rpM viins '^['
-bindkey -rpM vicmd '^['
-bindkey -rpM viins ''
-bindkey -rpM vicmd ''
-
 # i think we could alternately bind to bell (which is generally silenced), not
 # sure what advantage is yet.
 # bindkey -sM vicmd '^[' '^G'
@@ -117,8 +111,8 @@ zle-esc-in-place() {
     zle -K vicmd
 }
 zle -N zle-esc-in-place
-bindkey -M viins '' zle-esc-in-place
-bindkey -M vicmd '' zle-esc-in-place
+# bindkey -M viins '' zle-esc-in-place
+# bindkey -M vicmd '' zle-esc-in-place
 bindkey -M viins '^[' zle-esc-in-place
 bindkey -M vicmd '^[' zle-esc-in-place
 
