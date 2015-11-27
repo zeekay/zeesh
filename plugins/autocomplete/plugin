@@ -61,4 +61,7 @@ compctl -K zeesh-plugin-list zeesh-plugin
 # Add my manage.py completion hack.
 compdef _managepy manage.py
 
+# Aliases
+compdef _cake shortcake
+
 # vim: ft=zsh
