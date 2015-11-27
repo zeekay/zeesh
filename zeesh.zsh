@@ -4,7 +4,6 @@ setopt always_to_end       \
        auto_name_dirs      \
        auto_param_slash    \
        cdablevarS          \
-       complete_aliases    \
        complete_in_word    \
        correct             \
        extended_glob       \
