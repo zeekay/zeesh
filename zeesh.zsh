@@ -113,3 +113,11 @@ zeesh-plugin-enable
 if hash ag 2>/dev/null; then
     alias ack=ag
 fi
+
+if [ -e ~/.zsh/after.zsh ]; then
+    source ~/.zsh/after.zsh
+fi
+
+if [ -e ~/.zsh/local.zsh ]; then
+    source ~/.zsh/local.zsh
+fi

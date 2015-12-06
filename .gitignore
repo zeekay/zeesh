@@ -1,4 +1,6 @@
 local/
+after.zsh
+local.zsh
 plugins/*/lib
 plugins/git/hub
 cache/
