@@ -12,7 +12,7 @@ export GIT_PAGER=$PAGER
 
 # You can use KEYTIMEOUT to lower the time it takes us to get into escape mode
 # but it will break a lot of widgets.
-# export KEYTIMEOUT=2
+export KEYTIMEOUT=10
 
 ## aliases
 alias v=vim
@@ -25,11 +25,85 @@ if [ `uname` = 'Darwin' ]; then
 else
     alias g=gvim-wrapper
 fi
-autoload -U edit-command-line
+
+# Updates editor information when the keymap changes.
+function zle-keymap-select() {
+  zle reset-prompt
+  zle -R
+}
+
+autoload -Uz edit-command-line
+zle -N zle-keymap-select
 zle -N edit-command-line
 
-# switch vi mode mappings
-bindkey -v
+# zle widget to enter normal mode without moving cursor back
+zle-esc-in-place() {
+    zle -K vicmd
+
+    # This prevents accidental character deletion when enter normal mode at end of line
+    zle vi-backward-char
+    zle vi-forward-char
+}
+zle -N zle-esc-in-place
+
+bindkey -M viins '^[' zle-esc-in-place
+bindkey -M vicmd '^[' zle-esc-in-place
+
+# delete from cursor position to end of word and stay in normal mode
+zle-vicmd-de() {
+    zle kill-word
+}
+zle -N zle-vicmd-de
+bindkey -M vicmd 'de' zle-vicmd-de
+
+# delete from cursor position to end of word + surrounding whitespace and stay in normal mode
+zle-vicmd-dw() {
+    zle kill-word
+    zle vi-delete-char
+}
+zle -N zle-vicmd-dw
+bindkey -M vicmd 'dw' zle-vicmd-dw
+
+# delete from cursor position to end of word and stay in normal mode
+zle-vicmd-db() {
+    zle vi-backward-kill-word
+    zle vi-backward-delete-char
+}
+zle -N zle-vicmd-db
+bindkey -M vicmd 'db' zle-vicmd-db
+
+# delete current word and stay in normal mode
+zle-vicmd-diw() {
+    zle vi-backward-word
+    zle kill-word
+}
+zle -N zle-vicmd-diw
+bindkey -M vicmd 'diw' zle-vicmd-diw
+
+# delete from current positon to end of word and change to insert mode
+zle-vicmd-cw() {
+    zle kill-word
+    zle -K viins
+}
+zle -N zle-vicmd-cw
+bindkey -M vicmd 'cw' zle-vicmd-cw
+
+# delete current word and change to insert mode
+zle-vicmd-ciw() {
+    zle kill-word
+    zle -K viins
+}
+zle -N zle-vicmd-ciw
+bindkey -M vicmd 'ciw' zle-vicmd-ciw
+
+# delete current word and surrounding whitespace and change to insert mode
+zle-vicmd-caw() {
+    zle kill-word
+    zle vi-delete-char
+    zle -K viins
+}
+zle -N zle-vicmd-caw
+bindkey -M vicmd 'caw' zle-vicmd-caw
 
 # i think we could alternately bind to bell (which is generally silenced), not
 # sure what advantage is yet.
@@ -49,7 +123,7 @@ bindkey -M vicmd 'G' end-of-line
 bindkey -M vicmd 'dd' kill-whole-line
 bindkey -M vicmd 'd$' vi-kill-eol
 # bindkey -M vicmd 'd^' vi-kill-line
-#
+
 bindkey -M vicmd 'yy' vi-yank-whole-line
 bindkey -M vicmd 'Y' vi-yank-eol
 # bindkey -M vicmd 'y.' vi-yank-whole-line
@@ -71,6 +145,7 @@ bindkey -M viins '' backward-delete-char
 bindkey -M vicmd '' backward-delete-char
 bindkey '^?' backward-delete-char
 bindkey '^H' backward-delete-char
+bindkey '^W' backward-kill-word
 
 bindkey -M viins "^[[0C" forward-char
 bindkey -M viins "^[[0D" backward-char
@@ -106,69 +181,12 @@ bindkey -M viins "^[[F"  vi-end-of-line
 bindkey -M viins "OH"  vi-beginning-of-line
 bindkey -M viins "OF"  vi-end-of-line
 
-# zle widget to enter normal mode without moving cursor back
-zle-esc-in-place() {
-    zle -K vicmd
-}
-zle -N zle-esc-in-place
-# bindkey -M viins '' zle-esc-in-place
-# bindkey -M vicmd '' zle-esc-in-place
-bindkey -M viins '^[' zle-esc-in-place
-bindkey -M vicmd '^[' zle-esc-in-place
+# switch vi mode mappings
+bindkey -v
 
-# delete from cursor position to end of word and stay in normal mode
-zle-vicmd-de() {
-    zle kill-word
+# Ensure that the prompt is redrawn when the terminal size changes.
+TRAPWINCH() {
+  zle && { zle reset-prompt; zle -R }
 }
-zle -N zle-vicmd-de
-bindkey -M vicmd 'de' zle-vicmd-de
 
-# delete from cursor position to end of word + surrounding whitespace and stay in normal mode
-zle-vicmd-dw() {
-    zle kill-word
-    zle vi-delete-char
-}
-zle -N zle-vicmd-dw
-bindkey -M vicmd 'dw' zle-vicmd-dw
-
-# delete from cursor position to end of word and stay in normal mode
-zle-vicmd-db() {
-    zle vi-backward-kill-word
-    zle vi-backward-delete-char
-}
-zle -N zle-vicmd-db
-bindkey -M vicmd 'db' zle-vicmd-db
-
-# delete current word and stay in normal mode
-zle-vicmd-diw() {
-    zle vi-backward-word
-    zle kill-word
-}
-zle -N zle-vicmd-diw
-bindkey -M vicmd 'diw' zle-vicmd-diw
-
-# # delete from current positon to end of word and change to insert mode
-# zle-vicmd-cw() {
-#     zle kill-word
-#     zle -K viins
-# }
-# zle -N zle-vicmd-cw
-# bindkey -M vicmd 'cw' zle-vicmd-cw
-
-# delete current word and change to insert mode
-zle-vicmd-ciw() {
-    zle kill-word
-    zle -K viins
-}
-zle -N zle-vicmd-ciw
-bindkey -M vicmd 'ciw' zle-vicmd-ciw
-
-# delete current word and surrounding whitespace and change to insert mode
-zle-vicmd-caw() {
-    zle kill-word
-    zle vi-delete-char
-    zle -K viins
-}
-zle -N zle-vicmd-caw
-bindkey -M vicmd 'caw' zle-vicmd-caw
 # vim: ft=zsh
