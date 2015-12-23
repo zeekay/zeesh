@@ -3,11 +3,11 @@
 set -e
 
 (
-    function branch() {
+    branch() {
         git branch 2>/dev/null | grep -e '^*' | tr -d '\* '
     }
 
-    function ensure_valid_ref() {
+    ensure_valid_ref() {
         ref=$1
         (
             set +e
@@ -19,7 +19,7 @@ set -e
         )
     }
 
-    function show_rev() {
+    show_rev() {
         rev=$1
         git --no-pager log -1 $rev --graph --pretty=format:'%C(yellow)%h%Cblue%d%Creset %s %C(white)%an, %ar%Creset'
         echo

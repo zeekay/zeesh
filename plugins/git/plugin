@@ -12,7 +12,7 @@ if hash hub 2>/dev/null; then
     alias git=hub
 fi
 
-function gca() {
+gca() {
     # check for unmerged files
     if [ ! -z "`git status -s | grep '^U'`" ]; then
         git commit
@@ -21,7 +21,7 @@ function gca() {
     fi
 }
 
-function gcA() {
+gcA() {
     # check for unmerged files
     if [ ! -z "`git status -s | grep '^U'`" ]; then
         git commit
