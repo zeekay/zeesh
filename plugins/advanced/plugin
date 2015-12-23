@@ -1,0 +1,28 @@
+### advanced / zeesh! plugin
+
+_increase_number() {
+  local -a match mbegin mend
+  [[ $LBUFFER =~ '([0-9]+)[^0-9]*$' ]] &&
+    LBUFFER[mbegin,mend]=$(printf %0${#match[1]}d $((10#$match+${NUMERIC:-1})))
+}
+zle -N increase-number _increase_number
+bindkey '^Xa' increase-number
+bindkey -s '^Xx' '^[-^Xa'
+
+function _recover_line_or_else() {
+  if [[ -z $BUFFER && $CONTEXT = start && $zsh_eval_context = shfunc
+        && -n $ZLE_LINE_ABORTED
+        && $ZLE_LINE_ABORTED != $history[$((HISTCMD-1))] ]]; then
+    LBUFFER+=$ZLE_LINE_ABORTED
+    unset ZLE_LINE_ABORTED
+  else
+    zle .$WIDGET
+  fi
+}
+zle -N up-line-or-history _recover_line_or_else
+function _zle_line_finish() {
+  ZLE_LINE_ABORTED=$BUFFER
+}
+zle -N zle-line-finish _zle_line_finish
+
+# vim: ft=zsh
