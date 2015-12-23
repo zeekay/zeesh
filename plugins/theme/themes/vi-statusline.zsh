@@ -19,8 +19,8 @@ if zeesh-plugin-enabled vcs-info; then
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
-nbsp=$'\u00A0'
-bindkey -s $nbsp '^u'
+alias -g ›=;
+alias ›=;
 export ZEESH_THEME_NORMAL_CHAR='\n⊙'
 export ZEESH_THEME_VISUAL_CHAR='\n⊡'
 export ZEESH_THEME_INSERT_CHAR='\n›'
