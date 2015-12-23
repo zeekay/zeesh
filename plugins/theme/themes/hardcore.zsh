@@ -19,9 +19,9 @@ if zeesh-plugin-enabled vcs-info; then
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
-export ZEESH_THEME_NORMAL_CHAR='\n:'
-export ZEESH_THEME_VISUAL_CHAR='\n⊡'
-export ZEESH_THEME_INSERT_CHAR='\n;'
+export ZEESH_THEME_NORMAL_CHAR='\n'
+export ZEESH_THEME_VISUAL_CHAR='\n'
+export ZEESH_THEME_INSERT_CHAR='\n'
 export ZEESH_THEME_PROMPT_CHAR=''
 
 alias :=;
@@ -61,7 +61,7 @@ _prompt() {
         s="$s %F{magenta}‹${${(s:/:)VIRTUAL_ENV}[-1]}›%f "
     fi
 
-    echo -e "$s%F{magenta} $mode$ZEESH_THEME_PROMPT_CHAR%f "
+    echo -e "$s%F{magenta} $mode$ZEESH_THEME_PROMPT_CHAR%f"
 }
 
 _rprompt() {
