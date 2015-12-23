@@ -2,7 +2,7 @@
 
 version="2.0.0"
 
-# The script must be run as an admin user 
+# The script must be run as an admin user
 #
 if [[ -z $(/usr/bin/id -p $USER | grep admin) ]];then
     print "You must be an administrative user with sudo privileges in order to run $0"
@@ -12,7 +12,7 @@ fi
 # http://www.osxfaq.com/tips/unix-tricks/week91/friday.ws
 
 # Modified to use Directory Service on 10.5.X
- 
+
 # Create a group.
 # Takes a group name and gid and creates a new group in NetInfo groups
 
@@ -24,22 +24,21 @@ declare group gid  # to hold the given group name and group id
 declare str        # working
 
 
-function usage
-    {
-      print "Create a new group"
-      print "Usage: $progname groupname gid"
-      if [[ "$*" != "" ]]; then 
+usage() {
+    print "Create a new group"
+    print "Usage: $progname groupname gid"
+    if [[ "$*" != "" ]]; then
         print ""
         print "Error: $*"
-      fi
-      return 1
-    }
+    fi
+    return 1
+}
 
 # Check parameters
 #
 if [[ $# -ne 2 ]]; then
-  usage
-  return 1
+    usage
+    return 1
 fi
 
 group="$1"; gid="$2"
@@ -64,7 +63,7 @@ fi
 str="$( dscl . -list /Users PrimaryGroupID | awk '{print $2}'  | grep -w $gid)"
 if [[ ! -z "$str" ]]; then
     usage "Group ID $uid already exists"
-  return 1
+    return 1
 fi
 
 # Add the new group to Directory Services
@@ -86,5 +85,3 @@ print ""
 print "Now add users to it with \e[1m adduser2group \e[0m "
 
 return 0
-
-

@@ -1,26 +1,26 @@
 #!/bin/bash
 
-function show_contents {
+show_contents() {
   test -f "$2" && echo "$1 gitignore: $2" && cat "$2"
 }
 
-function show_global {
+show_global() {
   show_contents Global `git config --global core.excludesfile`
 }
 
-function add_global {
+add_global() {
   add_patterns `git config --global core.excludesfile` "$@"
 }
 
-function show_local {
+show_local() {
   show_contents Local .gitignore
 }
 
-function add_local {
+add_local() {
   add_patterns .gitignore "$@"
 }
 
-function add_patterns {
+add_patterns() {
   echo "Adding pattern(s) to: $1"
   for pattern in "${@:2}"; do
     echo "... adding '$pattern'"
@@ -47,4 +47,3 @@ else
       ;;
   esac
 fi
-
