@@ -28,8 +28,8 @@ fi
 
 # Updates editor information when the keymap changes.
 zle-keymap-select() {
-  zle reset-prompt
-  zle -R
+    zle reset-prompt
+    zle -R
 }
 
 # Widget to enter normal mode without moving cursor back
@@ -43,45 +43,45 @@ zle-esc-in-place() {
 }
 
 zle-ctrl-ax() {
-  integer pos NUMBER i first last prelength diff
-  pos=$CURSOR
-  # find numbers starting from the left of the cursor to the end of the line
-  while [[ $BUFFER[$pos] != [[:digit:]] ]]; do
-    (( pos++ ))
-    (( $pos > $#BUFFER )) && return
-  done
+    integer pos NUMBER i first last prelength diff
+    pos=$CURSOR
+    # find numbers starting from the left of the cursor to the end of the line
+    while [[ $BUFFER[$pos] != [[:digit:]] ]]; do
+        (( pos++ ))
+        (( $pos > $#BUFFER )) && return
+    done
 
-  # use the numeric argument and default to 1
-  # negate if called as ctrl-a
-  NUMBER=${NUMERIC:-1}
-  if [[ $WIDGET = zle-ctrl-a ]]; then
-    (( NUMBER = 0 - $NUMBER ))
-  fi
+    # use the numeric argument and default to 1
+    # negate if called as ctrl-a
+    NUMBER=${NUMERIC:-1}
+    if [[ $WIDGET = zle-ctrl-a ]]; then
+        (( NUMBER = 0 - $NUMBER ))
+    fi
 
-  # find the start of the number
-  i=$pos
-  while [[ $BUFFER[$i-1] = [[:digit:]] ]]; do
-    (( i-- ))
-  done
-  first=$i
+    # find the start of the number
+    i=$pos
+    while [[ $BUFFER[$i-1] = [[:digit:]] ]]; do
+        (( i-- ))
+    done
+    first=$i
 
-  # include one leading - if found
-  if [[ $BUFFER[$first-1] = - ]]; then
-    (( first-- ))
-  fi
+    # include one leading - if found
+    if [[ $BUFFER[$first-1] = - ]]; then
+        (( first-- ))
+    fi
 
-  # find the end of the number
-  i=$pos
-  while [[ $BUFFER[$i+1] = [[:digit:]] ]]; do
-    (( i++ ))
-  done
-  last=$i
+    # find the end of the number
+    i=$pos
+    while [[ $BUFFER[$i+1] = [[:digit:]] ]]; do
+        (( i++ ))
+    done
+    last=$i
 
-  # change the number and move cursor after it
-  prelength=$#BUFFER
-  (( BUFFER[$first,$last] += $NUMBER ))
-  (( diff = $#BUFFER - $prelength ))
-  (( CURSOR = last + diff ))
+    # change the number and move cursor after it
+    prelength=$#BUFFER
+    (( BUFFER[$first,$last] += $NUMBER ))
+    (( diff = $#BUFFER - $prelength ))
+    (( CURSOR = last + diff ))
 }
 
 autoload -Uz edit-command-line
@@ -161,7 +161,7 @@ bindkey -v
 
 # Ensure that the prompt is redrawn when the terminal size changes.
 TRAPWINCH() {
-  zle && { zle reset-prompt; zle -R }
+    zle && { zle reset-prompt; zle -R }
 }
 
 # vim: ft=zsh
