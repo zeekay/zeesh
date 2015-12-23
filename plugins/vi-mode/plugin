@@ -42,9 +42,53 @@ zle-esc-in-place() {
     zle vi-forward-char
 }
 
+zle-ctrl-ax() {
+  integer pos NUMBER i first last prelength diff
+  pos=$CURSOR
+  # find numbers starting from the left of the cursor to the end of the line
+  while [[ $BUFFER[$pos] != [[:digit:]] ]]; do
+    (( pos++ ))
+    (( $pos > $#BUFFER )) && return
+  done
+
+  # use the numeric argument and default to 1
+  # negate if called as ctrl-a
+  NUMBER=${NUMERIC:-1}
+  if [[ $WIDGET = zle-ctrl-a ]]; then
+    (( NUMBER = 0 - $NUMBER ))
+  fi
+
+  # find the start of the number
+  i=$pos
+  while [[ $BUFFER[$i-1] = [[:digit:]] ]]; do
+    (( i-- ))
+  done
+  first=$i
+
+  # include one leading - if found
+  if [[ $BUFFER[$first-1] = - ]]; then
+    (( first-- ))
+  fi
+
+  # find the end of the number
+  i=$pos
+  while [[ $BUFFER[$i+1] = [[:digit:]] ]]; do
+    (( i++ ))
+  done
+  last=$i
+
+  # change the number and move cursor after it
+  prelength=$#BUFFER
+  (( BUFFER[$first,$last] += $NUMBER ))
+  (( diff = $#BUFFER - $prelength ))
+  (( CURSOR = last + diff ))
+}
+
 autoload -Uz edit-command-line
 
 zle -N edit-command-line
+zle -N zle-ctrl-a zle-ctrl-ax
+zle -N zle-ctrl-x zle-ctrl-ax
 zle -N zle-esc-in-place
 zle -N zle-keymap-select
 
@@ -55,6 +99,9 @@ bindkey -M vicmd '^m' accept-line
 
 bindkey -M vicmd 'gg' vi-beginning-of-line
 bindkey -M vicmd 'G' vi-end-of-line
+
+bindkey -M vicmd '^a' zle-ctrl-a
+bindkey -M vicmd '^x' zle-ctrl-x
 
 bindkey -M vicmd 'dd' kill-whole-line
 bindkey -M vicmd 'd$' vi-kill-eol
@@ -93,11 +140,6 @@ bindkey -M vicmd "^[[C"  forward-char
 bindkey -M vicmd "^[[D"  backward-char
 bindkey -M vicmd "OC"  forward-char
 bindkey -M vicmd "OD"  backward-char
-
-bindkey -M vicmd ""  vi-beginning-of-line
-bindkey -M vicmd ""  vi-end-of-line
-bindkey -M vicmd "^A"  vi-beginning-of-line
-bindkey -M vicmd "^E"  vi-end-of-line
 
 bindkey -M viins ""  vi-beginning-of-line
 bindkey -M viins ""  vi-end-of-line
