@@ -19,10 +19,21 @@ if zeesh-plugin-enabled vcs-info; then
     source ~/.zsh/plugins/vcs-info/style.zsh
 fi
 
-export ZEESH_THEME_NORMAL_CHAR='\n'
-export ZEESH_THEME_VISUAL_CHAR='\n'
-export ZEESH_THEME_INSERT_CHAR='\n'
-export ZEESH_THEME_PROMPT_CHAR=''
+export ZEESH_THEME_NORMAL_CHAR='\n:'
+export ZEESH_THEME_VISUAL_CHAR='\n:'
+export ZEESH_THEME_INSERT_CHAR='\n;'
+export ZEESH_THEME_PROMPT_CHAR=' '
+
+alias :=;
+alias ::=;
+alias :::=;
+alias ::::=;
+alias :::::=;
+alias ::::::=;
+alias :::::::=;
+alias ::::::::=;
+alias :::::::::=;
+alias ::::::::::=;
 
 _prompt() {
     local mode=
