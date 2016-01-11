@@ -1,7 +1,5 @@
 # zeesh! / iterm2 plugin
 
-if [ -n $ITERM_SESSION_ID ]; then
-    source $plugin_dir/shell_integration.zsh
-fi
+source $plugin_dir/shell_integration.zsh
 
 # vim: ft=zsh
