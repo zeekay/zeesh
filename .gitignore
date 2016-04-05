@@ -6,4 +6,3 @@ plugins/git/hub
 cache/
 *.zwc
 *.zwc.old
-plugins/autocomplete/comp/_brew
