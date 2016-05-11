@@ -1,0 +1,9 @@
+# zeesh go plugin
+
+# Source GVM if it's installed
+[[ -s ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
+
+# Set GOPATH to ~/go
+export GOPATH=~/go
+
+# vim: ft=zsh
