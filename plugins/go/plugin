@@ -6,4 +6,7 @@
 # Set GOPATH to ~/go
 export GOPATH=~/go
 
+# Add Go binaries to path
+export PATH=$GOPATH/bin:$PATH
+
 # vim: ft=zsh
