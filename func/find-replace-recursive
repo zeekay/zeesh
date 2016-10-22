@@ -1,8 +1,34 @@
-# find and replace text in files recursively
+# Find and replace text in files recursively.
+#
+# A couple of notes:
+# 1. LC_ALL causes this pattern to ignore unicode characters -- but that's fine
+#    in the general case I care about. This is an issue on macOS because it
+#    employs multibyte-on-demand UTF-8 encoding. More info here:
+#    http://stackoverflow.com/a/23584470/641766
+# 2. sed -i.bak is a trick to make sed in-place work on both linux and mac.
+#    More info: http://stackoverflow.com/a/22084103/641766
 find-replace-recursive() {
-    a="find . -name '*' -type f -not \( -name .svn -prune \) -not \( -name .git -prune \) -not \( -name .hg -prune \) -exec perl -pi -e 's"
-    b="g' {} \;"
-    echo $a/$1/$2/$b | sh
+    local pattern="$1"
+
+    # Test pattern
+    local err=$(echo | sed -e "$pattern" 2>&1 | tail -n 1)
+    if [ ! -z "$err" ]; then
+        echo "invalid pattern: ${err:3}"
+        return
+    fi
+
+    # Return usage if empty or invalid sed pattern
+    if [ -z "$pattern" ]; then
+        echo "usage: find-replace-recursive s/find/replace/g"
+        return
+    fi
+
+    LC_ALL=C find . \
+        -type f \
+        ! -path '*.git*' \
+        ! -path '*.hg*' \
+        ! -path '*.svn*' \
+        -exec sed -i.bak "$pattern" '{}' \;
 }
 
 # vim: ft=zsh
