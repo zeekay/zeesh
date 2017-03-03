@@ -66,10 +66,8 @@ update-visor() {
     # Copy current version of iTerm2 as basis
     cp -rf /Applications/iTerm.app ~/Applications/iTermVisor.app
     cd ~/Applications/iTermVisor.app/Contents
-    if [ -f MacOS/iTerm ]; then
-        mv MacOS/iTerm MacOS/iTermVisor
-    else
-        mv MacOS/iTerm2 MacOS/iTermVisor
+    if [ -f MacOS/iTerm2 ]; then
+        ln -s iTerm2 MacOS/iTermVisor
     fi
     defaults write `pwd`/Info CFBundleIdentifier com.googlecode.iterm2visor
     defaults write `pwd`/Info CFBundleExecutable iTermVisor
