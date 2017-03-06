@@ -49,9 +49,9 @@ alias gdas='git diff HEAD --color=never --stat'
 alias gds='git diff --color=never --staged'
 alias gdss='git diff --color=never --staged --stat'
 alias gf='git fetch'
-alias gl="git log -n 500 --graph --pretty=format':%C(green)%h%Cblue%d%Creset %s %C(black)%an, %ar%Creset'"
+alias gl="git log -n 500 --pretty=format':%C(green)%h%Cblue%d%Creset %s %C(black)%an, %ar%Creset'"
 alias glg="gl --graph"
-alias glp="git log -n 500 --patch"
+alias glp="gl -p --color"
 alias gls="gl --stat"
 alias gm='git merge --no-ff'
 alias gmf='git merge --ff-only'
