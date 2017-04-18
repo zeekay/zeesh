@@ -16,10 +16,8 @@ compctl -K _list_themes theme
 
 # Load last theme
 if [ -f ~/.zsh/local/theme.last ]; then
-    if [ -f ~/.zsh/local/theme.last ]; then
-        local theme=$(cat ~/.zsh/local/theme.last)
-        source ~/.zsh/plugins/theme/themes/$theme.zsh
-    fi
+    local theme=$(cat ~/.zsh/local/theme.last)
+    source ~/.zsh/plugins/theme/themes/$theme.zsh
 fi
 
 # vim: ft=zsh
