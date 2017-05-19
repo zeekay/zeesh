@@ -58,10 +58,10 @@ zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.py
 # zshfu plugin list autocomplete
 compctl -K zeesh-plugin-list zeesh-plugin
 
-# Add my manage.py completion hack.
+# Add manage.py completions
 compdef _managepy manage.py
 
-# Aliases
-compdef _cake shortcake
+# Add sake completions
+compdef _sake sake
 
 # vim: ft=zsh
