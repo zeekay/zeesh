@@ -1,13 +1,13 @@
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
 if zeesh-plugin-enabled vcs-info; then
-    export VCS_INFO_BRANCH_FMT='%g'
+    export VCS_INFO_BRANCH_FMT='%b'
 
-    export VCS_INFO_GIT_FMT='%F{green}‹%g%c%u%0.10i%m%s›%f'
-    export VCS_INFO_GIT_ACTION_FMT='%F{green}‹%g%c%u%0.10i %a%m%s›%f'
+    export VCS_INFO_GIT_FMT='%F{green}‹%b%c%u%0.10i%m%s›%f'
+    export VCS_INFO_GIT_ACTION_FMT='%F{green}‹%b%c%u%0.10i %a%m%s›%f'
 
-    export VCS_INFO_HG_FMT='%F{green}‹%g%c%u%0.8i %m%s›%f'
-    export VCS_INFO_HG_ACTION_FMT='%F{green}‹%g%c%u%0.10i %a %m%s›%f'
+    export VCS_INFO_HG_FMT='%F{green}‹%b%c%u%0.8i %m%s›%f'
+    export VCS_INFO_HG_ACTION_FMT='%F{green}‹%b%c%u%0.10i %a %m%s›%f'
 
     export VCS_INFO_HG_BOOKMARK_FMT=''
     export VCS_INFO_HG_REV_FMT='%r '
@@ -38,7 +38,7 @@ _prompt() {
         ;;
     esac
 
-    local s="%F{green}%g%n%g%f%F{green}@%f%F{green}%g%m%f%g %F{blue}%g${PWD/$HOME/~}%g%f"
+    local s="%F{green}%b%n%b%f%F{green}@%f%F{green}%b%m%f%b %F{blue}%b${PWD/$HOME/~}%b%f"
 
     # display vcs info
     if [ "$vcs_info_msg_0_" ]; then
