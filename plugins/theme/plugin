@@ -7,17 +7,17 @@ autoload -U $plugin_dir/func/*(:t)
 autoload colors; colors
 setopt prompt_subst transientrprompt
 
-_list_themes() {
-    reply=(`ls ~/.zsh/plugins/theme/themes | cut -d . -f1`)
+_list_colors() {
+    reply=(`ls ~/.zsh/plugins/theme/colors | cut -d . -f1`)
 }
 
 # theme completion
-compctl -K _list_themes theme
+compctl -K _list_colors theme
 
 # Load last theme
 if [ -f ~/.zsh/local/theme.last ]; then
     local theme=$(cat ~/.zsh/local/theme.last)
-    source ~/.zsh/plugins/theme/themes/$theme.zsh
+    source ~/.zsh/plugins/theme/colors/$theme.zsh
 fi
 
 # vim: ft=zsh
