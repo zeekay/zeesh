@@ -48,7 +48,7 @@ alias gda='git diff HEAD --color'
 alias gdas='git diff HEAD --color --stat'
 alias gdss='git diff --color --staged --stat'
 alias gf='git fetch'
-alias gl="git log -n 500 --pretty=format':%C(green)%h%Cblue%d%C(white) %s %C(black)%an, %ar%Creset'"
+alias gl="git log -n 500 --pretty=format':%C(green)%h%Cblue%d%C(black) %s %C(white)%an, %ar%Creset'"
 alias glg="gl --graph"
 alias glp="gl -p --color"
 alias gls="gl --stat"
