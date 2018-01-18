@@ -1,5 +1,5 @@
 # zeesh! / iterm2 plugin
 
-source $plugin_dir/shell_integration.zsh 2> /dev/null
+[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
 
 # vim: ft=zsh
