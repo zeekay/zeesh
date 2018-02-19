@@ -28,7 +28,7 @@ find-replace-recursive() {
         ! -path '*.git*' \
         ! -path '*.hg*' \
         ! -path '*.svn*' \
-        -exec sed -i.bak "$pattern" '{}' \;
+        -exec sed -i "$pattern" '{}' \;
 }
 
 # vim: ft=zsh
