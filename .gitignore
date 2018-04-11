@@ -6,3 +6,4 @@ plugins/git/hub
 cache/
 *.zwc
 *.zwc.old
+plugins/kubernetes/comp.zsh
