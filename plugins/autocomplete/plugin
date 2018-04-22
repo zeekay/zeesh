@@ -53,7 +53,7 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^<->.<->.<->.<->' '127.0.0.<->'
 
 # hide shit
-zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.pyc'
+zstyle ':completion:*:*' ignored-patterns '*.zwc' '*.old' 'broadcasthost' '*?.pyc' '*__pycache__'
 
 # zshfu plugin list autocomplete
 compctl -K zeesh-plugin-list zeesh-plugin
