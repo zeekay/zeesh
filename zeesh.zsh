@@ -56,7 +56,7 @@ alias rscp='rsync --partial --progress --rsh=ssh'
 alias scp='scp -C'
 alias sl=ls
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
-alias ssh-proxy='ssh -C2qTnN -D 9999'
+alias ssh-proxy='ssh -C2qTN -D 9999'
 alias tree='tree --dirsfirst -F'
 alias utc='date -u'
 alias v=vim
