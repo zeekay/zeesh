@@ -30,7 +30,11 @@ find-replace-recursive() {
         ! -path '*.svn*' \
         ! -path '*.bak' \
         ! -path './node_modules/*' \
-        -exec sed -i.bak "$pattern" '{}' \;
+        -exec sed -i.sedbak "$pattern" '{}' \;
+    rm -rf *.sedbak
+    rm -rf .*.sedbak
+    rm -rf **/*.sedbak
+    rm -rf **/.*.sedbak
 }
 
 # vim: ft=zsh
