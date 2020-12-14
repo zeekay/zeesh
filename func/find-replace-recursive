@@ -28,6 +28,8 @@ find-replace-recursive() {
         ! -path '*.git*' \
         ! -path '*.hg*' \
         ! -path '*.svn*' \
+        ! -path '*.bak' \
+        ! -path './node_modules/*' \
         -exec sed -i.bak "$pattern" '{}' \;
 }
 
