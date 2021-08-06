@@ -1,0 +1,9 @@
+### yarn / zeesh! plugin
+
+if [ -d "$plugin_dir/lib" ]; then
+    source $plugin_dir/lib/zsh-yarn-completions.plugin.zsh
+else
+    source "$plugin_dir/install"
+fi
+
+# vim: ft=zsh

@@ -1,0 +1,6 @@
+echo -n "I can't find zsh-yarn-completions would you like me to install it for you? (y/N) " && read ans
+
+if [[ "$ans" == "y" ]]; then
+    git clone --depth 1 https://github.com/chrisands/zsh-yarn-completions.git $plugin_dir/lib
+    echo "...installed $plugin"
+fi
