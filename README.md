@@ -27,6 +27,8 @@ zeesh_plugins=(
     autocomplete
     osx
     git
+    javascript
+    yarn
     vcs-info
     syntax-highlighting
     history-substring-search
