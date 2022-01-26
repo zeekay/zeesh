@@ -108,13 +108,10 @@ zeesh() {
                 echo 'share - uses scp to copy file to remote server and returns url for linking'
                 echo ""
             ;;
-            upgrade|u)
-                _zeesh-upgrade
-            ;;
         esac
     else
         echo "zeesh $(hg id -n ~/.zsh) :: commands"
-        echo "all help list plugin reload stats tips upgrade"
+        echo "all help list plugin reload stats tips"
         echo ""
     fi
 }
