@@ -67,7 +67,6 @@ alias help='zeesh help'
 alias plugin=zeesh-plugin
 alias prefs=zeesh-prefs
 alias tips='zeesh tips'
-alias upgrade=zeesh-upgrade
 alias vcs='zeesh-plugin-enable vcs-info'
 
 ## keybindings
