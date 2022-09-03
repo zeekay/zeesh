@@ -59,7 +59,6 @@ alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlay
 alias ssh-proxy='ssh -C2qTN -D 9999'
 alias tree='tree --dirsfirst -F'
 alias utc='date -u'
-alias v=vim
 alias zip='zip -r -9'
 
 # zeesh aliases
