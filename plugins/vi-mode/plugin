@@ -15,9 +15,6 @@ export GIT_PAGER=$PAGER
 export KEYTIMEOUT=10
 
 ## aliases
-alias v=vim
-alias vi=vim
-alias vm=vim
 alias less=$PAGER
 
 if [ `uname` = 'Darwin' ]; then

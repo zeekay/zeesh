@@ -13,7 +13,6 @@ export GIT=`which git`
 export HOMEBREW_NO_EMOJI=1
 
 ## aliases
-alias l='ls -GF'
 alias ls='ls -GF'
 alias la='ls -AGF'
 alias lsa='ls -AGF'
@@ -36,6 +35,9 @@ alias xc='open *xcodeproj'
 alias fs-usage='fs_usage -w -f filesys'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
 alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &'
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
 
 flushcache() {
     case $(uname -r) in
