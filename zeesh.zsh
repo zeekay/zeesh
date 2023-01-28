@@ -107,11 +107,6 @@ zeesh-plugin-enable
 # source travis if it exists
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-# Use ag instead of ack if available
-if hash ag 2>/dev/null; then
-    alias ack=ag
-fi
-
 if [ -e ~/.zsh/after.zsh ]; then
     source ~/.zsh/after.zsh
 fi
