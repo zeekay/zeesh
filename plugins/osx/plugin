@@ -35,9 +35,6 @@ alias xc='open *xcodeproj'
 alias fs-usage='fs_usage -w -f filesys'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
 alias zombiefinder='/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &'
-alias v='nvim'
-alias vi='nvim'
-alias vim='nvim'
 
 flushcache() {
     case $(uname -r) in

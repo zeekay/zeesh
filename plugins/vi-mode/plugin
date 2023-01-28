@@ -16,6 +16,9 @@ export KEYTIMEOUT=10
 
 ## aliases
 alias less=$PAGER
+alias v=vim
+alias vm=vim
+alias vmi=vim
 
 if [ `uname` = 'Darwin' ]; then
     alias m=mvim-wrapper
