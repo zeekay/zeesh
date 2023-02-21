@@ -4,6 +4,6 @@ if ! hash starship &> /dev/null; then
   . $plugin_dir/install
 fi
 
-eval "$(starship init zsh)"
+source <(/usr/local/bin/starship init zsh --print-full-init)
 
 # vim: ft=zsh
