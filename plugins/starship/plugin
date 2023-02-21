@@ -1,0 +1,7 @@
+### starship / zeesh! plugin
+
+[ -x starship || . $plugin_dir/install
+
+eval "$(starship init zsh)"
+
+# vim: ft=zsh
