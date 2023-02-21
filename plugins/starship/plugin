@@ -1,6 +1,8 @@
 ### starship / zeesh! plugin
 
-[ -x starship || . $plugin_dir/install
+if ! hash starship &> /dev/null; then
+  . $plugin_dir/install
+fi
 
 eval "$(starship init zsh)"
 
