@@ -1,0 +1,8 @@
+echo -n "I can't find nvm-zsh, would you like me to install it for you? (y/N) "
+
+
+read ans
+if [[ "$ans" == "y" ]]; then
+    git clone --depth 1 git://github.com/lukechilds/zsh-nvm.git $plugin_dir/lib
+    echo "...installed nvm-zsh!"
+fi
