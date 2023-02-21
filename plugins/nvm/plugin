@@ -2,6 +2,7 @@
 
 [ -d $plugin_dir/lib ] || . $plugin_dir/install
 
+export NVM_AUTO_USE=true
 export NVM_LAZY_LOAD=true
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim')
 export NVM_NO_USE=true
