@@ -1,0 +1,8 @@
+### spaceship / zeesh! plugin
+
+[ -d $plugin_dir/lib ] || . $plugin_dir/install
+
+source $plugin_dir/vimode/spaceship-vi-mode.plugin.zsh;
+source $plugin_dir/lib/spaceship.zsh;
+
+# vim: ft=zsh

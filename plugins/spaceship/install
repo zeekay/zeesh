@@ -1,0 +1,8 @@
+echo -n "I can't find spaceship, would you like me to install it for you? (y/N) "
+
+read ans
+if [[ "$ans" == "y" ]]; then
+    git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$plugin_dir/lib"
+    git clone --depth=1 https://github.com/spaceship-prompt/spaceship-vi-mode.git "$plugin_dir/vimode"
+    echo "...installed spaceship!"
+fi
