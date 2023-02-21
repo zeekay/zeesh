@@ -4,5 +4,6 @@
 
 source $plugin_dir/vimode/spaceship-vi-mode.plugin.zsh;
 source $plugin_dir/lib/spaceship.zsh;
+eval spaceship_vi_mode_enable
 
 # vim: ft=zsh
