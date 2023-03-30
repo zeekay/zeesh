@@ -1,0 +1,7 @@
+echo -n "I can't find starship, would you like me to install it for you? (y/N) "
+
+read ans
+if [[ "$ans" == "y" ]]; then
+    curl -sS https://starship.rs/install.sh | sh
+    echo "...installed starship!"
+fi
