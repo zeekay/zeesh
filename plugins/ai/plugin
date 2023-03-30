@@ -1,0 +1,9 @@
+### starship / zeesh! plugin
+
+if ! hash starship &> /dev/null; then
+  . $plugin_dir/install
+fi
+
+source <(/usr/local/bin/starship init zsh --print-full-init)
+
+# vim: ft=zsh
