@@ -1,0 +1,5 @@
+spotlight-enable() {
+    mdutil -i on /
+}
+
+# vim: ft=zsh

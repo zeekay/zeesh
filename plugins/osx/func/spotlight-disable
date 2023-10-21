@@ -1,0 +1,5 @@
+spotlight-disable() {
+    mdutil -i off /
+}
+
+# vim: ft=zsh
