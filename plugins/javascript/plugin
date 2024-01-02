@@ -12,4 +12,8 @@ if hash sake 2>/dev/null; then
     alias cake=sake
 fi
 
+if hash pnpm 2>/dev/null; then
+    alias pn=pnpm
+fi
+
 # vim: ft=zsh
