@@ -7,6 +7,36 @@
 #    http://stackoverflow.com/a/23584470/641766
 # 2. sed -i.bak is a trick to make sed in-place work on both linux and mac.
 #    More info: http://stackoverflow.com/a/22084103/641766
+# find-replace-recursive() {
+#     local pattern="$1"
+#
+#     # Test pattern
+#     local err=$(echo | sed -e "$pattern" 2>&1 | tail -n 1)
+#     if [ ! -z "$err" ]; then
+#         echo "invalid pattern: ${err:3}"
+#         return
+#     fi
+#
+#     # Return usage if empty or invalid sed pattern
+#     if [ -z "$pattern" ]; then
+#         echo "usage: find-replace-recursive s/find/replace/g"
+#         return
+#     fi
+#
+#     LC_ALL=C find . \
+#         -type f \
+#         ! -path '*.git*' \
+#         ! -path '*.hg*' \
+#         ! -path '*.svn*' \
+#         ! -path '*.bak' \
+#         ! -path './node_modules/*' \
+#         -exec sed -i.sedbak "$pattern" '{}' \;
+#     rm -rf *.sedbak
+#     rm -rf .*.sedbak
+#     rm -rf **/*.sedbak
+#     rm -rf **/.*.sedbak
+# }
+
 find-replace-recursive() {
     local pattern="$1"
 
@@ -25,16 +55,15 @@ find-replace-recursive() {
 
     LC_ALL=C find . \
         -type f \
-        ! -path '*.git*' \
-        ! -path '*.hg*' \
-        ! -path '*.svn*' \
-        ! -path '*.bak' \
-        ! -path './node_modules/*' \
+        ! -path '*/.git/*' \
+        ! -path '*/.hg/*' \
+        ! -path '*/.svn/*' \
+        ! -path '*/node_modules/*' \
+        ! -path '*/.bak/*' \
         -exec sed -i.sedbak "$pattern" '{}' \;
-    rm -rf *.sedbak
-    rm -rf .*.sedbak
-    rm -rf **/*.sedbak
-    rm -rf **/.*.sedbak
+
+    find . -name "*.sedbak" -exec rm -f {} \;
+    find . -name ".*.sedbak" -exec rm -f {} \;
 }
 
 # vim: ft=zsh
