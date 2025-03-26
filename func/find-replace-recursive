@@ -37,33 +37,66 @@
 #     rm -rf **/.*.sedbak
 # }
 
+#find-replace-recursive() {
+#    local pattern="$1"
+#
+#    # Test pattern
+#    local err=$(echo | sed -e "$pattern" 2>&1 | tail -n 1)
+#    if [ ! -z "$err" ]; then
+#        echo "invalid pattern: ${err:3}"
+#        return
+#    fi
+#
+#    # Return usage if empty or invalid sed pattern
+#    if [ -z "$pattern" ]; then
+#        echo "usage: find-replace-recursive s/find/replace/g"
+#        return
+#    fi
+#
+#    LC_ALL=C find . \
+#        -type f \
+#        ! -path '*/.git/*' \
+#        ! -path '*/.hg/*' \
+#        ! -path '*/.svn/*' \
+#        ! -path '*/node_modules/*' \
+#        ! -path '*/.bak/*' \
+#        -exec sed -i.sedbak "$pattern" '{}' \;
+#
+#    find . -name "*.sedbak" -exec rm -f {} \;
+#    find . -name ".*.sedbak" -exec rm -f {} \;
+#}
+#
 find-replace-recursive() {
     local pattern="$1"
+    local numproc="${NUM_PROC:-4}"
 
     # Test pattern
-    local err=$(echo | sed -e "$pattern" 2>&1 | tail -n 1)
-    if [ ! -z "$err" ]; then
-        echo "invalid pattern: ${err:3}"
-        return
-    fi
+    local err
+    err=$(echo | sed -e "$pattern" 2>&1 | tail -n 1)
+    [ -n "$err" ] && { echo "invalid pattern: ${err:3}"; return; }
+    [ -z "$pattern" ] && { echo "usage: find-replace-recursive s/find/replace/g"; return; }
 
-    # Return usage if empty or invalid sed pattern
-    if [ -z "$pattern" ]; then
-        echo "usage: find-replace-recursive s/find/replace/g"
-        return
-    fi
-
+    # Exclude sed backup files and common binary repo directories.
     LC_ALL=C find . \
         -type f \
+        ! -name "*.sedbak" \
+        ! -name ".*.sedbak" \
         ! -path '*/.git/*' \
         ! -path '*/.hg/*' \
         ! -path '*/.svn/*' \
+        ! -path '*/.vite/*' \
+        ! -path '*/.next/*' \
         ! -path '*/node_modules/*' \
+        ! -path '*/out/*' \
+        ! -path '*/dist/*' \
+        ! -path '*/build/*' \
         ! -path '*/.bak/*' \
-        -exec sed -i.sedbak "$pattern" '{}' \;
+        -exec grep -Iq . {} \; -print0 | \
+        xargs -0 -P "$numproc" -I {} env LC_ALL=C sed -i.sedbak "$pattern" {}
 
-    find . -name "*.sedbak" -exec rm -f {} \;
-    find . -name ".*.sedbak" -exec rm -f {} \;
+    # Remove backup files.
+    find . -name "*.sedbak" -print0 | xargs -0 -P "$numproc" rm -f
+    find . -name ".*.sedbak" -print0 | xargs -0 -P "$numproc" rm -f
 }
 
 # vim: ft=zsh
