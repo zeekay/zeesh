@@ -1,5 +1,7 @@
 # zeesh! / iterm2 plugin
 
-[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  [ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
+fi
 
 # vim: ft=zsh
