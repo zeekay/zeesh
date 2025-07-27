@@ -33,7 +33,7 @@ find-replace-recursive() {
     # Find text files, ignoring hidden paths and common binary/build dirs,
     # then perform in-place replacement using multiple processes.
     LC_ALL=C find . -type f \
-        ! -path '*/.*' \
+        ! -path '*/.git/*' \
         ! -path '*/node_modules/*' \
         ! -path '*/out/*' \
         ! -path '*/dist/*' \
