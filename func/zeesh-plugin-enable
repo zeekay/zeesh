@@ -1,16 +1,29 @@
 zeesh-plugin-enable() {
     if [ $1 ]; then
-        plugin=$1
-        plugin_dir="$HOME/.zsh/plugins/$plugin"
-        source "$plugin_dir/plugin"
+        local plugin=$1
+        local plugin_dir="$HOME/.zsh/plugins/$plugin"
+        local plugin_file="$plugin_dir/plugin"
+        
+        if [[ -f "$plugin_file" ]]; then
+            source "$plugin_file"
+        else
+            echo "zeesh: plugin '$plugin' not found or invalid" >&2
+            return 1
+        fi
     else
         # Source each plugin in zeesh_plugins
+        local plugin plugin_dir plugin_file
         for plugin in $zeesh_plugins; do
-            plugin_dir=$HOME/.zsh/plugins/$plugin
-            source $plugin_dir/plugin
+            plugin_dir="$HOME/.zsh/plugins/$plugin"
+            plugin_file="$plugin_dir/plugin"
+            
+            if [[ -f "$plugin_file" ]]; then
+                source "$plugin_file"
+            else
+                echo "zeesh: plugin '$plugin' not found, skipping" >&2
+            fi
         done
     fi
-    unset plugin plugin_dir
 }
 
 # vim: ft=zsh
