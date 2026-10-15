@@ -1,4 +1,8 @@
-echo -n "I can't find z.sh would you like me to install it for you? (y/N) " && read ans
+echo -n "I can't find z.sh would you like me to install it for you? (y/N) " && if [ -t 0 ]; then
+        read ans
+else
+    ans=y   # no terminal can answer: install rather than block a script or an agent
+fi
 
 if [[ "$ans" == "y" ]]; then
     git clone --depth 1 https://github.com/rupa/z $plugin_dir/lib
