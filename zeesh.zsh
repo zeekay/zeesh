@@ -1,7 +1,5 @@
 # zsh options
 setopt always_to_end       \
-# unquoted $var splits into words, as in bash
-setopt sh_word_split
        auto_cd             \
        auto_name_dirs      \
        auto_param_slash    \
@@ -23,7 +21,8 @@ setopt sh_word_split
        noflowcontrol       \
        pushd_ignore_dups   \
        pushd_silent        \
-       pushd_to_home
+       pushd_to_home       \
+       sh_word_split
 
 # history
 HISTFILE=~/.zsh/local/history
