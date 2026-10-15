@@ -1,0 +1,87 @@
+VIRTUAL_ENV_DISABLE_PROMPT=true
+
+export ZEESH_THEME_NORMAL_CHAR='\n'
+export ZEESH_THEME_VISUAL_CHAR='\n'
+export ZEESH_THEME_INSERT_CHAR='\n'
+export ZEESH_THEME_PROMPT_CHAR=''
+
+# Git info function - always available
+_git_info() {
+    git rev-parse --is-inside-work-tree &>/dev/null || return
+
+    local branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+    # Get latest properly-formatted semver tag (filters malformed tags)
+    local tag=$(git tag --sort=-v:refname 2>/dev/null | grep -E '^(v[0-9]|[a-z]+-v[0-9])' | head -1)
+    local dirty=""
+    local staged=""
+    local ahead_behind=""
+
+    [[ -n $(git status --porcelain 2>/dev/null | grep -v '^??') ]] && dirty="!"
+    [[ -n $(git diff --cached --name-only 2>/dev/null) ]] && staged="+"
+
+    local upstream=$(git rev-parse --abbrev-ref @{upstream} 2>/dev/null)
+    if [[ -n "$upstream" ]]; then
+        local ahead=$(git rev-list --count @{upstream}..HEAD 2>/dev/null)
+        local behind=$(git rev-list --count HEAD..@{upstream} 2>/dev/null)
+        [[ $ahead -gt 0 ]] && ahead_behind+="⇡$ahead"
+        [[ $behind -gt 0 ]] && ahead_behind+="⇣$behind"
+    fi
+
+    local info="$branch$staged$dirty"
+    [[ -n "$ahead_behind" ]] && info+=" $ahead_behind"
+    [[ -n "$tag" ]] && info+=" @$tag"
+
+    echo "%F{245}‹$info›%f"
+}
+
+_prompt() {
+    local mode=
+    case $KEYMAP in
+        vicmd)
+            mode=$ZEESH_THEME_NORMAL_CHAR
+        ;;
+        vivis)
+            mode=$ZEESH_THEME_VISUAL_CHAR
+        ;;
+        *)
+            mode=$ZEESH_THEME_INSERT_CHAR
+        ;;
+    esac
+
+    # Hanzo monochrome: grey for everything
+    local s="%F{245}%n@%m%f %F{white}${PWD/$HOME/~}%f"
+
+    local gitinfo=$(_git_info)
+    if [[ -n "$gitinfo" ]]; then
+        s="$s $gitinfo"
+    fi
+
+    if [[ -n $VIRTUAL_ENV ]]; then
+        s="$s %F{245}‹${${(s:/:)VIRTUAL_ENV}[-1]}›%f "
+    fi
+
+    echo -e "$s%F{245} $mode$ZEESH_THEME_PROMPT_CHAR%f"
+}
+
+_rprompt() {
+    local rc=$?
+    if [[ $rc != 0 ]]; then
+        local s="%F{245}$rc!%f"
+    fi
+    echo -e $s
+}
+
+PROMPT='$(_prompt)'
+RPROMPT='$(_rprompt)'
+
+zle-keymap-select() {
+    zle reset-prompt
+}
+zle -N zle-keymap-select
+
+zle-line-init() {
+    zle reset-prompt
+}
+zle -N zle-line-init
+
+# vim: ft=zsh

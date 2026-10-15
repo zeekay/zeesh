@@ -91,8 +91,10 @@ bindkey -s '^N' '> /dev/null 2>&1\n'
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-# default prompt
-PS1='%n@%m:%~ '
+# default prompt (skip if ZEESH_DISABLE_PROMPT is set, e.g. in Warp)
+if [[ -z "$ZEESH_DISABLE_PROMPT" ]]; then
+    PS1='%n@%m:%~ '
+fi
 
 # load funcs
 fpath=( ~/.zsh/func $fpath )
