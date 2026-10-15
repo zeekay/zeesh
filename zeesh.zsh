@@ -1,5 +1,7 @@
 # zsh options
 setopt always_to_end       \
+# unquoted $var splits into words, as in bash
+setopt sh_word_split
        auto_cd             \
        auto_name_dirs      \
        auto_param_slash    \
