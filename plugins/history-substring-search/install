@@ -1,7 +1,11 @@
-repo="git://github.com/zsh-users/zsh-history-substring-search.git"
+repo="https://github.com/zsh-users/zsh-history-substring-search.git"
 
-echo -n "I can't find zsh-$plugin would you like me to install it for you? (y/N) "
-read ans
+if [ -t 0 ]; then
+    echo -n "I can't find zsh-$plugin would you like me to install it for you? (y/N) "
+    read ans
+else
+    ans=y   # no terminal can answer: install rather than block a script or an agent
+fi
 if [[ "$ans" == "y" ]]; then
     git clone --depth 1 $repo $plugin_dir/lib
     echo "...installed $plugin"
