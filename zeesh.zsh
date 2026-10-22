@@ -21,8 +21,7 @@ setopt always_to_end       \
        noflowcontrol       \
        pushd_ignore_dups   \
        pushd_silent        \
-       pushd_to_home       \
-       sh_word_split
+       pushd_to_home
 
 # history
 HISTFILE=~/.zsh/local/history
