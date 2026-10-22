@@ -52,7 +52,7 @@ _prompt() {
         ;;
     esac
 
-    local s="%F{white}%n@%m%f %F{red}${PWD/$HOME/~}%f"
+    local s="%F{green}%n@%m%f %F{blue}${PWD/$HOME/~}%f"
 
     # display git info
     local gitinfo=$(_git_info)

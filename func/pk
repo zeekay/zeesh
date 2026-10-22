@@ -1,27 +1,28 @@
 # kill matching processes
+#
+# One ps line per process: the lines are iterated quoted, because zsh here
+# runs with SH_WORD_SPLIT (bash-style splitting of unquoted $vars), which would
+# otherwise hand the loop every word of every line and kill nothing.
 pk() {
-    if [ $1 ]; then
-        if [[ "`whoami`" == "root" ]]; then
-            opts="uax"
-        else
-            opts="ux"
-        fi
+    [[ -n $1 ]] || return 1
+    local opts=ux
+    [[ $EUID -eq 0 ]] && opts=uax
 
-        pids=("${(f)$(ps $opts | grep --color=never $1 | grep -v grep)}")
-        if [ "$pids" ]; then
-            echo "killed:"
-            ps $opts | head -n 1
-            for pid in $pids
-            do
-                echo $pid | grep $1 --color=auto | grep -v grep
-                pid=("${(s: :)pid}")
-                kill -9 $pid[2]
-            done
-        else
-            echo "No matches"
-        fi
-        unset opts pids
+    local -a lines fields
+    lines=("${(@f)$(ps $opts | grep --color=never -- "$1" | grep -v grep)}")
+    if [[ -z ${lines[1]} ]]; then
+        echo "No matches"
+        return 1
     fi
+
+    echo "killed:"
+    ps $opts | head -n 1
+    local line
+    for line in "${lines[@]}"; do
+        print -r -- "$line" | grep --color=auto -- "$1"
+        fields=(${=line})
+        kill -9 "${fields[2]}"
+    done
 }
 
 # vim: ft=zsh

@@ -45,7 +45,7 @@ zeesh-prefs() {
         if [[ -f $pref_file ]]; then
             typeset -a lines
             lines=("${(f)$(cat $pref_file | grep -v "^$" | grep -v "^#")}")
-            for i in $lines; do
+            for i in "${lines[@]}"; do
                 local key=$i[(ws': ')1]
                 local value=$i[(ws': ')2]
                 prefs[$key]=$value
@@ -58,8 +58,8 @@ zeesh-prefs() {
         if [[ -f $pref_file ]]; then
             typeset -a lines
             lines=("${(f)$(cat $pref_file | grep -v "^$" | grep -v "^#")}")
-            for i in $lines; do
-                echo $i
+            for i in "${lines[@]}"; do
+                print -r -- "$i"
             done
         else
             echo 'preferences file not found'
@@ -72,15 +72,15 @@ zeesh-prefs() {
             tmp_file=$pref_file.tmp
             touch $tmp_file
             local found=false
-            for line in $lines; do
+            for line in "${lines[@]}"; do
                 local key=$line[(ws': ')1]
                 if [[ $key == $3 ]]; then
                     found=true
                     pref="$key: $4"
-                    echo $pref >> $tmp_file
+                    print -r -- "$pref" >> $tmp_file
                     echo "set $pref"
                 else
-                    echo $line >> $tmp_file
+                    print -r -- "$line" >> $tmp_file
                 fi
             done
             if [[ $found == false ]]; then
